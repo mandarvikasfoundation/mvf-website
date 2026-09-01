@@ -19,7 +19,7 @@ export default function HomePage() {
           display: 'flex',
           alignItems: 'flex-end',
           backgroundImage:
-            'linear-gradient(100deg, rgba(10,30,58,0.65), rgba(10,30,58,0.2)), url(/images/campus-gate.jpg)',
+            'linear-gradient(100deg, rgba(10,30,58,0.65), rgba(10,30,58,0.2)), url(/images/campus-gate.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -60,7 +60,13 @@ export default function HomePage() {
 
       {/* STATS */}
       <section className="container" style={{ paddingBottom: 30 }}>
-        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 14,
+          }}
+        >
           <StatCard value="2019" label="founded in Bihar" color="var(--navy-700)" />
           {/* Replace with real numbers as MVF shares them */}
           <StatCard value="25" label="students at Mandar's Pride" color="var(--saffron-600)" />
@@ -68,10 +74,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* THIS IS MVF */}
+      {/* THIS IS MVF — shares the same 3-column grid as the stats row above,
+          so the heading occupies the same width as the first stat card, and
+          the description's right edge lines up exactly with the right edge
+          of the third (rightmost) stat card. */}
       <section className="container" style={{ paddingBottom: 40 }}>
-        <div style={{ display: 'flex', gap: 30, alignItems: 'center', flexWrap: 'wrap' }}>
-          <div style={{ flex: '0 0 320px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 14,
+            alignItems: 'center',
+          }}
+        >
+          <div>
             <div className="section-heading" style={{ fontSize: 42 }}>
               This Is
             </div>
@@ -79,8 +95,8 @@ export default function HomePage() {
               MVF
             </div>
           </div>
-          <div style={{ flex: 1, minWidth: 280 }}>
-            <p style={{ fontSize: 14, lineHeight: 1.8, textAlign: 'justify', maxWidth: 460 }}>
+          <div style={{ gridColumn: '2 / span 2' }}>
+            <p style={{ fontSize: 14, lineHeight: 1.8, textAlign: 'justify' }}>
               Since 2019, Mandar Vikas Foundation has worked in Bhaga, Bounsi,
               Banka district of Bihar, supporting children&apos;s education and
               women&apos;s financial independence. We believe talent is never
@@ -120,7 +136,10 @@ export default function HomePage() {
             >
               Mandar&apos;s Pride
             </div>
-            <p style={{ fontSize: 13, color: 'var(--sky-200)', maxWidth: 280 }}>
+            {/* No max-width here on purpose: when the real, fuller description
+                is dropped in, it should use the full available row width
+                instead of wrapping narrowly and leaving space unused. */}
+            <p style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--sky-200)' }}>
               Currently teaching Nursery, Class 1, and Class 2, and growing.
               Admissions open year-round.
             </p>
@@ -162,19 +181,22 @@ export default function HomePage() {
           }}
         >
           <WorkCard
+            href="/our-work#learning-centre"
             color="var(--green-300)"
-            title="Learning Centre"
-            blurb="Support for children who fall behind due to work or family duties."
+            title="MVF Learning Centre"
+            blurb="Support for children who've dropped out of school or can't afford extra classes, many of them balancing work or family duties at home."
           />
           <WorkCard
+            href="/our-work#horticulture"
             color="#fac775"
-            title="Horticulture"
-            blurb="Marigold cultivation led by women, building financial independence."
+            title="MVF Horticulture"
+            blurb="Marigold cultivation led by the women of our community, building financial independence one harvest at a time."
           />
           <WorkCard
+            href="/our-work#skill-development"
             color="#f0997b"
-            title="Skill Development"
-            blurb="Free tailoring courses toward self-sustenance for women."
+            title="MVF Skill Development"
+            blurb="Free tailoring courses giving women a practical path toward self-sustenance and a trade of their own."
           />
         </div>
       </section>
@@ -254,10 +276,16 @@ export default function HomePage() {
                 width: 56,
                 height: 56,
                 borderRadius: 4,
-                background: 'linear-gradient(135deg, var(--saffron-300), var(--saffron-600))',
+                overflow: 'hidden',
                 flexShrink: 0,
               }}
-            />
+            >
+              <img
+                src="/images/news/independence-day-2026-flag-hoisting.png"
+                alt="Flag hoisting at the Independence Day celebration"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
             <div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--saffron-300)' }}>
                 15 August 2026
@@ -291,22 +319,40 @@ function StatCard({ value, label, color }: { value: string; label: string; color
   );
 }
 
-function WorkCard({ color, title, blurb }: { color: string; title: string; blurb: string }) {
+function WorkCard({
+  href,
+  color,
+  title,
+  blurb,
+}: {
+  href: string;
+  color: string;
+  title: string;
+  blurb: string;
+}) {
   return (
-    <div className="card" style={{ padding: 16 }}>
+    <Link
+      href={href}
+      className="card"
+      style={{
+        padding: '20px 18px',
+        textAlign: 'center',
+        display: 'block',
+      }}
+    >
       <div
         style={{
-          width: 26,
-          height: 26,
-          borderRadius: 6,
+          width: 28,
+          height: 28,
+          borderRadius: 7,
           background: color,
-          marginBottom: 8,
+          margin: '0 auto 10px',
         }}
       />
-      <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--navy-700)' }}>{title}</div>
-      <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 4, lineHeight: 1.5 }}>
+      <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--navy-700)' }}>{title}</div>
+      <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 6, lineHeight: 1.6 }}>
         {blurb}
       </div>
-    </div>
+    </Link>
   );
 }
