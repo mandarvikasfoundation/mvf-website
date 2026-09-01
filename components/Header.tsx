@@ -67,7 +67,7 @@ export default function Header() {
       <nav
         style={{
           display: 'flex',
-          gap: 14,
+          gap: 22,
           alignItems: 'center',
           fontFamily: 'var(--font-mono)',
           fontSize: 11,

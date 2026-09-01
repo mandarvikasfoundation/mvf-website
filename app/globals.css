@@ -136,6 +136,11 @@ img {
   clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
 }
 
+/* Same idea, mirrored, so the diagonal leans the other way for variety */
+.ridge-divider-reverse {
+  clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 100%);
+}
+
 .field-input {
   width: 100%;
   border: none;

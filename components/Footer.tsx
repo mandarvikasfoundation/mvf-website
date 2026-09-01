@@ -25,11 +25,10 @@ export default function Footer() {
   return (
     <footer
       style={{
-        padding: '22px 26px',
+        padding: '28px 26px',
         display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        gap: 24,
+        alignItems: 'stretch',
+        gap: 28,
         flexWrap: 'wrap',
       }}
     >
@@ -39,6 +38,7 @@ export default function Footer() {
           fontSize: 11,
           color: 'var(--label-grey)',
           lineHeight: 1.8,
+          flex: '0 0 280px',
         }}
       >
         <div style={{ color: 'var(--ink)', fontWeight: 700, fontSize: 14 }}>
@@ -54,7 +54,7 @@ export default function Footer() {
         <div>
           <b>Email:</b> mandarvikasfoundation@gmail.com
         </div>
-        <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
+        <div style={{ display: 'flex', gap: 12, marginTop: 20 }}>
           {/* Update these href values once MVF's real social accounts exist */}
           <a href="#" aria-label="Mandar Vikas Foundation on Facebook">
             <FacebookIcon />
@@ -69,12 +69,13 @@ export default function Footer() {
         TO ADD THE REAL MAP (exact campus location):
         1. Open Google Maps, search/pin Mandar's Pride's exact location.
         2. Click "Share" -> "Embed a map" -> copy the <iframe> code shown.
-        3. Replace the placeholder <div> below with that <iframe>, e.g.:
+        3. Replace the placeholder <div> below with that <iframe>, keeping
+           width="100%" height="100%" so it fills this same space, e.g.:
 
         <iframe
           src="PASTE_THE_EMBED_URL_HERE"
-          width="200"
-          height="120"
+          width="100%"
+          height="100%"
           style={{ border: 0, borderRadius: 4 }}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -82,16 +83,15 @@ export default function Footer() {
       */}
       <div
         style={{
-          flexShrink: 0,
-          width: 200,
-          height: 120,
+          flex: '1 1 320px',
+          minHeight: 220,
           background: 'var(--sky-200)',
           borderRadius: 4,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           fontFamily: 'var(--font-mono)',
-          fontSize: 10,
+          fontSize: 11,
           color: '#3b77ad',
           textAlign: 'center',
         }}

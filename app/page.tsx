@@ -10,30 +10,25 @@ const STACK_PHOTOS = [
 export default function HomePage() {
   return (
     <>
-      {/* HERO */}
-      <section
-        className="ridge-divider"
-        style={{
-          position: 'relative',
-          height: 340,
-          display: 'flex',
-          alignItems: 'flex-end',
-          backgroundImage:
-            'linear-gradient(100deg, rgba(10,30,58,0.65), rgba(10,30,58,0.2)), url(/images/campus-gate.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      {/* HERO — full photo, no crop, no color filter. Height comes naturally
+          from the image's own aspect ratio, not a fixed box. */}
+      <section>
+        <img
+          src="/images/campus-gate.png"
+          alt="The main gate of the Mandar Vikas Foundation campus, with the school building visible beyond"
+          style={{ width: '100%', height: 'auto', display: 'block' }}
+        />
         <div
-          className="container"
+          className="container ridge-divider-reverse"
           style={{
-            paddingBottom: 40,
+            padding: '20px 36px 30px',
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'flex-end',
+            alignItems: 'center',
             width: '100%',
             flexWrap: 'wrap',
             gap: 16,
+            background: 'var(--navy-900)',
           }}
         >
           <div
@@ -87,7 +82,7 @@ export default function HomePage() {
             alignItems: 'center',
           }}
         >
-          <div>
+          <div style={{ textAlign: 'center' }}>
             <div className="section-heading" style={{ fontSize: 42 }}>
               This Is
             </div>
@@ -160,12 +155,12 @@ export default function HomePage() {
       </section>
 
       {/* OUR OTHER WORK */}
-      <section className="container" style={{ padding: '40px 0 10px' }}>
+      <section className="container" style={{ padding: '48px 0 20px' }}>
         <h2
           className="section-heading"
-          style={{ fontSize: 30, textAlign: 'center', marginBottom: 2 }}
+          style={{ fontSize: 36, textAlign: 'center', marginBottom: 2 }}
         >
-          Our other work
+          Our Other Work
         </h2>
         <div
           className="eyebrow"
@@ -184,7 +179,7 @@ export default function HomePage() {
             href="/our-work#learning-centre"
             color="var(--green-300)"
             title="MVF Learning Centre"
-            blurb="Support for children who've dropped out of school or can't afford extra classes, many of them balancing work or family duties at home."
+            blurb="Support for children who've dropped out of school or can't afford extra classes due to balancing work or family duties at home."
           />
           <WorkCard
             href="/our-work#horticulture"
@@ -207,30 +202,39 @@ export default function HomePage() {
         style={{ background: 'var(--navy-700)', padding: '40px 0 32px' }}
       >
         <div className="container">
-          <h2 className="section-heading" style={{ fontSize: 24, color: 'white' }}>
-            Support Us
-          </h2>
-          <p
+          <div
             style={{
-              fontSize: 13,
-              color: 'var(--sky-200)',
-              marginTop: 6,
-              whiteSpace: 'nowrap',
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              borderRadius: 6,
+              padding: '26px 30px',
             }}
           >
-            Fees don&apos;t cover everything, your support keeps every program
-            running.
-          </p>
-          <div style={{ display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap' }}>
-            <Link href="/get-involved#donate" className="btn btn-primary">
-              Donate now
-            </Link>
-            <Link href="/get-involved#volunteer" className="btn btn-outline-dark">
-              Become a volunteer
-            </Link>
-            <Link href="/get-involved#partner" className="btn btn-outline-dark">
-              Partner with us
-            </Link>
+            <h2 className="section-heading" style={{ fontSize: 24, color: 'white' }}>
+              Support Us
+            </h2>
+            <p
+              style={{
+                fontSize: 13,
+                color: 'var(--sky-200)',
+                marginTop: 6,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Fees don&apos;t cover everything, your support keeps every program
+              running.
+            </p>
+            <div style={{ display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap' }}>
+              <Link href="/get-involved#donate" className="btn btn-primary">
+                Donate now
+              </Link>
+              <Link href="/get-involved#volunteer" className="btn btn-outline-dark">
+                Become a volunteer
+              </Link>
+              <Link href="/get-involved#partner" className="btn btn-outline-dark">
+                Partner with us
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -287,17 +291,34 @@ export default function HomePage() {
               />
             </div>
             <div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--saffron-300)' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--saffron-300)' }}>
                 15 August 2026
               </div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: 'white', marginTop: 3 }}>
+              <div style={{ fontSize: 17, fontWeight: 700, color: 'white', marginTop: 3 }}>
                 Independence Day at MVF campus
               </div>
-              <div style={{ fontSize: 11, color: 'var(--sky-200)', marginTop: 3 }}>
+              <div style={{ fontSize: 13, color: 'var(--sky-200)', marginTop: 3 }}>
                 Flag hoisting and festivities with students and staff.
               </div>
             </div>
           </Link>
+          <div
+            style={{
+              padding: '20px 36px',
+              background: 'var(--navy-900)',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--sky-300)' }}>
+                NEXT
+              </div>
+              <div style={{ fontSize: 15, color: 'var(--sky-200)', marginTop: 4 }}>
+                More stories coming soon
+              </div>
+            </div>
+          </div>
         </div>
         <div style={{ height: 8 }} />
       </section>
