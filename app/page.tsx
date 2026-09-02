@@ -23,15 +23,24 @@ export default function HomePage() {
           style={{
             position: 'absolute',
             left: 24,
-            top: 20,
+            top: 56,
             display: 'flex',
+            flexDirection: 'column',
             gap: 12,
           }}
         >
-          <Link href="/get-involved" className="btn btn-primary">
+          <Link
+            href="/get-involved"
+            className="btn btn-primary"
+            style={{ fontSize: 15, padding: '13px 26px' }}
+          >
             Support us
           </Link>
-          <Link href="/mandars-pride" className="btn" style={{ background: 'white', color: 'var(--navy-700)' }}>
+          <Link
+            href="/mandars-pride"
+            className="btn"
+            style={{ background: 'white', color: 'var(--navy-700)', fontSize: 15, padding: '13px 26px' }}
+          >
             Meet Mandar&apos;s Pride
           </Link>
         </div>
@@ -156,7 +165,7 @@ export default function HomePage() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
             gap: 12,
           }}
         >
