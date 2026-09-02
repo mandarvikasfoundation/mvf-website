@@ -53,7 +53,10 @@ export default function Footer() {
             PIN 813104
           </div>
           <div>
-            <b>Phone:</b> 9289928091 &nbsp; <b>Email:</b> mandarvikasfoundation@gmail.com
+            <b>Phone:</b> 9289928091
+          </div>
+          <div>
+            <b>Email:</b> mandarvikasfoundation@gmail.com
           </div>
         </div>
         <div style={{ display: 'flex', gap: 12, marginTop: 10 }}>
@@ -74,7 +77,7 @@ export default function Footer() {
         src="https://www.google.com/maps?q=24.793083,86.993806&z=16&output=embed"
         style={{
           flex: '1 1 260px',
-          border: 0,
+          border: '1px solid var(--rule)',
           borderRadius: 4,
           minHeight: 90,
         }}

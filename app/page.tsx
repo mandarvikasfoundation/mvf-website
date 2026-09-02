@@ -22,8 +22,8 @@ export default function HomePage() {
         <div
           style={{
             position: 'absolute',
-            right: 24,
-            bottom: 20,
+            left: 24,
+            top: 20,
             display: 'flex',
             gap: 12,
           }}
@@ -156,7 +156,7 @@ export default function HomePage() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
             gap: 12,
           }}
         >
@@ -164,7 +164,7 @@ export default function HomePage() {
             href="/our-work#learning-centre"
             color="var(--green-300)"
             title="MVF Learning Centre"
-            blurb="Support for children who've dropped out of school or can't afford extra classes due to balancing work or family duties at home."
+            blurb="Support for children who've dropped out of school or can't afford extra classes from balancing work or family duties at home."
           />
           <WorkCard
             href="/our-work#horticulture"
@@ -240,7 +240,7 @@ export default function HomePage() {
             marginBottom: 14,
           }}
         >
-          <div className="eyebrow" style={{ color: 'var(--saffron-300)', fontSize: 15 }}>
+          <div className="eyebrow" style={{ color: 'var(--saffron-300)', fontSize: 20 }}>
             News &amp; Updates
           </div>
           <Link
