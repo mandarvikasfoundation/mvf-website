@@ -15,7 +15,7 @@ export default function HomePage() {
           school building) so we don't need a second bar below it. */}
       <section style={{ position: 'relative' }}>
         <img
-          src="/images/campus-gate.png"
+          src="/images/campus-gate.jpg"
           alt="The main gate of the Mandar Vikas Foundation campus, with the school building visible beyond"
           style={{ width: '100%', height: 'auto', display: 'block' }}
         />
