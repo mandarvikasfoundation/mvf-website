@@ -34,8 +34,8 @@ export default function Header() {
       >
         <div
           style={{
-            width: 40,
-            height: 40,
+            width: 56,
+            height: 56,
             borderRadius: '50%',
             overflow: 'hidden',
             flexShrink: 0,
@@ -47,14 +47,14 @@ export default function Header() {
         <div>
           <div
             className="brand-script"
-            style={{ fontSize: 19, color: 'var(--navy-700)', lineHeight: 1 }}
+            style={{ fontSize: 25, color: 'var(--navy-700)', lineHeight: 1 }}
           >
             Mandar Vikas Foundation
           </div>
           <div
             className="brand-script"
             style={{
-              fontSize: 11,
+              fontSize: 14,
               color: 'var(--saffron-600)',
               fontStyle: 'italic',
             }}

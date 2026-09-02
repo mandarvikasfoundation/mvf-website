@@ -22,8 +22,8 @@ export default function HomePage() {
         <div
           style={{
             position: 'absolute',
-            left: 24,
-            top: 56,
+            right: 24,
+            top: 100,
             display: 'flex',
             flexDirection: 'column',
             gap: 12,
@@ -32,14 +32,20 @@ export default function HomePage() {
           <Link
             href="/get-involved"
             className="btn btn-primary"
-            style={{ fontSize: 15, padding: '13px 26px' }}
+            style={{ fontSize: 15, padding: '13px 26px', textAlign: 'center' }}
           >
             Support us
           </Link>
           <Link
             href="/mandars-pride"
             className="btn"
-            style={{ background: 'white', color: 'var(--navy-700)', fontSize: 15, padding: '13px 26px' }}
+            style={{
+              background: 'white',
+              color: 'var(--navy-700)',
+              fontSize: 15,
+              padding: '13px 26px',
+              textAlign: 'center',
+            }}
           >
             Meet Mandar&apos;s Pride
           </Link>
@@ -370,7 +376,7 @@ function WorkCard({
         }}
       />
       <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--navy-700)' }}>{title}</div>
-      <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 6, lineHeight: 1.6 }}>
+      <div style={{ fontSize: 11, color: 'var(--ink-muted)', marginTop: 6, lineHeight: 1.55 }}>
         {blurb}
       </div>
     </Link>
