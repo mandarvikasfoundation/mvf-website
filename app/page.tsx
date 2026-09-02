@@ -22,7 +22,7 @@ export default function HomePage() {
         <div
           style={{
             position: 'absolute',
-            right: 24,
+            left: 70,
             top: 100,
             display: 'flex',
             flexDirection: 'column',
