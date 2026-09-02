@@ -25,10 +25,10 @@ export default function Footer() {
   return (
     <footer
       style={{
-        padding: '28px 26px',
+        padding: '20px 26px',
         display: 'flex',
         alignItems: 'stretch',
-        gap: 28,
+        gap: 24,
         flexWrap: 'wrap',
       }}
     >
@@ -38,23 +38,25 @@ export default function Footer() {
           fontSize: 11,
           color: 'var(--label-grey)',
           lineHeight: 1.8,
-          flex: '0 0 280px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          flexShrink: 0,
         }}
       >
-        <div style={{ color: 'var(--ink)', fontWeight: 700, fontSize: 14 }}>
-          Mandar Vikas Foundation
-        </div>
         <div>
-          Dam Road, Bhaga, P.O. &amp; P.S. Bounsi, District Banka, Bihar,
-          PIN 813104
+          <div style={{ color: 'var(--ink)', fontWeight: 700, fontSize: 14 }}>
+            Mandar Vikas Foundation
+          </div>
+          <div style={{ whiteSpace: 'nowrap' }}>
+            Dam Road, Bhaga, P.O. &amp; P.S. Bounsi, District Banka, Bihar,
+            PIN 813104
+          </div>
+          <div>
+            <b>Phone:</b> 9289928091 &nbsp; <b>Email:</b> mandarvikasfoundation@gmail.com
+          </div>
         </div>
-        <div>
-          <b>Phone:</b> 9289928091
-        </div>
-        <div>
-          <b>Email:</b> mandarvikasfoundation@gmail.com
-        </div>
-        <div style={{ display: 'flex', gap: 12, marginTop: 20 }}>
+        <div style={{ display: 'flex', gap: 12, marginTop: 10 }}>
           {/* Update these href values once MVF's real social accounts exist */}
           <a href="#" aria-label="Mandar Vikas Foundation on Facebook">
             <FacebookIcon />
@@ -65,41 +67,20 @@ export default function Footer() {
         </div>
       </div>
 
-      {/*
-        TO ADD THE REAL MAP (exact campus location):
-        1. Open Google Maps, search/pin Mandar's Pride's exact location.
-        2. Click "Share" -> "Embed a map" -> copy the <iframe> code shown.
-        3. Replace the placeholder <div> below with that <iframe>, keeping
-           width="100%" height="100%" so it fills this same space, e.g.:
-
-        <iframe
-          src="PASTE_THE_EMBED_URL_HERE"
-          width="100%"
-          height="100%"
-          style={{ border: 0, borderRadius: 4 }}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-      */}
-      <div
+      {/* Real embedded map — Mandar's Pride campus, from the coordinates
+          24°47'35.1"N 86°59'37.7"E (24.793083, 86.993806) */}
+      <iframe
+        title="Mandar Vikas Foundation campus location"
+        src="https://www.google.com/maps?q=24.793083,86.993806&z=16&output=embed"
         style={{
-          flex: '1 1 320px',
-          minHeight: 220,
-          background: 'var(--sky-200)',
+          flex: '1 1 260px',
+          border: 0,
           borderRadius: 4,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontFamily: 'var(--font-mono)',
-          fontSize: 11,
-          color: '#3b77ad',
-          textAlign: 'center',
+          minHeight: 90,
         }}
-      >
-        Map embed
-        <br />
-        (exact campus location)
-      </div>
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      />
     </footer>
   );
 }

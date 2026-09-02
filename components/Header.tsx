@@ -85,7 +85,7 @@ export default function Header() {
                 style={{
                   fontSize: 14,
                   color: isActive ? 'var(--navy-700)' : 'var(--ink-muted)',
-                  fontWeight: isActive ? 700 : 400,
+                  fontWeight: 700,
                   borderBottom: isActive
                     ? '1.5px solid var(--saffron-600)'
                     : '1.5px solid transparent',
@@ -103,7 +103,7 @@ export default function Header() {
               href={link.href}
               style={{
                 color: isActive ? 'var(--navy-700)' : 'var(--ink-muted)',
-                fontWeight: isActive ? 700 : 400,
+                fontWeight: 700,
                 borderBottom: isActive
                   ? '1.5px solid var(--saffron-600)'
                   : '1.5px solid transparent',

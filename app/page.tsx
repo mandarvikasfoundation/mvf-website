@@ -10,44 +10,30 @@ const STACK_PHOTOS = [
 export default function HomePage() {
   return (
     <>
-      {/* HERO — full photo, no crop, no color filter. Height comes naturally
-          from the image's own aspect ratio, not a fixed box. */}
-      <section>
+      {/* HERO — full photo, no crop, no color filter. Buttons sit directly
+          on the photo (bottom-right, over open sky/ground, not the gate or
+          school building) so we don't need a second bar below it. */}
+      <section style={{ position: 'relative' }}>
         <img
           src="/images/campus-gate.png"
           alt="The main gate of the Mandar Vikas Foundation campus, with the school building visible beyond"
           style={{ width: '100%', height: 'auto', display: 'block' }}
         />
         <div
-          className="container ridge-divider-reverse"
           style={{
-            padding: '20px 36px 30px',
+            position: 'absolute',
+            right: 24,
+            bottom: 20,
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            width: '100%',
-            flexWrap: 'wrap',
-            gap: 16,
-            background: 'var(--navy-900)',
+            gap: 12,
           }}
         >
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 13,
-              color: 'var(--saffron-300)',
-            }}
-          >
-            Bhaga, Bounsi &middot; Banka District, Bihar
-          </div>
-          <div style={{ display: 'flex', gap: 12 }}>
-            <Link href="/get-involved" className="btn btn-primary">
-              Support us
-            </Link>
-            <Link href="/mandars-pride" className="btn btn-outline-dark">
-              Meet Mandar&apos;s Pride
-            </Link>
-          </div>
+          <Link href="/get-involved" className="btn btn-primary">
+            Support us
+          </Link>
+          <Link href="/mandars-pride" className="btn" style={{ background: 'white', color: 'var(--navy-700)' }}>
+            Meet Mandar&apos;s Pride
+          </Link>
         </div>
       </section>
 
@@ -131,12 +117,11 @@ export default function HomePage() {
             >
               Mandar&apos;s Pride
             </div>
-            {/* No max-width here on purpose: when the real, fuller description
-                is dropped in, it should use the full available row width
-                instead of wrapping narrowly and leaving space unused. */}
             <p style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--sky-200)' }}>
-              Currently teaching Nursery, Class 1, and Class 2, and growing.
-              Admissions open year-round.
+              Mandar&apos;s Pride is a co-educational school for imparting
+              quality and inclusive education for blossoming children,
+              enabling them to add values to society including earning
+              respectable livelihood, once they grow up.
             </p>
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
               <Link
@@ -171,7 +156,7 @@ export default function HomePage() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
             gap: 12,
           }}
         >
@@ -196,35 +181,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* GET INVOLVED */}
-      <section
-        className="ridge-divider"
-        style={{ background: 'var(--navy-700)', padding: '40px 0 32px' }}
-      >
+      {/* GET INVOLVED — the SECTION uses the normal light page background;
+          the dark styling lives only on the card inside it, so it reads as
+          a dark card sitting on the page, not a dark section on dark. */}
+      <section style={{ padding: '20px 0 44px' }}>
         <div className="container">
           <div
             style={{
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.15)',
+              background: 'var(--navy-900)',
               borderRadius: 6,
               padding: '26px 30px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: 24,
+              flexWrap: 'wrap',
             }}
           >
-            <h2 className="section-heading" style={{ fontSize: 24, color: 'white' }}>
-              Support Us
-            </h2>
-            <p
-              style={{
-                fontSize: 13,
-                color: 'var(--sky-200)',
-                marginTop: 6,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Fees don&apos;t cover everything, your support keeps every program
-              running.
-            </p>
-            <div style={{ display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap' }}>
+            <div>
+              <h2 className="section-heading" style={{ fontSize: 24, color: 'white' }}>
+                Support Us
+              </h2>
+              <p
+                style={{
+                  fontSize: 13,
+                  color: 'var(--sky-200)',
+                  marginTop: 6,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Fees don&apos;t cover everything, your support keeps every
+                program running.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'nowrap' }}>
               <Link href="/get-involved#donate" className="btn btn-primary">
                 Donate now
               </Link>
@@ -250,7 +240,7 @@ export default function HomePage() {
             marginBottom: 14,
           }}
         >
-          <div className="eyebrow" style={{ color: 'var(--saffron-300)' }}>
+          <div className="eyebrow" style={{ color: 'var(--saffron-300)', fontSize: 15 }}>
             News &amp; Updates
           </div>
           <Link
