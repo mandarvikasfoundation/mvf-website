@@ -2,9 +2,9 @@ import Link from 'next/link';
 import PhotoStack from '@/components/PhotoStack';
 
 const STACK_PHOTOS = [
-  { src: '/images/placeholder-1.jpg', caption: 'class time' },
-  { src: '/images/placeholder-2.jpg' }, // captions are optional
-  { src: '/images/placeholder-3.jpg', caption: 'campus' },
+  { src: '/images/mandars-pride/gate-evening.jpg', caption: "Mandar's Pride gate" },
+  { src: '/images/mandars-pride/admissions-event.jpg' }, // captions are optional
+  { src: '/images/mandars-pride/classroom.jpg', caption: 'classroom' },
 ];
 
 export default function HomePage() {
