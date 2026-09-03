@@ -60,25 +60,30 @@ export default function AboutPage() {
         <h1 className="section-heading" style={{ fontSize: 42, marginTop: 8 }}>
           About Mandar Vikas Foundation
         </h1>
-        <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 8 }}>
+        <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 4 }}>
           Established in 2019, MVF works towards women&apos;s empowerment,
           the growth and education of children, and dignity for
           underprivileged people.
         </p>
       </div>
 
-      {/* OUR ROOTS */}
-      <section className="container" style={{ padding: '30px 0' }}>
-        <div style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap' }}>
+      {/* OUR ROOTS — dark themed (like Mission) but NOT mirrored, so the
+          heading stays on the left. Gives clear visual separation before
+          the light Vision section below. */}
+      <section
+        className="ridge-divider"
+        style={{ background: 'var(--navy-900)', padding: '52px 0' }}
+      >
+        <div className="container" style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ flex: '0 0 260px' }}>
-            <div className="section-heading" style={{ fontSize: 44, lineHeight: 1.02 }}>
+            <div className="section-heading" style={{ fontSize: 44, lineHeight: 1.02, color: 'white' }}>
               Our
               <br />
               Roots
             </div>
           </div>
           <div style={{ flex: 1, minWidth: 280 }}>
-            <p style={{ fontSize: 13.5, lineHeight: 1.8, textAlign: 'justify' }}>
+            <p style={{ fontSize: 13.5, lineHeight: 1.8, textAlign: 'justify', color: 'var(--sky-200)' }}>
               Here at Mandar Vikas Foundation, we know that sometimes all it
               takes to change the world is a little support. Since our
               establishment in 2019, we have been determined to make an
@@ -92,7 +97,7 @@ export default function AboutPage() {
       </section>
 
       {/* OUR VISION */}
-      <section style={{ padding: '34px 0' }}>
+      <section style={{ padding: '48px 0' }}>
         <div className="container">
           <h2
             className="section-heading"
@@ -115,15 +120,15 @@ export default function AboutPage() {
       </section>
 
       {/* OUR MISSION — dark section, mirrored layout */}
-      <section style={{ background: 'var(--navy-900)', padding: '34px 0' }}>
+      <section style={{ background: 'var(--navy-900)', padding: '48px 0' }}>
         <div
           className="container"
           style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap-reverse' }}
         >
           <div style={{ flex: 1, minWidth: 280 }}>
             <ul style={{ fontSize: 13, lineHeight: 1.85, color: 'var(--sky-200)', paddingLeft: 18, margin: 0 }}>
-              <li>Promoting the financial and social empowerment of women through adaptable, cross-cutting programmes, building awareness of their rights and facilitating institutional support for their growth.</li>
-              <li>Ensuring the care, protection, education, and all-round growth of children by extending access to health, nutrition, education, and awareness of their rights, with the involvement of the wider society.</li>
+              <li style={{ marginBottom: 12 }}>Promoting the financial and social empowerment of women through adaptable, cross-cutting programmes, building awareness of their rights and facilitating institutional support for their growth.</li>
+              <li style={{ marginBottom: 12 }}>Ensuring the care, protection, education, and all-round growth of children by extending access to health, nutrition, education, and awareness of their rights, with the involvement of the wider society.</li>
               <li>Giving underprivileged and in-need members of society access to the basic support that enables them to live with dignity.</li>
             </ul>
           </div>
@@ -138,7 +143,7 @@ export default function AboutPage() {
       </section>
 
       {/* MANAGING COMMITTEE / GENERAL BODY TABS */}
-      <section className="container" style={{ padding: '34px 0' }}>
+      <section className="container" style={{ padding: '48px 0' }}>
         <div style={{ display: 'flex', gap: 4, justifyContent: 'center' }}>
           <TabButton active={activeTab === 'committee'} onClick={() => setActiveTab('committee')}>
             Managing Committee
@@ -150,7 +155,8 @@ export default function AboutPage() {
 
         <div style={{ marginTop: 24 }}>
           {activeTab === 'committee' ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 10 }}>
+            // 7 members: fixed 4 columns gives a balanced 4-then-3 layout
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
               {MANAGING_COMMITTEE.map((m) => (
                 <div key={m.name} className="card" style={{ padding: '14px 12px', textAlign: 'center' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--navy-700)' }}>{m.name}</div>
@@ -159,7 +165,8 @@ export default function AboutPage() {
               ))}
             </div>
           ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 10 }}>
+            // 8 members: fixed 4 columns gives a perfectly even 4-and-4 layout
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
               {GENERAL_BODY.map((name) => (
                 <div key={name} className="card" style={{ padding: '14px 12px', textAlign: 'center' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--navy-700)' }}>{name}</div>
@@ -173,7 +180,7 @@ export default function AboutPage() {
       {/* PRESIDENT'S DESK */}
       <section
         className="ridge-divider"
-        style={{ background: 'var(--navy-900)', padding: '34px 0' }}
+        style={{ background: 'var(--navy-900)', padding: '48px 0' }}
       >
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
@@ -194,7 +201,7 @@ export default function AboutPage() {
               fontSize: 13,
               lineHeight: 2,
               color: 'var(--sky-200)',
-              maxWidth: 820,
+              maxWidth: 950,
               whiteSpace: 'pre-line',
               textAlign: 'justify',
             }}
@@ -205,7 +212,7 @@ export default function AboutPage() {
       </section>
 
       {/* LEGAL & TRANSPARENCY */}
-      <section className="container" style={{ padding: '34px 0 50px' }}>
+      <section className="container" style={{ padding: '48px 0 60px' }}>
         <h2 className="section-heading" style={{ fontSize: 22, marginBottom: 16 }}>
           Legal &amp; Transparency
         </h2>

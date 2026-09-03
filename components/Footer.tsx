@@ -3,7 +3,7 @@ function FacebookIcon() {
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
       <path
         d="M17 3H14.5C13.1 3 11.9 3.6 11 4.5C10.1 5.4 9.5 6.6 9.5 8V11H7V14.5H9.5V21H13V14.5H15.5L16.5 11H13V8.3C13 7.6 13.6 7 14.3 7H16.5V3.5L17 3Z"
-        stroke="var(--label-grey)"
+        stroke="var(--ink)"
         strokeWidth="1.4"
         strokeLinejoin="round"
       />
@@ -14,9 +14,9 @@ function FacebookIcon() {
 function InstagramIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" stroke="var(--label-grey)" strokeWidth="1.4" />
-      <circle cx="12" cy="12" r="4" stroke="var(--label-grey)" strokeWidth="1.4" />
-      <circle cx="17.2" cy="6.8" r="1.1" fill="var(--label-grey)" />
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" stroke="var(--ink)" strokeWidth="1.4" />
+      <circle cx="12" cy="12" r="4" stroke="var(--ink)" strokeWidth="1.4" />
+      <circle cx="17.2" cy="6.8" r="1.1" fill="var(--ink)" />
     </svg>
   );
 }
