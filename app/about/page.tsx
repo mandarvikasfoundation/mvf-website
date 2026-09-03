@@ -57,10 +57,10 @@ export default function AboutPage() {
       {/* HEADER / INTRO */}
       <div className="container" style={{ padding: '30px 0 6px' }}>
         <div className="eyebrow">Home / About Us</div>
-        <h1 className="section-heading" style={{ fontSize: 42, marginTop: 8 }}>
+        <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
           About Mandar Vikas Foundation
         </h1>
-        <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 4 }}>
+        <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2 }}>
           Established in 2019, MVF works towards women&apos;s empowerment,
           the growth and education of children, and dignity for
           underprivileged people.
@@ -201,7 +201,7 @@ export default function AboutPage() {
               fontSize: 13,
               lineHeight: 2,
               color: 'var(--sky-200)',
-              maxWidth: 950,
+              maxWidth: 1000,
               whiteSpace: 'pre-line',
               textAlign: 'justify',
             }}
