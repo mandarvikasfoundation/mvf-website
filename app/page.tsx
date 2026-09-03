@@ -42,6 +42,7 @@ export default function HomePage() {
             style={{
               background: 'white',
               color: 'var(--navy-700)',
+              border: '1.5px solid var(--navy-700)',
               fontSize: 15,
               padding: '13px 26px',
               textAlign: 'center',
