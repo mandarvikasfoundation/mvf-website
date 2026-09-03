@@ -76,7 +76,7 @@ export default function Footer() {
           24°47'35.1"N 86°59'37.7"E (24.793083, 86.993806) */}
       <iframe
         title="Mandar Vikas Foundation campus location"
-        src="https://www.google.com/maps?q=24.793083,86.993806&z=16&output=embed"
+        src="https://www.google.com/maps?q=24.793083,86.993806&z=14&output=embed"
         style={{
           flex: '1 1 260px',
           border: '1px solid var(--rule)',

@@ -5,7 +5,7 @@ const PROGRAMS = [
     title: 'MVF Learning Centre',
     quote: '"There is no scarcity of talent in our country."',
     dotColor: 'var(--green-300)',
-    photoColors: ['linear-gradient(135deg,#C0DD97,#3B6D11)', 'linear-gradient(135deg,#A9CC7A,#4C7D1E)'],
+    photoColor: 'linear-gradient(160deg,#C0DD97,#3B6D11)',
     paragraphs: [
       `MVF Learning Centre is a platform for children who have either dropped out of school, or who are school students unable to afford extra classes. We don't offer "extra classes" in the ordinary sense; we started this because many children from farming or daily-wage families are asked to work alongside their parents or look after siblings, and as a result can't attend school regularly and fall behind.`,
       `There is no scarcity of talent in our country. But circumstances like these obstruct a child's holistic growth, and MVF exists to support these children so they can grow and blossom. Because the organization is currently entirely dependent on individual donations, with no funding partner, we are limited in how many children the Centre can support at once. Teachers at the Centre don't just teach academics, but also pass on important life skills.`,
@@ -17,7 +17,7 @@ const PROGRAMS = [
     title: 'MVF Horticulture',
     quote: '"Women are the foundation of any society."',
     dotColor: '#fac775',
-    photoColors: ['linear-gradient(135deg,#F0A85B,#C6631F)', 'linear-gradient(135deg,#F7C48C,#B8560F)'],
+    photoColor: 'linear-gradient(160deg,#F0A85B,#C6631F)',
     paragraphs: [
       `We started MVF Horticulture in February 2020, with the women of our community in mind, specifically those without financial independence of their own. Women are the foundation of any society; a strong foundation makes for a strong building. Members of the Foundation shared a common belief in the importance of women's financial empowerment, and from that came the idea of horticulture; specifically, marigold cultivation.`,
       `It's worth acknowledging that it was the women of the community themselves who stepped forward to support this project, contributing their own labour voluntarily. Profit from the marigold cultivation doesn't only support these women; it also goes toward strengthening the Learning Centre and starting other projects that push back against the odds our community faces.`,
@@ -29,7 +29,7 @@ const PROGRAMS = [
     title: 'MVF Skill Development Centre',
     quote: '"Working toward self-sustenance."',
     dotColor: '#f0997b',
-    photoColors: ['linear-gradient(135deg,#9FC3E8,#0F2A4A)', 'linear-gradient(135deg,#6FA0D6,#0A2E52)'],
+    photoColor: 'linear-gradient(160deg,#9FC3E8,#0F2A4A)',
     paragraphs: [
       `Mandar Vikas Foundation works toward self-sustenance for underprivileged sections of society. In line with that goal, MVF started the Skill Development Centre in February 2021, beginning with a free Basic Tailoring Course for women. The course runs over three months, split into six fifteen-day terms.`,
       `Once the Basic course is complete, participants can go on to the Advance Tailoring Course (also three months long) which teaches more refined, professional stitching techniques. On successful completion (assessed internally by the Centre), participants receive a Certificate of Appreciation.`,
@@ -109,31 +109,21 @@ export default function OurWorkPage() {
                 {program.date}
               </div>
               <div style={{ display: 'flex', gap: 22, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flexShrink: 0, marginTop: 26 }}>
+                <div style={{ flexShrink: 0, marginTop: 26 }}>
+                  {/* One photo, height = sum of the previous two stacked
+                      photos (100 + 100 = 200). Swap in a real photo of any
+                      ratio here; this placeholder just holds the space. */}
                   <div
                     style={{
                       width: 120,
-                      height: 100,
+                      height: 200,
                       background: 'white',
                       padding: 7,
                       boxShadow: '0 5px 12px rgba(15,42,74,0.2)',
-                      transform: 'rotate(-3deg)',
+                      transform: 'rotate(-2deg)',
                     }}
                   >
-                    <div style={{ width: '100%', height: '100%', background: program.photoColors[0] }} />
-                  </div>
-                  <div
-                    style={{
-                      width: 120,
-                      height: 100,
-                      background: 'white',
-                      padding: 7,
-                      boxShadow: '0 5px 12px rgba(15,42,74,0.2)',
-                      transform: 'rotate(2deg)',
-                      marginLeft: 10,
-                    }}
-                  >
-                    <div style={{ width: '100%', height: '100%', background: program.photoColors[1] }} />
+                    <div style={{ width: '100%', height: '100%', background: program.photoColor }} />
                   </div>
                 </div>
                 <div style={{ flex: 1, minWidth: 260 }}>
