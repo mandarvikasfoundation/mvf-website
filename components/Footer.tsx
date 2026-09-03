@@ -30,6 +30,8 @@ export default function Footer() {
         alignItems: 'stretch',
         gap: 24,
         flexWrap: 'wrap',
+        background: 'var(--card-bg)',
+        borderTop: '1px solid var(--paper-line)',
       }}
     >
       <div

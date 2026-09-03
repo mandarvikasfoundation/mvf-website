@@ -10,6 +10,7 @@ const MANAGING_COMMITTEE = [
   { name: 'Isha Kumari', role: 'Member' },
   { name: 'Praful Chandra Yadav', role: 'Member' },
   { name: 'Kunj Jha', role: 'Member' },
+  { name: 'Shamlesh Kumar', role: 'Member' },
 ];
 
 const GENERAL_BODY = [
@@ -20,6 +21,7 @@ const GENERAL_BODY = [
   'Punam Kumari',
   'Shamlesh Kumar',
   'Isha Kumari',
+  'Shreya Choudhary',
 ];
 
 const PRESIDENTS_DESK_HI = `प्रिय मित्रों,
@@ -55,10 +57,10 @@ export default function AboutPage() {
       {/* HEADER / INTRO */}
       <div className="container" style={{ padding: '30px 0 6px' }}>
         <div className="eyebrow">Home / About Us</div>
-        <h1 className="section-heading" style={{ fontSize: 30, marginTop: 6 }}>
+        <h1 className="section-heading" style={{ fontSize: 42, marginTop: 8 }}>
           About Mandar Vikas Foundation
         </h1>
-        <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 6, maxWidth: 560 }}>
+        <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 8 }}>
           Established in 2019, MVF works towards women&apos;s empowerment,
           the growth and education of children, and dignity for
           underprivileged people.
@@ -76,7 +78,7 @@ export default function AboutPage() {
             </div>
           </div>
           <div style={{ flex: 1, minWidth: 280 }}>
-            <p style={{ fontSize: 13.5, lineHeight: 1.8, textAlign: 'justify', maxWidth: 480 }}>
+            <p style={{ fontSize: 13.5, lineHeight: 1.8, textAlign: 'justify' }}>
               Here at Mandar Vikas Foundation, we know that sometimes all it
               takes to change the world is a little support. Since our
               establishment in 2019, we have been determined to make an
@@ -116,10 +118,10 @@ export default function AboutPage() {
       <section style={{ background: 'var(--navy-900)', padding: '34px 0' }}>
         <div
           className="container"
-          style={{ display: 'flex', gap: 26, alignItems: 'flex-start', flexWrap: 'wrap-reverse' }}
+          style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap-reverse' }}
         >
           <div style={{ flex: 1, minWidth: 280 }}>
-            <ul style={{ fontSize: 13, lineHeight: 1.85, color: 'var(--sky-200)', paddingLeft: 18, margin: 0, maxWidth: 480 }}>
+            <ul style={{ fontSize: 13, lineHeight: 1.85, color: 'var(--sky-200)', paddingLeft: 18, margin: 0 }}>
               <li>Promoting the financial and social empowerment of women through adaptable, cross-cutting programmes, building awareness of their rights and facilitating institutional support for their growth.</li>
               <li>Ensuring the care, protection, education, and all-round growth of children by extending access to health, nutrition, education, and awareness of their rights, with the involvement of the wider society.</li>
               <li>Giving underprivileged and in-need members of society access to the basic support that enables them to live with dignity.</li>
@@ -192,7 +194,7 @@ export default function AboutPage() {
               fontSize: 13,
               lineHeight: 2,
               color: 'var(--sky-200)',
-              maxWidth: 640,
+              maxWidth: 820,
               whiteSpace: 'pre-line',
               textAlign: 'justify',
             }}
