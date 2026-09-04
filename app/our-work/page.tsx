@@ -1,11 +1,24 @@
-const PROGRAMS = [
+type Program = {
+  id: string;
+  date: string;
+  title: string;
+  quote: string;
+  dotColor: string;
+  photoSrc?: string;
+  photoAlt?: string;
+  photoColor?: string;
+  paragraphs: string[];
+};
+
+const PROGRAMS: Program[] = [
   {
     id: 'learning-centre',
     date: 'NOVEMBER 2019',
     title: 'MVF Learning Centre',
     quote: '"There is no scarcity of talent in our country."',
     dotColor: 'var(--green-300)',
-    photoColor: 'linear-gradient(160deg,#C0DD97,#3B6D11)',
+    photoSrc: '/images/our-work/learning-centre.jpg',
+    photoAlt: 'Children and staff at the MVF Learning Centre gate',
     paragraphs: [
       `MVF Learning Centre is a platform for children who have either dropped out of school, or who are school students unable to afford extra classes. We don't offer "extra classes" in the ordinary sense; we started this because many children from farming or daily-wage families are asked to work alongside their parents or look after siblings, and as a result can't attend school regularly and fall behind.`,
       `There is no scarcity of talent in our country. But circumstances like these obstruct a child's holistic growth, and MVF exists to support these children so they can grow and blossom. Because the organization is currently entirely dependent on individual donations, with no funding partner, we are limited in how many children the Centre can support at once. Teachers at the Centre don't just teach academics, but also pass on important life skills.`,
@@ -29,7 +42,8 @@ const PROGRAMS = [
     title: 'MVF Skill Development Centre',
     quote: '"Working toward self-sustenance."',
     dotColor: '#f0997b',
-    photoColor: 'linear-gradient(160deg,#9FC3E8,#0F2A4A)',
+    photoSrc: '/images/our-work/skill-development.jpg',
+    photoAlt: 'Women at the MVF Skill Development tailoring class',
     paragraphs: [
       `Mandar Vikas Foundation works toward self-sustenance for underprivileged sections of society. In line with that goal, MVF started the Skill Development Centre in February 2021, beginning with a free Basic Tailoring Course for women. The course runs over three months, split into six fifteen-day terms.`,
       `Once the Basic course is complete, participants can go on to the Advance Tailoring Course (also three months long) which teaches more refined, professional stitching techniques. On successful completion (assessed internally by the Centre), participants receive a Certificate of Appreciation.`,
@@ -123,7 +137,15 @@ export default function OurWorkPage() {
                       transform: 'rotate(-2deg)',
                     }}
                   >
-                    <div style={{ width: '100%', height: '100%', background: program.photoColor }} />
+                    {program.photoSrc ? (
+                      <img
+                        src={program.photoSrc}
+                        alt={program.photoAlt}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    ) : (
+                      <div style={{ width: '100%', height: '100%', background: program.photoColor }} />
+                    )}
                   </div>
                 </div>
                 <div style={{ flex: 1, minWidth: 260 }}>
