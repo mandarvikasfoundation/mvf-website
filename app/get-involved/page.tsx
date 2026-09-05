@@ -30,23 +30,30 @@ export default function GetInvolvedPage() {
 
       {/* DONATE */}
       <section id="donate" style={{ padding: '32px 0 8px', scrollMarginTop: 90 }}>
-        <div className="container">
+        <div className="container" style={{ textAlign: 'center' }}>
+          <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 10 }}>
+            Donate
+          </h2>
+          <p style={{ fontSize: 14, lineHeight: 1.7, maxWidth: 620, margin: '0 auto 30px' }}>
+            School fees help fund Mandar&apos;s Pride, but they don&apos;t
+            cover everything. Since the school is only one part of what we
+            do, your donation helps us keep every program running.
+          </p>
+
           <div
             className="card"
             style={{
-              maxWidth: 950,
+              maxWidth: 780,
               margin: '0 auto',
               padding: '30px 34px',
               display: 'flex',
-              gap: 28,
+              gap: 32,
               alignItems: 'center',
               flexWrap: 'wrap',
+              textAlign: 'left',
             }}
           >
-            <div style={{ flex: '0 0 28%', textAlign: 'center', minWidth: 180 }}>
-              <div className="section-heading" style={{ fontSize: 26, marginBottom: 14 }}>
-                Donate
-              </div>
+            <div style={{ flex: '0 0 200px', textAlign: 'center' }}>
               <div
                 style={{
                   width: 190,
@@ -68,12 +75,7 @@ export default function GetInvolvedPage() {
                 (add real QR image)
               </div>
             </div>
-            <div style={{ flex: 1, minWidth: 320, borderLeft: '1px solid var(--paper-line)', paddingLeft: 26 }}>
-              <p style={{ fontSize: 13, lineHeight: 1.7, textAlign: 'justify', marginBottom: 14 }}>
-                School fees help fund Mandar&apos;s Pride, but they don&apos;t
-                cover everything. Since the school is only one part of what
-                we do, your donation helps us keep every program running.
-              </p>
+            <div style={{ flex: 1, minWidth: 280, borderLeft: '1px solid var(--paper-line)', paddingLeft: 28 }}>
               <CopyRow label="UPI ID" value="mandarvikas@upi" />
               <CopyRow label="Phone (UPI)" value="9289928091" />
               <div style={{ marginTop: 6, paddingTop: 6, borderTop: '0.5px dashed var(--paper-line)' }} />
@@ -87,20 +89,23 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* VOLUNTEER */}
-      <section id="volunteer" style={{ padding: '10px 0 36px', textAlign: 'center', scrollMarginTop: 90 }}>
-        <div className="container">
-          <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 8 }}>
-            Volunteer
-          </h2>
-          <p style={{ fontSize: 14, color: 'var(--ink-muted)', maxWidth: 560, margin: '0 auto 24px', lineHeight: 1.7 }}>
-            Whether it&apos;s teaching at Mandar&apos;s Pride, helping with
-            day-to-day tasks around the school, supporting an event, or
-            lending a specific skill, there&apos;s likely a way to help.
-          </p>
+      {/* VOLUNTEER — text left, form right (mirrored by Partner below) */}
+      <section id="volunteer" style={{ padding: '10px 0 44px', scrollMarginTop: 90 }}>
+        <div className="container" style={{ display: 'flex', gap: 30, alignItems: 'center', flexWrap: 'wrap', position: 'relative' }}>
+          <div style={{ position: 'absolute', left: 26, top: 0, bottom: 0, width: 1, background: 'var(--margin-red)', opacity: 0.3 }} />
+          <div style={{ flex: '0 0 300px', paddingLeft: 26 }}>
+            <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 10 }}>
+              Volunteer
+            </h2>
+            <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.7, textAlign: 'justify' }}>
+              Whether it&apos;s teaching at Mandar&apos;s Pride, helping with
+              day-to-day tasks around the school, supporting an event, or
+              lending a specific skill, there&apos;s likely a way to help.
+            </p>
+          </div>
           <form
             className="card"
-            style={{ maxWidth: 660, margin: '0 auto', padding: 30, textAlign: 'left' }}
+            style={{ flex: 1, minWidth: 320, padding: 30 }}
             onSubmit={(e) => e.preventDefault()}
           >
             <FormRow2>
@@ -123,35 +128,22 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* PARTNER */}
+      {/* PARTNER — mirror of Volunteer: form left, text right */}
       <section
         id="partner"
         className="ridge-divider"
-        style={{ background: 'var(--navy-900)', padding: '44px 0', textAlign: 'center', scrollMarginTop: 90 }}
+        style={{ background: 'var(--navy-900)', padding: '44px 0', scrollMarginTop: 90 }}
       >
-        <div className="container">
-          <h2 className="section-heading" style={{ fontSize: 32, color: 'white', marginBottom: 8 }}>
-            Partner With Us
-          </h2>
-          <div style={{ fontSize: 16, color: 'var(--saffron-300)', maxWidth: 560, margin: '0 auto 10px' }}>
-            Individuals, businesses, and organizations, we welcome you.
-          </div>
-          <p style={{ fontSize: 14, color: 'var(--sky-200)', maxWidth: 700, margin: '0 auto', lineHeight: 1.7 }}>
-            We welcome support from individuals, local businesses, other
-            organizations, and institutions, whether through funding,
-            in-kind support, materials, or collaboration on a specific
-            initiative.
-          </p>
-
+        <div className="container" style={{ display: 'flex', gap: 30, alignItems: 'center', flexWrap: 'wrap-reverse', position: 'relative' }}>
+          <div style={{ position: 'absolute', right: 26, top: 0, bottom: 0, width: 1, background: 'var(--saffron-300)', opacity: 0.3 }} />
           <form
             style={{
-              maxWidth: 680,
-              margin: '26px auto 0',
+              flex: 1,
+              minWidth: 320,
               background: 'rgba(255,255,255,0.06)',
               border: '1px solid rgba(255,255,255,0.15)',
               borderRadius: 4,
               padding: 28,
-              textAlign: 'left',
             }}
             onSubmit={(e) => e.preventDefault()}
           >
@@ -183,6 +175,20 @@ export default function GetInvolvedPage() {
               </button>
             </div>
           </form>
+          <div style={{ flex: '0 0 300px', paddingRight: 26, textAlign: 'right' }}>
+            <h2 className="section-heading" style={{ fontSize: 32, color: 'white', marginBottom: 8 }}>
+              Partner With Us
+            </h2>
+            <div style={{ fontSize: 16, color: 'var(--saffron-300)', marginBottom: 10 }}>
+              Individuals, businesses, and organizations, we welcome you.
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--sky-200)', lineHeight: 1.7, textAlign: 'right' }}>
+              We welcome support from individuals, local businesses, other
+              organizations, and institutions, whether through funding,
+              in-kind support, materials, or collaboration on a specific
+              initiative.
+            </p>
+          </div>
         </div>
       </section>
     </>
