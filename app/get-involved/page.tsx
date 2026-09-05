@@ -29,17 +29,17 @@ export default function GetInvolvedPage() {
       </div>
 
       {/* DONATE */}
-      <section id="donate" style={{ padding: '32px 0 8px', scrollMarginTop: 90 }}>
+      <section id="donate" style={{ padding: '32px 0 30px', scrollMarginTop: 90 }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <div
             className="card"
             style={{
-              maxWidth: 780,
+              maxWidth: 880,
               margin: '0 auto',
-              padding: '30px 34px',
+              padding: '26px 34px 30px',
             }}
           >
-            <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 10 }}>
+            <h2 className="section-heading" style={{ fontSize: 34, margin: '0 0 10px' }}>
               Donate
             </h2>
             <p style={{ fontSize: 14, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 28px' }}>
@@ -157,14 +157,32 @@ export default function GetInvolvedPage() {
             </FormRow2>
             <FormRow2>
               <input className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Phone or email" />
-              <select className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)', appearance: 'none' }}>
-                <option style={{ color: 'var(--ink)' }}>Type of support</option>
-                <option style={{ color: 'var(--ink)' }}>Funding</option>
-                <option style={{ color: 'var(--ink)' }}>In-kind support</option>
-                <option style={{ color: 'var(--ink)' }}>Materials</option>
-                <option style={{ color: 'var(--ink)' }}>Collaboration</option>
-                <option style={{ color: 'var(--ink)' }}>Other</option>
-              </select>
+              <div style={{ position: 'relative' }}>
+                <select
+                  className="field-input"
+                  style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)', appearance: 'none', width: '100%', paddingRight: 20 }}
+                >
+                  <option style={{ color: 'var(--ink)' }}>Type of support</option>
+                  <option style={{ color: 'var(--ink)' }}>Funding</option>
+                  <option style={{ color: 'var(--ink)' }}>In-kind support</option>
+                  <option style={{ color: 'var(--ink)' }}>Materials</option>
+                  <option style={{ color: 'var(--ink)' }}>Collaboration</option>
+                  <option style={{ color: 'var(--ink)' }}>Other</option>
+                </select>
+                <span
+                  style={{
+                    position: 'absolute',
+                    right: 2,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    pointerEvents: 'none',
+                    color: 'rgba(255,255,255,0.6)',
+                    fontSize: 11,
+                  }}
+                >
+                  &#9662;
+                </span>
+              </div>
             </FormRow2>
             <div style={{ marginBottom: 18 }}>
               <textarea className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Message" rows={3} />
@@ -183,10 +201,10 @@ export default function GetInvolvedPage() {
             <h2 className="section-heading" style={{ fontSize: 32, color: 'white', marginBottom: 8 }}>
               Partner With Us
             </h2>
-            <div style={{ fontSize: 16, color: 'var(--saffron-300)', marginBottom: 10 }}>
+            <div style={{ fontSize: 20, color: 'var(--saffron-300)', marginBottom: 10 }}>
               Individuals, businesses, and organizations, we welcome you.
             </div>
-            <p style={{ fontSize: 13, color: 'var(--sky-200)', lineHeight: 1.7, textAlign: 'right' }}>
+            <p style={{ fontSize: 15, color: 'var(--sky-200)', lineHeight: 1.7, textAlign: 'right' }}>
               We welcome support from individuals, local businesses, other
               organizations, and institutions, whether through funding,
               in-kind support, materials, or collaboration on a specific
