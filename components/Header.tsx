@@ -19,6 +19,10 @@ export default function Header() {
   return (
     <header
       style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        background: 'var(--paper)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -70,7 +74,7 @@ export default function Header() {
           gap: 22,
           alignItems: 'center',
           fontFamily: 'var(--font-mono)',
-          fontSize: 11,
+          fontSize: 13,
           color: 'var(--ink-muted)',
         }}
       >

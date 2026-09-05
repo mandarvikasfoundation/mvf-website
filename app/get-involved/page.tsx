@@ -29,12 +29,12 @@ export default function GetInvolvedPage() {
       </div>
 
       {/* DONATE */}
-      <section id="donate" style={{ padding: '32px 0', scrollMarginTop: 90 }}>
+      <section id="donate" style={{ padding: '32px 0 8px', scrollMarginTop: 90 }}>
         <div className="container">
           <div
             className="card"
             style={{
-              maxWidth: 780,
+              maxWidth: 950,
               margin: '0 auto',
               padding: '30px 34px',
               display: 'flex',
@@ -43,14 +43,14 @@ export default function GetInvolvedPage() {
               flexWrap: 'wrap',
             }}
           >
-            <div style={{ flex: '0 0 28%', textAlign: 'center', minWidth: 160 }}>
+            <div style={{ flex: '0 0 28%', textAlign: 'center', minWidth: 180 }}>
               <div className="section-heading" style={{ fontSize: 26, marginBottom: 14 }}>
                 Donate
               </div>
               <div
                 style={{
-                  width: 130,
-                  height: 130,
+                  width: 190,
+                  height: 190,
                   margin: '0 auto',
                   background: 'var(--paper)',
                   border: '1px dashed var(--rule)',
@@ -58,7 +58,7 @@ export default function GetInvolvedPage() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 10,
+                  fontSize: 11,
                   color: 'var(--label-grey)',
                   textAlign: 'center',
                 }}
@@ -68,8 +68,8 @@ export default function GetInvolvedPage() {
                 (add real QR image)
               </div>
             </div>
-            <div style={{ flex: 1, minWidth: 260, borderLeft: '1px solid var(--paper-line)', paddingLeft: 26 }}>
-              <p style={{ fontSize: 12.5, lineHeight: 1.7, textAlign: 'justify', marginBottom: 14 }}>
+            <div style={{ flex: 1, minWidth: 320, borderLeft: '1px solid var(--paper-line)', paddingLeft: 26 }}>
+              <p style={{ fontSize: 13, lineHeight: 1.7, textAlign: 'justify', marginBottom: 14 }}>
                 School fees help fund Mandar&apos;s Pride, but they don&apos;t
                 cover everything. Since the school is only one part of what
                 we do, your donation helps us keep every program running.
@@ -88,19 +88,19 @@ export default function GetInvolvedPage() {
       </section>
 
       {/* VOLUNTEER */}
-      <section id="volunteer" style={{ padding: '36px 0', textAlign: 'center', scrollMarginTop: 90 }}>
+      <section id="volunteer" style={{ padding: '10px 0 36px', textAlign: 'center', scrollMarginTop: 90 }}>
         <div className="container">
           <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 8 }}>
             Volunteer
           </h2>
-          <p style={{ fontSize: 12, color: 'var(--ink-muted)', maxWidth: 480, margin: '0 auto 24px', lineHeight: 1.7 }}>
+          <p style={{ fontSize: 14, color: 'var(--ink-muted)', maxWidth: 560, margin: '0 auto 24px', lineHeight: 1.7 }}>
             Whether it&apos;s teaching at Mandar&apos;s Pride, helping with
             day-to-day tasks around the school, supporting an event, or
             lending a specific skill, there&apos;s likely a way to help.
           </p>
           <form
             className="card"
-            style={{ maxWidth: 520, margin: '0 auto', padding: 26, textAlign: 'left' }}
+            style={{ maxWidth: 660, margin: '0 auto', padding: 30, textAlign: 'left' }}
             onSubmit={(e) => e.preventDefault()}
           >
             <FormRow2>
@@ -136,7 +136,7 @@ export default function GetInvolvedPage() {
           <div style={{ fontSize: 16, color: 'var(--saffron-300)', maxWidth: 560, margin: '0 auto 10px' }}>
             Individuals, businesses, and organizations, we welcome you.
           </div>
-          <p style={{ fontSize: 12, color: 'var(--sky-200)', maxWidth: 640, margin: '0 auto', lineHeight: 1.7 }}>
+          <p style={{ fontSize: 14, color: 'var(--sky-200)', maxWidth: 700, margin: '0 auto', lineHeight: 1.7 }}>
             We welcome support from individuals, local businesses, other
             organizations, and institutions, whether through funding,
             in-kind support, materials, or collaboration on a specific
@@ -145,12 +145,12 @@ export default function GetInvolvedPage() {
 
           <form
             style={{
-              maxWidth: 540,
+              maxWidth: 680,
               margin: '26px auto 0',
               background: 'rgba(255,255,255,0.06)',
               border: '1px solid rgba(255,255,255,0.15)',
               borderRadius: 4,
-              padding: 24,
+              padding: 28,
               textAlign: 'left',
             }}
             onSubmit={(e) => e.preventDefault()}
