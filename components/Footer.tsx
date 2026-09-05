@@ -1,6 +1,6 @@
 function FacebookIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path
         d="M17 3H14.5C13.1 3 11.9 3.6 11 4.5C10.1 5.4 9.5 6.6 9.5 8V11H7V14.5H9.5V21H13V14.5H15.5L16.5 11H13V8.3C13 7.6 13.6 7 14.3 7H16.5V3.5L17 3Z"
         stroke="var(--ink)"
@@ -13,7 +13,7 @@ function FacebookIcon() {
 
 function InstagramIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" stroke="var(--ink)" strokeWidth="1.4" />
       <circle cx="12" cy="12" r="4" stroke="var(--ink)" strokeWidth="1.4" />
       <circle cx="17.2" cy="6.8" r="1.1" fill="var(--ink)" />
@@ -37,7 +37,7 @@ export default function Footer() {
       <div
         style={{
           fontFamily: 'var(--font-mono)',
-          fontSize: 11,
+          fontSize: 13,
           color: 'var(--label-grey)',
           lineHeight: 1.8,
           display: 'flex',
@@ -47,7 +47,7 @@ export default function Footer() {
         }}
       >
         <div>
-          <div style={{ color: 'var(--ink)', fontWeight: 700, fontSize: 14 }}>
+          <div style={{ color: 'var(--ink)', fontWeight: 700, fontSize: 17 }}>
             Mandar Vikas Foundation
           </div>
           <div style={{ whiteSpace: 'nowrap' }}>
