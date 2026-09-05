@@ -31,59 +31,64 @@ export default function GetInvolvedPage() {
       {/* DONATE */}
       <section id="donate" style={{ padding: '32px 0 8px', scrollMarginTop: 90 }}>
         <div className="container" style={{ textAlign: 'center' }}>
-          <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 10 }}>
-            Donate
-          </h2>
-          <p style={{ fontSize: 14, lineHeight: 1.7, maxWidth: 620, margin: '0 auto 30px' }}>
-            School fees help fund Mandar&apos;s Pride, but they don&apos;t
-            cover everything. Since the school is only one part of what we
-            do, your donation helps us keep every program running.
-          </p>
-
           <div
             className="card"
             style={{
               maxWidth: 780,
               margin: '0 auto',
               padding: '30px 34px',
-              display: 'flex',
-              gap: 32,
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              textAlign: 'left',
             }}
           >
-            <div style={{ flex: '0 0 200px', textAlign: 'center' }}>
-              <div
-                style={{
-                  width: 190,
-                  height: 190,
-                  margin: '0 auto',
-                  background: 'var(--paper)',
-                  border: '1px dashed var(--rule)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 11,
-                  color: 'var(--label-grey)',
-                  textAlign: 'center',
-                }}
-              >
-                UPI QR code
-                <br />
-                (add real QR image)
+            <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 10 }}>
+              Donate
+            </h2>
+            <p style={{ fontSize: 14, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 28px' }}>
+              School fees help fund Mandar&apos;s Pride, but they don&apos;t
+              cover everything. Since the school is only one part of what we
+              do, your donation helps us keep every program running.
+            </p>
+
+            <div
+              style={{
+                display: 'flex',
+                gap: 32,
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                textAlign: 'left',
+              }}
+            >
+              <div style={{ flex: '0 0 200px', textAlign: 'center' }}>
+                <div
+                  style={{
+                    width: 190,
+                    height: 190,
+                    margin: '0 auto',
+                    background: 'var(--paper)',
+                    border: '1px dashed var(--rule)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 11,
+                    color: 'var(--label-grey)',
+                    textAlign: 'center',
+                  }}
+                >
+                  UPI QR code
+                  <br />
+                  (add real QR image)
+                </div>
               </div>
-            </div>
-            <div style={{ flex: 1, minWidth: 280, borderLeft: '1px solid var(--paper-line)', paddingLeft: 28 }}>
-              <CopyRow label="UPI ID" value="mandarvikas@upi" />
-              <CopyRow label="Phone (UPI)" value="9289928091" />
-              <div style={{ marginTop: 6, paddingTop: 6, borderTop: '0.5px dashed var(--paper-line)' }} />
-              <PlainRow label="Account Holder" value="Mandar Vikas Foundation" />
-              <PlainRow label="Bank" value="State Bank of India" />
-              <PlainRow label="Branch" value="Baunsi" />
-              <CopyRow label="A/C No." value="39921339380" />
-              <CopyRow label="IFSC" value="SBIN0012530" />
+              <div style={{ flex: 1, minWidth: 280, borderLeft: '1px solid var(--paper-line)', paddingLeft: 28 }}>
+                <CopyRow label="UPI ID" value="mandarvikas@upi" />
+                <CopyRow label="Phone (UPI)" value="9289928091" />
+                <div style={{ marginTop: 6, paddingTop: 6, borderTop: '0.5px dashed var(--paper-line)' }} />
+                <PlainRow label="Account Holder" value="Mandar Vikas Foundation" />
+                <PlainRow label="Bank" value="State Bank of India" />
+                <PlainRow label="Branch" value="Baunsi" />
+                <CopyRow label="A/C No." value="39921339380" />
+                <CopyRow label="IFSC" value="SBIN0012530" />
+              </div>
             </div>
           </div>
         </div>
@@ -138,8 +143,7 @@ export default function GetInvolvedPage() {
           <div style={{ position: 'absolute', right: 26, top: 0, bottom: 0, width: 1, background: 'var(--saffron-300)', opacity: 0.3 }} />
           <form
             style={{
-              flex: 1,
-              minWidth: 320,
+              flex: '1 1 260px',
               background: 'rgba(255,255,255,0.06)',
               border: '1px solid rgba(255,255,255,0.15)',
               borderRadius: 4,
@@ -175,7 +179,7 @@ export default function GetInvolvedPage() {
               </button>
             </div>
           </form>
-          <div style={{ flex: '0 0 300px', paddingRight: 26, textAlign: 'right' }}>
+          <div style={{ flex: '0 0 340px', paddingRight: 26, textAlign: 'right' }}>
             <h2 className="section-heading" style={{ fontSize: 32, color: 'white', marginBottom: 8 }}>
               Partner With Us
             </h2>
