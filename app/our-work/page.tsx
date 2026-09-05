@@ -124,13 +124,11 @@ export default function OurWorkPage() {
               </div>
               <div style={{ display: 'flex', gap: 22, alignItems: 'flex-start', flexWrap: 'wrap' }}>
                 <div style={{ flexShrink: 0, marginTop: 26 }}>
-                  {/* One photo, height = sum of the previous two stacked
-                      photos (100 + 100 = 200). Swap in a real photo of any
-                      ratio here; this placeholder just holds the space. */}
+                  {/* Photos keep their own natural aspect ratio — width is
+                      fixed, height follows automatically. No cropping. */}
                   <div
                     style={{
-                      width: 120,
-                      height: 200,
+                      display: 'inline-block',
                       background: 'white',
                       padding: 7,
                       boxShadow: '0 5px 12px rgba(15,42,74,0.2)',
@@ -141,10 +139,16 @@ export default function OurWorkPage() {
                       <img
                         src={program.photoSrc}
                         alt={program.photoAlt}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{ width: 220, height: 'auto', display: 'block' }}
                       />
                     ) : (
-                      <div style={{ width: '100%', height: '100%', background: program.photoColor }} />
+                      <div
+                        style={{
+                          width: 220,
+                          height: 165,
+                          background: program.photoColor,
+                        }}
+                      />
                     )}
                   </div>
                 </div>

@@ -72,11 +72,11 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Real embedded map — Mandar's Pride campus, from the coordinates
-          24°47'35.1"N 86°59'37.7"E (24.793083, 86.993806) */}
+      {/* Real interactive embed, generated via Google Maps' Share -> Embed
+          a map flow (full pan/zoom/pinch support). */}
       <iframe
         title="Mandar Vikas Foundation campus location"
-        src="https://www.google.com/maps?q=24.793083,86.993806&z=14&output=embed"
+        src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d28976.55380092436!2d86.993806!3d24.793083!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDQ3JzM1LjEiTiA4NsKwNTknMzcuNyJF!5e0!3m2!1sen!2sus!4v1788530637340!5m2!1sen!2sus"
         style={{
           flex: '1 1 260px',
           border: '1px solid var(--rule)',
@@ -84,7 +84,8 @@ export default function Footer() {
           minHeight: 90,
         }}
         loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
+        allowFullScreen
+        referrerPolicy="strict-origin-when-cross-origin"
       />
     </footer>
   );
