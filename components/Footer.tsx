@@ -78,10 +78,10 @@ export default function Footer() {
         title="Mandar Vikas Foundation campus location"
         src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d28976.55380092436!2d86.993806!3d24.793083!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDQ3JzM1LjEiTiA4NsKwNTknMzcuNyJF!5e0!3m2!1sen!2sus!4v1788530637340!5m2!1sen!2sus"
         style={{
-          flex: '1 1 260px',
+          flex: '1 1 320px',
           border: '1px solid var(--rule)',
           borderRadius: 4,
-          minHeight: 90,
+          height: 280,
         }}
         loading="lazy"
         allowFullScreen

@@ -139,13 +139,13 @@ export default function OurWorkPage() {
                       <img
                         src={program.photoSrc}
                         alt={program.photoAlt}
-                        style={{ width: 220, height: 'auto', display: 'block' }}
+                        style={{ width: 300, height: 'auto', display: 'block' }}
                       />
                     ) : (
                       <div
                         style={{
-                          width: 220,
-                          height: 165,
+                          width: 300,
+                          height: 225,
                           background: program.photoColor,
                         }}
                       />
