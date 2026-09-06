@@ -97,7 +97,7 @@ export default function AboutPage() {
       </section>
 
       {/* OUR VISION */}
-      <section style={{ padding: '48px 0' }}>
+      <section style={{ padding: '48px 0 68px' }}>
         <div className="container">
           <h2
             className="section-heading"
@@ -119,25 +119,26 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* OUR MISSION — dark section, mirrored layout */}
-      <section style={{ background: 'var(--navy-900)', padding: '48px 0' }}>
+      {/* OUR MISSION — dark section, NOT mirrored: same left-heading /
+          right-body orientation as Our Roots, per user's request. */}
+      <section className="ridge-divider-reverse" style={{ background: 'var(--navy-900)', padding: '48px 0' }}>
         <div
           className="container"
-          style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap-reverse' }}
+          style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap' }}
         >
+          <div style={{ flex: '0 0 260px' }}>
+            <div className="section-heading" style={{ fontSize: 44, lineHeight: 1.02, color: 'white' }}>
+              Our
+              <br />
+              Mission
+            </div>
+          </div>
           <div style={{ flex: 1, minWidth: 280 }}>
             <ul style={{ fontSize: 13, lineHeight: 1.85, color: 'var(--sky-200)', paddingLeft: 18, margin: 0 }}>
               <li style={{ marginBottom: 12 }}>Promoting the financial and social empowerment of women through adaptable, cross-cutting programmes, building awareness of their rights and facilitating institutional support for their growth.</li>
               <li style={{ marginBottom: 12 }}>Ensuring the care, protection, education, and all-round growth of children by extending access to health, nutrition, education, and awareness of their rights, with the involvement of the wider society.</li>
               <li>Giving underprivileged and in-need members of society access to the basic support that enables them to live with dignity.</li>
             </ul>
-          </div>
-          <div style={{ flex: '0 0 260px', textAlign: 'right' }}>
-            <div className="section-heading" style={{ fontSize: 44, lineHeight: 1.02, color: 'white' }}>
-              Our
-              <br />
-              Mission
-            </div>
           </div>
         </div>
       </section>

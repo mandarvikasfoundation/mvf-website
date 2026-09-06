@@ -1,12 +1,12 @@
+import PhotoStack from '@/components/PhotoStack';
+
 type Program = {
   id: string;
   date: string;
   title: string;
   quote: string;
   dotColor: string;
-  photoSrc?: string;
-  photoAlt?: string;
-  photoColor?: string;
+  photos: { src: string; caption?: string }[];
   paragraphs: string[];
 };
 
@@ -17,8 +17,10 @@ const PROGRAMS: Program[] = [
     title: 'MVF Learning Centre',
     quote: '"There is no scarcity of talent in our country."',
     dotColor: 'var(--green-300)',
-    photoSrc: '/images/our-work/learning-centre.jpg',
-    photoAlt: 'Children and staff at the MVF Learning Centre gate',
+    photos: [
+      { src: '/images/our-work/learning-1.jpg' },
+      { src: '/images/our-work/learning-2.jpg' },
+    ],
     paragraphs: [
       `MVF Learning Centre is a platform for children who have either dropped out of school, or who are school students unable to afford extra classes. We don't offer "extra classes" in the ordinary sense; we started this because many children from farming or daily-wage families are asked to work alongside their parents or look after siblings, and as a result can't attend school regularly and fall behind.`,
       `There is no scarcity of talent in our country. But circumstances like these obstruct a child's holistic growth, and MVF exists to support these children so they can grow and blossom. Because the organization is currently entirely dependent on individual donations, with no funding partner, we are limited in how many children the Centre can support at once. Teachers at the Centre don't just teach academics, but also pass on important life skills.`,
@@ -30,7 +32,11 @@ const PROGRAMS: Program[] = [
     title: 'MVF Horticulture',
     quote: '"Women are the foundation of any society."',
     dotColor: '#fac775',
-    photoColor: 'linear-gradient(160deg,#F0A85B,#C6631F)',
+    photos: [
+      { src: '/images/our-work/horticulture-1.jpg' },
+      { src: '/images/our-work/horticulture-2.jpg' },
+      { src: '/images/our-work/horticulture-3.jpg' },
+    ],
     paragraphs: [
       `We started MVF Horticulture in February 2020, with the women of our community in mind, specifically those without financial independence of their own. Women are the foundation of any society; a strong foundation makes for a strong building. Members of the Foundation shared a common belief in the importance of women's financial empowerment, and from that came the idea of horticulture; specifically, marigold cultivation.`,
       `It's worth acknowledging that it was the women of the community themselves who stepped forward to support this project, contributing their own labour voluntarily. Profit from the marigold cultivation doesn't only support these women; it also goes toward strengthening the Learning Centre and starting other projects that push back against the odds our community faces.`,
@@ -42,8 +48,10 @@ const PROGRAMS: Program[] = [
     title: 'MVF Skill Development Centre',
     quote: '"Working toward self-sustenance."',
     dotColor: '#f0997b',
-    photoSrc: '/images/our-work/skill-development.jpg',
-    photoAlt: 'Women at the MVF Skill Development tailoring class',
+    photos: [
+      { src: '/images/our-work/skill-1.jpg' },
+      { src: '/images/our-work/skill-2.jpg' },
+    ],
     paragraphs: [
       `Mandar Vikas Foundation works toward self-sustenance for underprivileged sections of society. In line with that goal, MVF started the Skill Development Centre in February 2021, beginning with a free Basic Tailoring Course for women. The course runs over three months, split into six fifteen-day terms.`,
       `Once the Basic course is complete, participants can go on to the Advance Tailoring Course (also three months long) which teaches more refined, professional stitching techniques. On successful completion (assessed internally by the Centre), participants receive a Certificate of Appreciation.`,
@@ -124,33 +132,10 @@ export default function OurWorkPage() {
               </div>
               <div style={{ display: 'flex', gap: 22, alignItems: 'flex-start', flexWrap: 'wrap' }}>
                 <div style={{ flexShrink: 0, marginTop: 26 }}>
-                  {/* Photos keep their own natural aspect ratio — width is
-                      fixed, height follows automatically. No cropping. */}
-                  <div
-                    style={{
-                      display: 'inline-block',
-                      background: 'white',
-                      padding: 7,
-                      boxShadow: '0 5px 12px rgba(15,42,74,0.2)',
-                      transform: 'rotate(-2deg)',
-                    }}
-                  >
-                    {program.photoSrc ? (
-                      <img
-                        src={program.photoSrc}
-                        alt={program.photoAlt}
-                        style={{ width: 300, height: 'auto', display: 'block' }}
-                      />
-                    ) : (
-                      <div
-                        style={{
-                          width: 300,
-                          height: 225,
-                          background: program.photoColor,
-                        }}
-                      />
-                    )}
-                  </div>
+                  {/* Same interactive photo-stack component used on Home
+                      and Mandar's Pride — click the front photo to cycle
+                      through the pile. */}
+                  <PhotoStack photos={program.photos} />
                 </div>
                 <div style={{ flex: 1, minWidth: 260 }}>
                   <h2 className="section-heading" style={{ fontSize: 22 }}>

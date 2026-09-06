@@ -176,8 +176,8 @@ export default function GetInvolvedPage() {
                     top: '50%',
                     transform: 'translateY(-50%)',
                     pointerEvents: 'none',
-                    color: 'rgba(255,255,255,0.6)',
-                    fontSize: 11,
+                    color: 'rgba(255,255,255,0.85)',
+                    fontSize: 18,
                   }}
                 >
                   &#9662;
