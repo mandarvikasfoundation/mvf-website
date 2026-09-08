@@ -115,8 +115,8 @@ export default function HomePage() {
 
       {/* MANDAR'S PRIDE SPOTLIGHT */}
       <section
-        className="ridge-divider"
-        style={{ background: 'var(--navy-900)', padding: '44px 0' }}
+        className="ridge-band"
+        style={{ background: 'var(--navy-900)', padding: '52px 0' }}
       >
         <div
           className="container"

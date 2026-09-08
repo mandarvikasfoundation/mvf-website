@@ -20,6 +20,7 @@ const PROGRAMS: Program[] = [
     photos: [
       { src: '/images/our-work/learning-1.jpg' },
       { src: '/images/our-work/learning-2.jpg' },
+      { src: '/images/our-work/learning-3.jpg' },
     ],
     paragraphs: [
       `MVF Learning Centre is a platform for children who have either dropped out of school, or who are school students unable to afford extra classes. We don't offer "extra classes" in the ordinary sense; we started this because many children from farming or daily-wage families are asked to work alongside their parents or look after siblings, and as a result can't attend school regularly and fall behind.`,
@@ -51,6 +52,7 @@ const PROGRAMS: Program[] = [
     photos: [
       { src: '/images/our-work/skill-1.jpg' },
       { src: '/images/our-work/skill-2.jpg' },
+      { src: '/images/our-work/skill-3.jpg' },
     ],
     paragraphs: [
       `Mandar Vikas Foundation works toward self-sustenance for underprivileged sections of society. In line with that goal, MVF started the Skill Development Centre in February 2021, beginning with a free Basic Tailoring Course for women. The course runs over three months, split into six fifteen-day terms.`,
@@ -133,9 +135,9 @@ export default function OurWorkPage() {
               <div style={{ display: 'flex', gap: 22, alignItems: 'flex-start', flexWrap: 'wrap' }}>
                 <div style={{ flexShrink: 0, marginTop: 26 }}>
                   {/* Same interactive photo-stack component used on Home
-                      and Mandar's Pride — click the front photo to cycle
-                      through the pile. */}
-                  <PhotoStack photos={program.photos} />
+                      and Mandar's Pride, but here each photo keeps its own
+                      natural aspect ratio (no cropping), and sized bigger. */}
+                  <PhotoStack photos={program.photos} photoWidth={220} crop={false} />
                 </div>
                 <div style={{ flex: 1, minWidth: 260 }}>
                   <h2 className="section-heading" style={{ fontSize: 22 }}>

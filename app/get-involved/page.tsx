@@ -136,8 +136,8 @@ export default function GetInvolvedPage() {
       {/* PARTNER — mirror of Volunteer: form left, text right */}
       <section
         id="partner"
-        className="ridge-divider"
-        style={{ background: 'var(--navy-900)', padding: '44px 0', scrollMarginTop: 90 }}
+        className="ridge-band"
+        style={{ background: 'var(--navy-900)', padding: '54px 0', scrollMarginTop: 90 }}
       >
         <div className="container" style={{ display: 'flex', gap: 30, alignItems: 'center', flexWrap: 'wrap-reverse', position: 'relative' }}>
           <div style={{ position: 'absolute', right: 26, top: 0, bottom: 0, width: 1, background: 'var(--saffron-300)', opacity: 0.3 }} />

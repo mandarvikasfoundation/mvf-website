@@ -135,14 +135,26 @@ img {
   border-radius: var(--radius-md);
 }
 
-/* Diagonal "mountain ridge" section divider, used between major sections */
+/* Diagonal "mountain ridge" section divider, used between major sections.
+   Steeper tilt (7%) so it reads as clearly intentional. */
 .ridge-divider {
-  clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 7%, 100% 0, 100% 100%, 0 100%);
 }
 
 /* Same idea, mirrored, so the diagonal leans the other way for variety */
 .ridge-divider-reverse {
-  clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 7%, 100% 100%, 0 100%);
+}
+
+/* A full tilted "band" — both top and bottom edges slant the same way,
+   like a parallelogram. Use this for a section that needs a diagonal
+   transition both coming in AND going out (not just at the top). */
+.ridge-band {
+  clip-path: polygon(0 7%, 100% 0%, 100% 93%, 0% 100%);
+}
+
+.ridge-band-reverse {
+  clip-path: polygon(0 0%, 100% 7%, 100% 100%, 0% 93%);
 }
 
 .field-input {

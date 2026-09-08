@@ -16,10 +16,23 @@ const SLOT_STYLES = [
 /**
  * A stack of photos with white polaroid-style borders. Clicking the front
  * photo slides it to the back of the pile, cycling through the set.
- * The exact photo count/dimensions here are illustrative — swap in real
- * photos of any aspect ratio; the component doesn't need exactly 3.
+ *
+ * By default (crop=true) photos are cropped to a uniform frame, matching
+ * the original Home/Mandar's Pride flagship stack look.
+ *
+ * Pass crop={false} to instead let each photo keep its own natural aspect
+ * ratio (no cropping at all) — width is fixed via photoWidth, height
+ * follows automatically per photo.
  */
-export default function PhotoStack({ photos }: { photos: StackPhoto[] }) {
+export default function PhotoStack({
+  photos,
+  photoWidth = 130,
+  crop = true,
+}: {
+  photos: StackPhoto[];
+  photoWidth?: number;
+  crop?: boolean;
+}) {
   const [order, setOrder] = useState(photos.map((_, i) => i));
 
   function cycleToBack(photoIndex: number) {
@@ -28,8 +41,13 @@ export default function PhotoStack({ photos }: { photos: StackPhoto[] }) {
     setOrder((prev) => [...prev.slice(1), prev[0]]);
   }
 
+  // When not cropping, photos can have very different natural heights, so
+  // the container needs enough room for the tallest reasonable photo
+  // (assume up to a 4:3 portrait) rather than a fixed short box.
+  const containerHeight = crop ? photoWidth * 1.35 : photoWidth * 1.7;
+
   return (
-    <div style={{ position: 'relative', width: 150, height: 176 }}>
+    <div style={{ position: 'relative', width: photoWidth + 20, height: containerHeight }}>
       {photos.map((photo, photoIndex) => {
         const slotDepth = order.indexOf(photoIndex);
         const style = SLOT_STYLES[slotDepth] ?? SLOT_STYLES[SLOT_STYLES.length - 1];
@@ -41,7 +59,7 @@ export default function PhotoStack({ photos }: { photos: StackPhoto[] }) {
               position: 'absolute',
               top: 0,
               left: 0,
-              width: 130,
+              width: photoWidth,
               padding: '7px 7px 18px',
               background: 'white',
               boxShadow: '0 6px 16px rgba(15,42,74,0.28)',
@@ -54,7 +72,11 @@ export default function PhotoStack({ photos }: { photos: StackPhoto[] }) {
             <img
               src={photo.src}
               alt={photo.caption ?? ''}
-              style={{ width: '100%', height: 138, objectFit: 'cover' }}
+              style={
+                crop
+                  ? { width: '100%', height: photoWidth * 1.06, objectFit: 'cover', display: 'block' }
+                  : { width: '100%', height: 'auto', display: 'block' }
+              }
             />
             {photo.caption && (
               <div

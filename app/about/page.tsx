@@ -71,8 +71,8 @@ export default function AboutPage() {
           heading stays on the left. Gives clear visual separation before
           the light Vision section below. */}
       <section
-        className="ridge-divider"
-        style={{ background: 'var(--navy-900)', padding: '52px 0' }}
+        className="ridge-band"
+        style={{ background: 'var(--navy-900)', padding: '58px 0' }}
       >
         <div className="container" style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ flex: '0 0 260px' }}>
@@ -121,7 +121,7 @@ export default function AboutPage() {
 
       {/* OUR MISSION — dark section, NOT mirrored: same left-heading /
           right-body orientation as Our Roots, per user's request. */}
-      <section className="ridge-divider-reverse" style={{ background: 'var(--navy-900)', padding: '48px 0' }}>
+      <section className="ridge-band-reverse" style={{ background: 'var(--navy-900)', padding: '58px 0' }}>
         <div
           className="container"
           style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap' }}
@@ -180,8 +180,8 @@ export default function AboutPage() {
 
       {/* PRESIDENT'S DESK */}
       <section
-        className="ridge-divider"
-        style={{ background: 'var(--navy-900)', padding: '48px 0' }}
+        className="ridge-band"
+        style={{ background: 'var(--navy-900)', padding: '58px 0' }}
       >
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
