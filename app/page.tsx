@@ -301,7 +301,7 @@ export default function HomePage() {
                 15 August 2026
               </div>
               <div style={{ fontSize: 17, fontWeight: 700, color: 'white', marginTop: 3 }}>
-                Independence Day at MVF campus
+                Independence Day at Mandar&apos;s Pride campus
               </div>
               <div style={{ fontSize: 13, color: 'var(--sky-200)', marginTop: 3 }}>
                 Flag hoisting and festivities with students and staff.

@@ -19,7 +19,7 @@ const POSTS: Post[] = [
   {
     slug: 'independence-day-2026',
     date: '15 August 2026',
-    title: 'Independence Day at MVF Campus',
+    title: "Independence Day at Mandar's Pride Campus",
     teaser:
       'Students and staff came together to celebrate the 15th with flag hoisting and festivities on campus.',
     thumb: '/images/news/independence-day-2026-flag-hoisting.png',
@@ -60,8 +60,7 @@ export default function NewsPage() {
           News &amp; Updates
         </h1>
         <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2 }}>
-          Stories, milestones, and moments from Mandar Vikas Foundation and
-          Mandar&apos;s Pride.
+          Stories, milestones, and moments from Mandar Vikas Foundation.
         </p>
 
         <div style={{ display: 'flex', gap: 8, marginTop: 18, flexWrap: 'wrap' }}>

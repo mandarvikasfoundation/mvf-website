@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Independence Day at MVF Campus | Mandar Vikas Foundation',
+  title: "Independence Day at Mandar's Pride Campus | Mandar Vikas Foundation",
 };
 
 export default function IndependenceDayPost() {
@@ -38,7 +38,7 @@ export default function IndependenceDayPost() {
           15 August 2026
         </div>
         <h1 className="section-heading" style={{ fontSize: 28, marginTop: 6 }}>
-          Independence Day at MVF Campus
+          Independence Day at Mandar&apos;s Pride Campus
         </h1>
       </div>
 
