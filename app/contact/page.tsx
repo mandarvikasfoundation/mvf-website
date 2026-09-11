@@ -5,7 +5,7 @@ export default function ContactPage() {
     <div className="container" style={{ padding: '30px 0 50px' }}>
       <div className="eyebrow">Home / Contact</div>
       <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
-        Contact
+        Contact Us
       </h1>
       <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2, whiteSpace: 'nowrap' }}>
         We&apos;d love to hear from you, whether you have a question, want
@@ -22,7 +22,7 @@ export default function ContactPage() {
             <br />
             Dam Road, Bhaga, P.O. &amp; P.S. Bounsi
             <br />
-            District Banka, Bihar, PIN 813104
+            District Banka, Bihar, <b>PIN</b> 813104
             <br />
             <br />
             <b>Phone:</b> 9289928091

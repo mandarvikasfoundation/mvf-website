@@ -51,8 +51,8 @@ export default function Footer() {
             Mandar Vikas Foundation
           </div>
           <div style={{ whiteSpace: 'nowrap' }}>
-            Dam Road, Bhaga, P.O. &amp; P.S. Bounsi, District Banka, Bihar,
-            PIN 813104
+            Dam Road, Bhaga, P.O. &amp; P.S. Bounsi, District Banka, Bihar,{' '}
+            <b>PIN</b> 813104
           </div>
           <div>
             <b>Phone:</b> 9289928091
