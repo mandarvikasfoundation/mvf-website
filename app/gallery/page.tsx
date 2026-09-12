@@ -88,7 +88,7 @@ export default function GalleryPage() {
           No photos under this tag yet.
         </div>
       ) : (
-        <div style={{ columnWidth: 220, columnGap: 12 }}>
+        <div style={{ columnCount: 3, columnGap: 12 }}>
           {visiblePhotos.map((photo) => (
             <button
               key={photo.src}
