@@ -88,26 +88,29 @@ export default function GalleryPage() {
           No photos under this tag yet.
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12 }}>
+        <div style={{ columnWidth: 220, columnGap: 12 }}>
           {visiblePhotos.map((photo) => (
             <button
               key={photo.src}
               onClick={() => setLightbox(photo)}
               style={{
                 position: 'relative',
+                display: 'block',
+                width: '100%',
                 border: 'none',
                 padding: 0,
+                marginBottom: 12,
                 cursor: 'pointer',
                 borderRadius: 4,
                 overflow: 'hidden',
-                aspectRatio: '1',
+                breakInside: 'avoid',
                 background: 'var(--card-bg)',
               }}
             >
               <img
                 src={photo.src}
                 alt={photo.caption ?? ''}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
               />
               {photo.caption && (
                 <div
