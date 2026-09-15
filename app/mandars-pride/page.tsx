@@ -116,7 +116,7 @@ export default function MandarsPridePage() {
       {activeTab === 'Overview' && (
         <>
           <div className="container" style={{ padding: '30px 0', display: 'flex', gap: 30, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-            <PhotoStack photos={STACK_PHOTOS} />
+            <PhotoStack photos={STACK_PHOTOS} photoWidth={220} crop={false} />
             <div style={{ flex: 1, minWidth: 260 }}>
               <p style={{ fontSize: 13, lineHeight: 1.8, textAlign: 'justify' }}>
                 Mandar Vikas Foundation, a non-profit social organisation
@@ -146,14 +146,14 @@ export default function MandarsPridePage() {
           <div className="container" style={{ paddingBottom: 40, display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: 20 }}>
             <div className="card" style={{ padding: 20 }}>
               <div className="section-heading" style={{ fontSize: 19, marginBottom: 10 }}>Vision</div>
-              <ul style={{ fontSize: 11.5, lineHeight: 1.75, paddingLeft: 16, margin: 0, textAlign: 'justify' }}>
+              <ul style={{ fontSize: 13, lineHeight: 1.8, paddingLeft: 16, margin: 0, textAlign: 'justify' }}>
                 <li>To motivate and promote the best in every child through a holistic education and inspiring environment.</li>
                 <li>To nurture a generation of compassionate, knowledgeable, resilient leaders who drive positive change in their communities, celebrating diversity, fostering inclusivity, and embracing lifelong learning.</li>
               </ul>
             </div>
             <div className="card" style={{ padding: 20 }}>
               <div className="section-heading" style={{ fontSize: 19, marginBottom: 10 }}>Mission</div>
-              <ul style={{ fontSize: 11.5, lineHeight: 1.75, paddingLeft: 16, margin: 0, textAlign: 'justify' }}>
+              <ul style={{ fontSize: 13, lineHeight: 1.8, paddingLeft: 16, margin: 0, textAlign: 'justify' }}>
                 <li>Creating an environment for diverse learning strategies, motivation, and self-discipline, inculcating moral values and strength-based resilience through best practices.</li>
                 <li>Developing life skills, leadership qualities, and a sense of integrity in every student by creating real opportunities.</li>
                 <li>Providing a holistic, high-quality education that blends academic excellence, cultural values, and practical skills, in a safe, nurturing environment where every student feels valued and supported.</li>
@@ -182,25 +182,25 @@ export default function MandarsPridePage() {
             Open year-round, no fixed enrollment window
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginTop: 16 }}>
+          <div style={{ background: 'var(--navy-900)', borderRadius: 8, padding: '28px 30px', marginTop: 16, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
             <div>
-              <div className="section-heading" style={{ fontSize: 15, marginBottom: 10 }}>How to Apply</div>
-              <div style={{ fontSize: 12.5, lineHeight: 1.8 }}>
-                <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
-                  <span style={{ color: 'var(--saffron-600)', fontWeight: 700 }}>1.</span>
+              <div className="section-heading" style={{ fontSize: 17, color: 'white', marginBottom: 12 }}>How to Apply</div>
+              <div style={{ fontSize: 13, lineHeight: 1.85, color: 'var(--sky-200)' }}>
+                <div style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
+                  <span style={{ color: 'var(--saffron-300)', fontWeight: 700 }}>1.</span>
                   Visit the school and submit a duly filled Registration-cum-Admission Form, along with the relevant documents and prescribed fees.
                 </div>
-                <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
-                  <span style={{ color: 'var(--saffron-600)', fontWeight: 700 }}>2.</span>
+                <div style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
+                  <span style={{ color: 'var(--saffron-300)', fontWeight: 700 }}>2.</span>
                   Admission proceeds through an informal interaction between the child, the parents, and our Principal and Teachers. The date and time will be shared with parents in advance.
                 </div>
                 <div style={{ display: 'flex', gap: 10 }}>
-                  <span style={{ color: 'var(--saffron-600)', fontWeight: 700 }}>3.</span>
+                  <span style={{ color: 'var(--saffron-300)', fontWeight: 700 }}>3.</span>
                   The school management reserves the right to make all final admission decisions.
                 </div>
               </div>
             </div>
-            <div>
+            <div className="card" style={{ padding: 22, alignSelf: 'start' }}>
               <div className="section-heading" style={{ fontSize: 15, marginBottom: 10 }}>Documents Required</div>
               <ul style={{ fontSize: 12.5, lineHeight: 1.8, paddingLeft: 16, margin: 0 }}>
                 <li>Self-attested copy of the birth certificate or an affidavit</li>
@@ -250,21 +250,21 @@ export default function MandarsPridePage() {
           </p>
           <div style={{ display: 'flex', gap: 16, marginTop: 16, flexWrap: 'wrap' }}>
             <div className="card" style={{ flex: 1, minWidth: 180, padding: 18, textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--label-grey)', letterSpacing: 1 }}>SUMMER (MAR&ndash;OCT)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--label-grey)', letterSpacing: 1 }}>SUMMER (MAR&ndash;OCT)</div>
               <div className="section-heading" style={{ fontSize: 18, marginTop: 6 }}>8:10 AM &ndash; 1:15 PM</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--label-grey)', marginTop: 4 }}>Monday to Saturday</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--label-grey)', marginTop: 4 }}>Monday to Saturday</div>
             </div>
             <div className="card" style={{ flex: 1, minWidth: 180, padding: 18, textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--label-grey)', letterSpacing: 1 }}>WINTER (NOV&ndash;FEB)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--label-grey)', letterSpacing: 1 }}>WINTER (NOV&ndash;FEB)</div>
               <div className="section-heading" style={{ fontSize: 18, marginTop: 6 }}>8:10 AM &ndash; 1:30 PM</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--label-grey)', marginTop: 4 }}>Monday to Saturday</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--label-grey)', marginTop: 4 }}>Monday to Saturday</div>
             </div>
           </div>
-          <p style={{ fontSize: 11, color: 'var(--ink-muted)', marginTop: 10 }}>
+          <p style={{ fontSize: 12.5, lineHeight: 1.85, color: 'var(--ink-muted)', marginTop: 12 }}>
             Each day includes prayer, exercise, yoga, and meditation before
             classes begin, and a lunch break around midday.
           </p>
-          <p style={{ fontSize: 11, color: 'var(--ink-muted)', marginTop: 4 }}>
+          <p style={{ fontSize: 12.5, lineHeight: 1.85, color: 'var(--ink-muted)', marginTop: 4 }}>
             The exact classes offered may change each academic year; this
             reflects the general daily structure, not a fixed class list.
           </p>
@@ -288,21 +288,56 @@ export default function MandarsPridePage() {
 
           <div className="card" style={{ padding: '22px 24px' }}>
             <div className="section-heading" style={{ fontSize: 15, marginBottom: 10 }}>Safety &amp; Security</div>
-            <p style={{ fontSize: 12, lineHeight: 1.8, marginBottom: 12 }}>
+            <p style={{ fontSize: 12, lineHeight: 1.8, marginBottom: 16 }}>
               The safety and security of our students is of paramount
               importance to us. Measures we practice include:
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '8px 24px' }}>
-              <div style={{ fontSize: 11.5, display: 'flex', gap: 8 }}><span style={{ color: 'var(--saffron-600)' }}>&bull;</span> 24&times;7 CCTV camera coverage across various areas of the school</div>
-              <div style={{ fontSize: 11.5, display: 'flex', gap: 8 }}><span style={{ color: 'var(--saffron-600)' }}>&bull;</span> A high boundary wall to restrict any infiltration</div>
-              <div style={{ fontSize: 11.5, display: 'flex', gap: 8 }}><span style={{ color: 'var(--saffron-600)' }}>&bull;</span> All washrooms supervised by lady attendants, with teachers taking frequent rounds</div>
-              <div style={{ fontSize: 11.5, display: 'flex', gap: 8 }}><span style={{ color: 'var(--saffron-600)' }}>&bull;</span> Careful, teacher-managed dispersal of students at the end of the day</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14 }}>
+              {[
+                '24\u00d77 CCTV camera coverage across various areas of the school',
+                'A high boundary wall to restrict any infiltration',
+                'All washrooms supervised by lady attendants, with teachers taking frequent rounds',
+                'Careful, teacher-managed dispersal of students at the end of the day',
+              ].map((point, i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: 'flex',
+                    gap: 12,
+                    alignItems: 'flex-start',
+                    background: 'var(--paper)',
+                    border: '1px solid var(--paper-line)',
+                    borderRadius: 6,
+                    padding: '14px 16px',
+                  }}
+                >
+                  <div
+                    style={{
+                      flexShrink: 0,
+                      width: 26,
+                      height: 26,
+                      borderRadius: '50%',
+                      background: 'var(--saffron-600)',
+                      color: '#FDF2E7',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 12,
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {i + 1}
+                  </div>
+                  <div style={{ fontSize: 12, lineHeight: 1.6 }}>{point}</div>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div style={{ marginTop: 16, background: 'var(--navy-900)', borderRadius: 4, padding: '18px 24px', display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-            <div className="section-heading" style={{ fontSize: 15, color: 'white', flexShrink: 0 }}>Transport</div>
-            <p style={{ fontSize: 11.5, color: 'var(--sky-200)', lineHeight: 1.7, margin: 0 }}>
+          <div style={{ marginTop: 16, background: 'var(--navy-900)', borderRadius: 4, padding: '20px 24px', display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+            <div className="section-heading" style={{ fontSize: 18, color: 'white', flexShrink: 0 }}>Transport</div>
+            <p style={{ fontSize: 14, color: 'var(--sky-200)', lineHeight: 1.7, margin: 0 }}>
               We encourage parents to drop off and pick up their children
               personally. Where needed, transport is provided on a merit
               basis, subject to availability.
@@ -316,7 +351,7 @@ export default function MandarsPridePage() {
         <div className="container" style={{ padding: '30px 0 50px' }}>
           <div className="section-heading" style={{ fontSize: 26, marginBottom: 6 }}>Gallery</div>
           <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: 20 }}>Photos from life at Mandar&apos;s Pride.</p>
-          <div style={{ columnCount: 3, columnGap: 12 }}>
+          <div style={{ columnCount: 2, columnGap: 12 }}>
             {GALLERY_PHOTOS.map((photo) => (
               <button
                 key={photo.src}
@@ -351,13 +386,46 @@ export default function MandarsPridePage() {
       {activeTab === 'FAQ' && (
         <div className="container" style={{ padding: '30px 0 50px' }}>
           <div className="section-heading" style={{ fontSize: 26, marginBottom: 18 }}>Frequently Asked Questions</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px 32px' }}>
-            {FAQS.map((f) => (
-              <div key={f.q}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--navy-700)' }}>{f.q}</div>
-                <div style={{ fontSize: 11, color: 'var(--ink-muted)', marginTop: 5, lineHeight: 1.6 }}>{f.a}</div>
-              </div>
-            ))}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
+            {FAQS.map((f, i) => {
+              const accents = ['var(--saffron-600)', 'var(--green-700)', 'var(--navy-700)'];
+              const accent = accents[i % accents.length];
+              return (
+                <div
+                  key={f.q}
+                  className="card"
+                  style={{
+                    padding: '18px 20px',
+                    borderLeft: `4px solid ${accent}`,
+                    display: 'flex',
+                    gap: 14,
+                  }}
+                >
+                  <div
+                    style={{
+                      flexShrink: 0,
+                      width: 32,
+                      height: 32,
+                      borderRadius: '50%',
+                      background: accent,
+                      color: 'white',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 15,
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    Q
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--navy-700)' }}>{f.q}</div>
+                    <div style={{ fontSize: 13, color: 'var(--ink-muted)', marginTop: 6, lineHeight: 1.7 }}>{f.a}</div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           <div style={{ marginTop: 28, background: 'var(--navy-900)', borderRadius: 6, padding: '22px 26px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 14 }}>
