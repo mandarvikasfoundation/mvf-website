@@ -1,4 +1,9 @@
+import type { Metadata } from 'next';
 import PhotoStack from '@/components/PhotoStack';
+
+export const metadata: Metadata = {
+  title: 'Our Work',
+};
 
 type Program = {
   id: string;

@@ -18,6 +18,7 @@ export default function HomePage() {
           src="/images/campus-gate.jpg"
           alt="The main gate of the Mandar Vikas Foundation campus, with the school building visible beyond"
           style={{ width: '100%', height: 'auto', display: 'block' }}
+          fetchPriority="high"
         />
         <div
           style={{
@@ -294,6 +295,7 @@ export default function HomePage() {
                 src="/images/news/independence-day-2026-flag-hoisting.png"
                 alt="Flag hoisting at the Independence Day celebration"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                loading="lazy"
               />
             </div>
             <div>

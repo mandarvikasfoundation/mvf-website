@@ -94,6 +94,7 @@ export default function PhotoStack({
             <img
               src={photo.src}
               alt={photo.caption ?? ''}
+              loading="lazy"
               onLoad={(e) => handleImageLoad(photo.src, e)}
               style={
                 crop

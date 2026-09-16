@@ -187,3 +187,33 @@ img {
   outline: none;
   border-bottom-color: var(--saffron-600);
 }
+
+/* Header nav: full inline nav on wider screens, hamburger toggle below
+   900px (7 links + brand no longer fit comfortably next to the logo). */
+.nav-toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .nav-desktop {
+    display: none !important;
+  }
+  .nav-toggle {
+    display: flex !important;
+  }
+}
+
+/* Managing Committee / General Body grids: fixed 4 columns on desktop
+   for a balanced layout, but that crams long names into ~80px columns
+   on a phone — collapse to 2 columns below 640px. */
+.committee-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .committee-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

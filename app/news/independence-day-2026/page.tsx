@@ -1,7 +1,8 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata = {
-  title: "Independence Day at Mandar's Pride Campus | Mandar Vikas Foundation",
+export const metadata: Metadata = {
+  title: "Independence Day at Mandar's Pride Campus",
 };
 
 export default function IndependenceDayPost() {
