@@ -67,7 +67,7 @@ export default function HomePage() {
           <StatCard value="2019" label="founded in Bihar" color="var(--navy-700)" />
           {/* Replace with real numbers as MVF shares them */}
           <StatCard value="20+" label="students at Mandar's Pride" color="var(--saffron-600)" />
-          <StatCard value="[ ]" label="women trained" color="var(--green-700)" />
+          <StatCard value="100+" label="women trained" color="var(--green-700)" />
         </div>
       </section>
 

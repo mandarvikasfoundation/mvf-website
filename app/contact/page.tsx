@@ -52,7 +52,8 @@ export default function ContactPage() {
           </div>
           <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', height: 340 }}>
             <div style={{ marginBottom: 20 }}>
-              <select className="field-input" style={{ appearance: 'none' }} defaultValue="">
+              <label htmlFor="contact-reason" className="sr-only">What is this about?</label>
+              <select id="contact-reason" className="field-input" style={{ appearance: 'none' }} defaultValue="">
                 <option value="" disabled>
                   What is this about?
                 </option>
@@ -65,11 +66,20 @@ export default function ContactPage() {
               </select>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 20 }}>
-              <input className="field-input" placeholder="Name" />
-              <input className="field-input" placeholder="Email or phone" />
+              <div>
+                <label htmlFor="contact-name" className="sr-only">Name</label>
+                <input id="contact-name" name="name" className="field-input" placeholder="Name" />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className="sr-only">Email or phone</label>
+                <input id="contact-email" name="emailOrPhone" className="field-input" placeholder="Email or phone" />
+              </div>
             </div>
             <div style={{ flex: 1, marginBottom: 20 }}>
+              <label htmlFor="contact-message" className="sr-only">Message</label>
               <textarea
+                id="contact-message"
+                name="message"
                 className="field-input"
                 placeholder="Message"
                 style={{ height: '100%', resize: 'none', fontFamily: 'var(--font-serif)' }}

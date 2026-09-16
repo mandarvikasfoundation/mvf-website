@@ -220,8 +220,14 @@ export default function MandarsPridePage() {
             </div>
             <div>
               <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                <input className="field-input" placeholder="Child's name" style={{ width: 140 }} />
-                <input className="field-input" placeholder="Parent contact" style={{ width: 140 }} />
+                <div>
+                  <label htmlFor="admissions-child-name" className="sr-only">Child&apos;s name</label>
+                  <input id="admissions-child-name" name="childName" className="field-input" placeholder="Child's name" style={{ width: 140 }} />
+                </div>
+                <div>
+                  <label htmlFor="admissions-parent-contact" className="sr-only">Parent contact</label>
+                  <input id="admissions-parent-contact" name="parentContact" className="field-input" placeholder="Parent contact" style={{ width: 140 }} />
+                </div>
                 <button type="submit" className="btn btn-primary">Start an inquiry</button>
               </form>
             </div>

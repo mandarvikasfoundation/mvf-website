@@ -114,15 +114,28 @@ export default function GetInvolvedPage() {
             onSubmit={(e) => e.preventDefault()}
           >
             <FormRow2>
-              <input className="field-input" placeholder="Full name" />
-              <input className="field-input" placeholder="Phone or email" />
+              <div>
+                <label htmlFor="vol-name" className="sr-only">Full name</label>
+                <input id="vol-name" name="fullName" className="field-input" placeholder="Full name" />
+              </div>
+              <div>
+                <label htmlFor="vol-contact" className="sr-only">Phone or email</label>
+                <input id="vol-contact" name="contact" className="field-input" placeholder="Phone or email" />
+              </div>
             </FormRow2>
             <FormRow2>
-              <input className="field-input" placeholder="Area of interest / skills" />
-              <input className="field-input" placeholder="Availability" />
+              <div>
+                <label htmlFor="vol-interest" className="sr-only">Area of interest / skills</label>
+                <input id="vol-interest" name="interest" className="field-input" placeholder="Area of interest / skills" />
+              </div>
+              <div>
+                <label htmlFor="vol-availability" className="sr-only">Availability</label>
+                <input id="vol-availability" name="availability" className="field-input" placeholder="Availability" />
+              </div>
             </FormRow2>
             <div style={{ marginBottom: 18 }}>
-              <textarea className="field-input" placeholder="Message (optional)" rows={3} />
+              <label htmlFor="vol-message" className="sr-only">Message (optional)</label>
+              <textarea id="vol-message" name="message" className="field-input" placeholder="Message (optional)" rows={3} />
             </div>
             <div style={{ textAlign: 'center' }}>
               <button type="submit" className="btn btn-primary">
@@ -152,13 +165,25 @@ export default function GetInvolvedPage() {
             onSubmit={(e) => e.preventDefault()}
           >
             <FormRow2>
-              <input className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Name" />
-              <input className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Organization / business (if any)" />
+              <div>
+                <label htmlFor="partner-name" className="sr-only">Name</label>
+                <input id="partner-name" name="name" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Name" />
+              </div>
+              <div>
+                <label htmlFor="partner-org" className="sr-only">Organization / business (if any)</label>
+                <input id="partner-org" name="organization" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Organization / business (if any)" />
+              </div>
             </FormRow2>
             <FormRow2>
-              <input className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Phone or email" />
+              <div>
+                <label htmlFor="partner-contact" className="sr-only">Phone or email</label>
+                <input id="partner-contact" name="contact" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Phone or email" />
+              </div>
               <div style={{ position: 'relative' }}>
+                <label htmlFor="partner-support-type" className="sr-only">Type of support</label>
                 <select
+                  id="partner-support-type"
+                  name="supportType"
                   className="field-input"
                   style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)', appearance: 'none', width: '100%', paddingRight: 20 }}
                 >
@@ -185,7 +210,8 @@ export default function GetInvolvedPage() {
               </div>
             </FormRow2>
             <div style={{ marginBottom: 18 }}>
-              <textarea className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Message" rows={3} />
+              <label htmlFor="partner-message" className="sr-only">Message</label>
+              <textarea id="partner-message" name="message" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Message" rows={3} />
             </div>
             <div style={{ textAlign: 'center' }}>
               <button
