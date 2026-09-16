@@ -49,7 +49,7 @@ const FAQS = [
 
 export default function MandarsPridePage() {
   const [activeTab, setActiveTab] = useState<Tab>('Overview');
-  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [lightbox, setLightbox] = useState<{ src: string; caption?: string } | null>(null);
 
   return (
     <>
@@ -351,11 +351,11 @@ export default function MandarsPridePage() {
         <div className="container" style={{ padding: '30px 0 50px' }}>
           <div className="section-heading" style={{ fontSize: 26, marginBottom: 6 }}>Gallery</div>
           <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: 20 }}>Photos from life at Mandar&apos;s Pride.</p>
-          <div style={{ columnCount: 2, columnGap: 12 }}>
+          <div style={{ columnCount: 3, columnGap: 12 }}>
             {GALLERY_PHOTOS.map((photo) => (
               <button
                 key={photo.src}
-                onClick={() => setLightbox(photo.src)}
+                onClick={() => setLightbox(photo)}
                 style={{
                   position: 'relative',
                   display: 'block',
@@ -445,7 +445,7 @@ export default function MandarsPridePage() {
           onClick={() => setLightbox(null)}
           style={{ position: 'fixed', inset: 0, background: 'rgba(15,42,74,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100, padding: 24, cursor: 'zoom-out' }}
         >
-          <img src={lightbox} alt="" style={{ maxWidth: '90vw', maxHeight: '85vh', borderRadius: 4 }} />
+          <img src={lightbox.src} alt={lightbox.caption ?? ''} style={{ maxWidth: '90vw', maxHeight: '85vh', borderRadius: 4 }} />
         </div>
       )}
     </>

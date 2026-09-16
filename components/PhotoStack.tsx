@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export type StackPhoto = {
   src: string;
@@ -35,16 +35,38 @@ export default function PhotoStack({
 }) {
   const [order, setOrder] = useState(photos.map((_, i) => i));
 
+  // When not cropping, photos can have very different natural heights.
+  // Rather than assuming a worst-case portrait ratio (which left a big
+  // empty gap for stacks made entirely of landscape photos), measure each
+  // photo's actual aspect ratio as it loads and size the box to fit the
+  // tallest one actually present in this stack.
+  const ratios = useRef<Record<string, number>>({});
+  const [tallestRatio, setTallestRatio] = useState(0);
+
+  function handleImageLoad(src: string, e: React.SyntheticEvent<HTMLImageElement>) {
+    if (crop) return;
+    const img = e.currentTarget;
+    if (!img.naturalWidth || !img.naturalHeight) return;
+    ratios.current[src] = img.naturalHeight / img.naturalWidth;
+    const max = Math.max(...Object.values(ratios.current));
+    if (max > tallestRatio) setTallestRatio(max);
+  }
+
   function cycleToBack(photoIndex: number) {
     const slotDepth = order.indexOf(photoIndex);
     if (slotDepth !== 0) return; // only the front photo is clickable
     setOrder((prev) => [...prev.slice(1), prev[0]]);
   }
 
-  // When not cropping, photos can have very different natural heights, so
-  // the container needs enough room for the tallest reasonable photo
-  // (assume up to a 4:3 portrait) rather than a fixed short box.
-  const containerHeight = crop ? photoWidth * 1.35 : photoWidth * 1.7;
+  // Fallback (before images finish loading) assumes a modest 4:3 landscape
+  // photo so there's no oversized flash of empty space; once real images
+  // load, the box settles to their actual tallest ratio plus padding/caption.
+  const fallbackRatio = 0.85;
+  const effectiveRatio = crop ? 1.06 : tallestRatio || fallbackRatio;
+  const captionAllowance = crop ? 0 : 34; // room for padding + optional caption line
+  const containerHeight = crop
+    ? photoWidth * 1.35
+    : photoWidth * effectiveRatio + captionAllowance;
 
   return (
     <div style={{ position: 'relative', width: photoWidth + 20, height: containerHeight }}>
@@ -72,6 +94,7 @@ export default function PhotoStack({
             <img
               src={photo.src}
               alt={photo.caption ?? ''}
+              onLoad={(e) => handleImageLoad(photo.src, e)}
               style={
                 crop
                   ? { width: '100%', height: photoWidth * 1.06, objectFit: 'cover', display: 'block' }
