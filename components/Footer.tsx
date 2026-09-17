@@ -1,3 +1,7 @@
+'use client';
+
+import { useLanguage } from '@/lib/LanguageContext';
+
 function FacebookIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -22,6 +26,7 @@ function InstagramIcon() {
 }
 
 export default function Footer() {
+  const { lang } = useLanguage();
   return (
     <footer
       style={{
@@ -48,17 +53,25 @@ export default function Footer() {
       >
         <div>
           <div style={{ color: 'var(--ink)', fontWeight: 700, fontSize: 17 }}>
-            Mandar Vikas Foundation
+            {lang === 'hi' ? 'मंदार विकास फाउंडेशन' : 'Mandar Vikas Foundation'}
           </div>
           <div style={{ whiteSpace: 'nowrap' }}>
-            Dam Road, Bhaga, P.O. &amp; P.S. Bounsi, District Banka, Bihar,{' '}
-            <b>PIN</b> 813104
+            {lang === 'hi' ? (
+              <>
+                डैम रोड, भागा, पो. &amp; पु.स्टे. बौंसी, जिला बांका, बिहार, <b>पिन</b> 813104
+              </>
+            ) : (
+              <>
+                Dam Road, Bhaga, P.O. &amp; P.S. Bounsi, District Banka, Bihar,{' '}
+                <b>PIN</b> 813104
+              </>
+            )}
           </div>
           <div>
-            <b>Phone:</b> 9289928091
+            <b>{lang === 'hi' ? 'फ़ोन:' : 'Phone:'}</b> 9289928091
           </div>
           <div>
-            <b>Email:</b> mandarvikasfoundation@gmail.com
+            <b>{lang === 'hi' ? 'ईमेल:' : 'Email:'}</b> mandarvikasfoundation@gmail.com
           </div>
         </div>
         <div style={{ display: 'flex', gap: 12, marginTop: 10 }}>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-real-domain.org/sitemap.xml
+Sitemap: https://mandaarvikasfoundation.com/sitemap.xml

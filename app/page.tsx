@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import PhotoStack from '@/components/PhotoStack';
+import { useT } from '@/lib/LanguageContext';
 
 const STACK_PHOTOS = [
   { src: '/images/mandars-pride/gate-evening.jpg', caption: "Mandar's Pride gate" },
@@ -8,6 +11,8 @@ const STACK_PHOTOS = [
 ];
 
 export default function HomePage() {
+  const t = useT();
+
   return (
     <>
       {/* HERO — full photo, no crop, no color filter. Buttons sit directly
@@ -35,7 +40,7 @@ export default function HomePage() {
             className="btn btn-primary"
             style={{ fontSize: 15, padding: '13px 26px', textAlign: 'center' }}
           >
-            Support us
+            {t('Support us', 'हमारा साथ दें')}
           </Link>
           <Link
             href="/mandars-pride"
@@ -49,7 +54,7 @@ export default function HomePage() {
               textAlign: 'center',
             }}
           >
-            Meet Mandar&apos;s Pride
+            {t("Meet Mandar's Pride", "Mandar's Pride से मिलें")}
           </Link>
         </div>
       </section>
@@ -65,10 +70,14 @@ export default function HomePage() {
             gap: 14,
           }}
         >
-          <StatCard value="2019" label="founded in Bihar" color="var(--navy-700)" />
+          <StatCard value="2019" label={t('founded in Bihar', 'बिहार में स्थापित')} color="var(--navy-700)" />
           {/* Replace with real numbers as MVF shares them */}
-          <StatCard value="20+" label="students at Mandar's Pride" color="var(--saffron-600)" />
-          <StatCard value="100+" label="women trained" color="var(--green-700)" />
+          <StatCard
+            value="20+"
+            label={t("students at Mandar's Pride", "Mandar's Pride में छात्र")}
+            color="var(--saffron-600)"
+          />
+          <StatCard value="100+" label={t('women trained', 'प्रशिक्षित महिलाएं')} color="var(--green-700)" />
         </div>
       </section>
 
@@ -87,7 +96,7 @@ export default function HomePage() {
         >
           <div style={{ textAlign: 'center' }}>
             <div className="section-heading" style={{ fontSize: 42 }}>
-              This Is
+              {t('This Is', 'यह है')}
             </div>
             <div className="section-heading" style={{ fontSize: 65 }}>
               MVF
@@ -95,10 +104,10 @@ export default function HomePage() {
           </div>
           <div style={{ gridColumn: '2 / span 2' }}>
             <p style={{ fontSize: 14, lineHeight: 1.8, textAlign: 'justify' }}>
-              Since 2019, Mandar Vikas Foundation has worked in Bhaga, Bounsi,
-              Banka district of Bihar, supporting children&apos;s education and
-              women&apos;s financial independence. We believe talent is never
-              scarce in our community; opportunity is.
+              {t(
+                "Since 2019, Mandar Vikas Foundation has worked in Bhaga, Bounsi, Banka district of Bihar, supporting children's education and women's financial independence. We believe talent is never scarce in our community; opportunity is.",
+                'सन 2019 से, मंदार विकास फाउंडेशन बिहार के बांका जिले के बौंसी स्थित भागा में बच्चों की शिक्षा और महिलाओं की आर्थिक आत्मनिर्भरता के लिए कार्यरत है। हमारा मानना है कि हमारे समुदाय में प्रतिभा की कभी कमी नहीं रही, कमी सिर्फ अवसर की रही है।'
+              )}
             </p>
             <Link
               href="/about"
@@ -108,7 +117,7 @@ export default function HomePage() {
                 color: 'var(--saffron-600)',
               }}
             >
-              &rarr; learn more about us
+              {t('\u2192 learn more about us', '\u2192 हमारे बारे में और जानें')}
             </Link>
           </div>
         </div>
@@ -126,7 +135,7 @@ export default function HomePage() {
           <PhotoStack photos={STACK_PHOTOS} />
           <div style={{ flex: 1, minWidth: 260 }}>
             <div className="eyebrow" style={{ color: 'var(--saffron-300)' }}>
-              Our Flagship Initiative
+              {t('Our Flagship Initiative', 'हमारी प्रमुख पहल')}
             </div>
             <div
               className="brand-script"
@@ -135,10 +144,10 @@ export default function HomePage() {
               Mandar&apos;s Pride
             </div>
             <p style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--sky-200)' }}>
-              Mandar&apos;s Pride is a co-educational school for imparting
-              quality and inclusive education for blossoming children,
-              enabling them to add values to society including earning
-              respectable livelihood, once they grow up.
+              {t(
+                "Mandar's Pride is a co-educational school for imparting quality and inclusive education for blossoming children, enabling them to add values to society including earning respectable livelihood, once they grow up.",
+                'Mandar\'s Pride एक सह-शिक्षा विद्यालय है, जो पल्लवित होते बच्चों को गुणवत्तापूर्ण एवं समावेशी शिक्षा प्रदान करता है, ताकि बड़े होकर वे समाज में योगदान दे सकें और सम्मानजनक आजीविका अर्जित कर सकें।'
+              )}
             </p>
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
               <Link
@@ -146,10 +155,10 @@ export default function HomePage() {
                 className="btn"
                 style={{ background: 'var(--saffron-300)', color: 'var(--navy-900)', fontWeight: 700 }}
               >
-                Explore Mandar&apos;s Pride
+                {t("Explore Mandar's Pride", "Mandar's Pride के बारे में जानें")}
               </Link>
               <Link href="/mandars-pride/admissions" className="btn btn-outline-dark">
-                Enroll your child
+                {t('Enroll your child', 'अपने बच्चे का दाखिला कराएं')}
               </Link>
             </div>
           </div>
@@ -162,13 +171,13 @@ export default function HomePage() {
           className="section-heading"
           style={{ fontSize: 36, textAlign: 'center', marginBottom: 2 }}
         >
-          Our Other Work
+          {t('Our Other Work', 'हमारे अन्य कार्य')}
         </h2>
         <div
           className="eyebrow"
           style={{ textAlign: 'center', marginBottom: 20 }}
         >
-          three community programs
+          {t('three community programs', 'तीन सामुदायिक कार्यक्रम')}
         </div>
         <div
           style={{
@@ -180,20 +189,29 @@ export default function HomePage() {
           <WorkCard
             href="/our-work#learning-centre"
             color="var(--green-300)"
-            title="MVF Learning Centre"
-            blurb="Support for children who've dropped out of school or can't afford extra classes from balancing work or family duties at home."
+            title={t('MVF Learning Centre', 'MVF लर्निंग सेंटर')}
+            blurb={t(
+              "Support for children who've dropped out of school or can't afford extra classes from balancing work or family duties at home.",
+              'उन बच्चों के लिए सहयोग जो स्कूल छोड़ चुके हैं या घर के काम व पारिवारिक जिम्मेदारियों के कारण अतिरिक्त कक्षाएं नहीं ले पाते।'
+            )}
           />
           <WorkCard
             href="/our-work#horticulture"
             color="#fac775"
-            title="MVF Horticulture"
-            blurb="Marigold cultivation led by the women of our community, building financial independence one harvest at a time."
+            title={t('MVF Horticulture', 'MVF बागवानी')}
+            blurb={t(
+              'Marigold cultivation led by the women of our community, building financial independence one harvest at a time.',
+              'हमारे समुदाय की महिलाओं द्वारा संचालित गेंदा फूल की खेती, जो हर फसल के साथ आर्थिक आत्मनिर्भरता का निर्माण करती है।'
+            )}
           />
           <WorkCard
             href="/our-work#skill-development"
             color="#f0997b"
-            title="MVF Skill Development"
-            blurb="Free tailoring courses giving women a practical path toward self-sustenance and a trade of their own."
+            title={t('MVF Skill Development', 'MVF कौशल विकास')}
+            blurb={t(
+              'Free tailoring courses giving women a practical path toward self-sustenance and a trade of their own.',
+              'निःशुल्क सिलाई प्रशिक्षण, जो महिलाओं को आत्मनिर्भरता और अपना खुद का हुनर पाने का व्यावहारिक मार्ग देता है।'
+            )}
           />
         </div>
       </section>
@@ -217,7 +235,7 @@ export default function HomePage() {
           >
             <div>
               <h2 className="section-heading" style={{ fontSize: 24, color: 'white' }}>
-                Support Us
+                {t('Support Us', 'सहयोग करें')}
               </h2>
               <p
                 style={{
@@ -227,19 +245,21 @@ export default function HomePage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                Fees don&apos;t cover everything, your support keeps every
-                program running.
+                {t(
+                  "Fees don't cover everything, your support keeps every program running.",
+                  'फीस से सब कुछ पूरा नहीं होता, आपका सहयोग हर कार्यक्रम को चलाए रखता है।'
+                )}
               </p>
             </div>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'nowrap' }}>
               <Link href="/get-involved#donate" className="btn btn-primary">
-                Donate now
+                {t('Donate now', 'अभी दान करें')}
               </Link>
               <Link href="/get-involved#volunteer" className="btn btn-outline-dark">
-                Become a volunteer
+                {t('Become a volunteer', 'स्वयंसेवक बनें')}
               </Link>
               <Link href="/get-involved#partner" className="btn btn-outline-dark">
-                Partner with us
+                {t('Partner with us', 'हमारे साथ साझेदारी करें')}
               </Link>
             </div>
           </div>
@@ -258,13 +278,13 @@ export default function HomePage() {
           }}
         >
           <div className="eyebrow" style={{ color: 'var(--saffron-300)', fontSize: 20 }}>
-            News &amp; Updates
+            {t('News & Updates', 'समाचार एवं अपडेट')}
           </div>
           <Link
             href="/news"
             style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--sky-300)' }}
           >
-            see all &rarr;
+            {t('see all \u2192', 'सभी देखें \u2192')}
           </Link>
         </div>
         <div
@@ -300,13 +320,13 @@ export default function HomePage() {
             </div>
             <div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--saffron-300)' }}>
-                15 August 2026
+                {t('15 August 2026', '15 अगस्त 2026')}
               </div>
               <div style={{ fontSize: 17, fontWeight: 700, color: 'white', marginTop: 3 }}>
-                Independence Day at Mandar&apos;s Pride campus
+                {t("Independence Day at Mandar's Pride campus", "Mandar's Pride परिसर में स्वतंत्रता दिवस")}
               </div>
               <div style={{ fontSize: 13, color: 'var(--sky-200)', marginTop: 3 }}>
-                Flag hoisting and festivities with students and staff.
+                {t('Flag hoisting and festivities with students and staff.', 'छात्रों एवं स्टाफ के साथ ध्वजारोहण एवं उत्सव।')}
               </div>
             </div>
           </Link>
@@ -320,10 +340,10 @@ export default function HomePage() {
           >
             <div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--sky-300)' }}>
-                NEXT
+                {t('NEXT', 'आगे')}
               </div>
               <div style={{ fontSize: 15, color: 'var(--sky-200)', marginTop: 4 }}>
-                More stories coming soon
+                {t('More stories coming soon', 'जल्द ही और कहानियां आ रही हैं')}
               </div>
             </div>
           </div>

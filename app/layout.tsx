@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { LanguageProvider } from '@/lib/LanguageContext';
 
 export const metadata: Metadata = {
-  // TODO: once the site has a real domain (after Vercel deploy), set
-  // metadataBase: new URL('https://your-real-domain.org') here so social
-  // previews resolve the og:image URL correctly instead of relatively.
+  // Note: the old MVF website is still live on this domain right now;
+  // this one takes over once it's finished and deployed.
+  metadataBase: new URL('https://mandaarvikasfoundation.com'),
   title: {
     default: 'Mandar Vikas Foundation | Step Towards Change',
     template: '%s | MVF',
@@ -32,9 +33,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

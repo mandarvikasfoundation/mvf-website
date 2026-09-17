@@ -3,20 +3,22 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useLanguage } from '@/lib/LanguageContext';
 
 const NAV_LINKS = [
-  { href: '/about', label: 'About' },
-  { href: '/mandars-pride', label: "Mandar's Pride", isBrand: true },
-  { href: '/our-work', label: 'Our Work' },
-  { href: '/get-involved', label: 'Get Involved' },
-  { href: '/news', label: 'News' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/contact', label: 'Contact Us' },
+  { href: '/about', label: 'About', labelHi: 'हमारे बारे में' },
+  { href: '/mandars-pride', label: "Mandar's Pride", labelHi: "Mandar's Pride", isBrand: true },
+  { href: '/our-work', label: 'Our Work', labelHi: 'हमारा कार्य' },
+  { href: '/get-involved', label: 'Get Involved', labelHi: 'जुड़ें' },
+  { href: '/news', label: 'News', labelHi: 'समाचार' },
+  { href: '/gallery', label: 'Gallery', labelHi: 'गैलरी' },
+  { href: '/contact', label: 'Contact Us', labelHi: 'संपर्क करें' },
 ];
 
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { lang, toggle } = useLanguage();
 
   return (
     <header
@@ -59,7 +61,7 @@ export default function Header() {
               className="brand-script"
               style={{ fontSize: 25, color: 'var(--navy-700)', lineHeight: 1 }}
             >
-              Mandar Vikas Foundation
+              {lang === 'hi' ? 'मंदार विकास फाउंडेशन' : 'Mandar Vikas Foundation'}
             </div>
             <div
               className="brand-script"
@@ -78,7 +80,7 @@ export default function Header() {
           className="nav-desktop"
           style={{
             display: 'flex',
-            gap: 22,
+            gap: 20,
             alignItems: 'center',
             fontFamily: 'var(--font-mono)',
             fontSize: 13,
@@ -87,6 +89,7 @@ export default function Header() {
         >
           {NAV_LINKS.map((link) => {
             const isActive = pathname?.startsWith(link.href);
+            const label = lang === 'hi' ? link.labelHi : link.label;
             if (link.isBrand) {
               return (
                 <Link
@@ -104,7 +107,7 @@ export default function Header() {
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  {link.label}
+                  {label}
                 </Link>
               );
             }
@@ -120,13 +123,32 @@ export default function Header() {
                     : '1.5px solid transparent',
                   paddingBottom: 2,
                   whiteSpace: 'nowrap',
-                  textTransform: 'uppercase',
+                  textTransform: lang === 'hi' ? 'none' : 'uppercase',
                 }}
               >
-                {link.label}
+                {label}
               </Link>
             );
           })}
+
+          <button
+            onClick={toggle}
+            aria-label={lang === 'hi' ? 'Switch to English' : 'हिंदी में बदलें'}
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 12,
+              fontWeight: 700,
+              color: 'var(--navy-700)',
+              background: 'var(--card-bg)',
+              border: '1px solid var(--rule)',
+              borderRadius: 14,
+              padding: '5px 12px',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {lang === 'hi' ? 'EN / हिं' : 'EN / हिं'}
+          </button>
         </nav>
 
         <button
@@ -163,6 +185,7 @@ export default function Header() {
         >
           {NAV_LINKS.map((link) => {
             const isActive = pathname?.startsWith(link.href);
+            const label = lang === 'hi' ? link.labelHi : link.label;
             return (
               <Link
                 key={link.href}
@@ -175,13 +198,31 @@ export default function Header() {
                   color: isActive ? 'var(--navy-700)' : 'var(--ink)',
                   fontWeight: 700,
                   fontSize: link.isBrand ? 16 : 14,
-                  textTransform: link.isBrand ? 'none' : 'uppercase',
+                  textTransform: link.isBrand || lang === 'hi' ? 'none' : 'uppercase',
                 }}
               >
-                {link.label}
+                {label}
               </Link>
             );
           })}
+          <button
+            onClick={toggle}
+            style={{
+              marginTop: 10,
+              alignSelf: 'flex-start',
+              fontFamily: 'var(--font-mono)',
+              fontSize: 12,
+              fontWeight: 700,
+              color: 'var(--navy-700)',
+              background: 'var(--card-bg)',
+              border: '1px solid var(--rule)',
+              borderRadius: 14,
+              padding: '6px 14px',
+              cursor: 'pointer',
+            }}
+          >
+            EN / हिं
+          </button>
         </nav>
       )}
     </header>

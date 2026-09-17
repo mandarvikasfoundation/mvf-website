@@ -212,42 +212,44 @@ export default function MandarsPrideClient() {
           </div>
 
           <div className="card" style={{ marginTop: 30, padding: '22px 26px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 14, marginBottom: 18 }}>
-              <div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--navy-700)' }}>Ready to apply, or have a question first?</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-muted)', marginTop: 6 }}>
-                  Phone: 9289928091 &middot; Email: mandarspride@gmail.com
+            <div style={{ display: 'flex', gap: 30, flexWrap: 'wrap' }}>
+              <div style={{ flex: '1 1 220px' }}>
+                <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--navy-700)' }}>Ready to apply, or have a question first?</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--ink-muted)', marginTop: 8, lineHeight: 1.8 }}>
+                  Phone: 9289928091
+                  <br />
+                  Email: mandarspride@gmail.com
                 </div>
               </div>
+              <form onSubmit={(e) => e.preventDefault()} style={{ flex: '1 1 320px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }}>
+                  <div>
+                    <label htmlFor="admissions-parent-name" className="sr-only">Parent&apos;s name</label>
+                    <input id="admissions-parent-name" name="parentName" className="field-input" placeholder="Parent's name" />
+                  </div>
+                  <div>
+                    <label htmlFor="admissions-child-name" className="sr-only">Child&apos;s name</label>
+                    <input id="admissions-child-name" name="childName" className="field-input" placeholder="Child's name" />
+                  </div>
+                  <div style={{ gridColumn: '1 / -1' }}>
+                    <label htmlFor="admissions-parent-contact" className="sr-only">Parent contact</label>
+                    <input id="admissions-parent-contact" name="parentContact" className="field-input" placeholder="Your phone or email" />
+                  </div>
+                </div>
+                <div style={{ marginBottom: 16 }}>
+                  <label htmlFor="admissions-question" className="sr-only">Your question (optional)</label>
+                  <textarea
+                    id="admissions-question"
+                    name="question"
+                    className="field-input"
+                    placeholder="Your question (optional): ages accepted, timings, fees, anything you'd like to ask"
+                    rows={2}
+                    style={{ fontFamily: 'var(--font-serif)', resize: 'vertical' }}
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary">Start an inquiry</button>
+              </form>
             </div>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14, marginBottom: 14 }}>
-                <div>
-                  <label htmlFor="admissions-parent-name" className="sr-only">Parent&apos;s name</label>
-                  <input id="admissions-parent-name" name="parentName" className="field-input" placeholder="Parent's name" />
-                </div>
-                <div>
-                  <label htmlFor="admissions-child-name" className="sr-only">Child&apos;s name</label>
-                  <input id="admissions-child-name" name="childName" className="field-input" placeholder="Child's name" />
-                </div>
-                <div>
-                  <label htmlFor="admissions-parent-contact" className="sr-only">Parent contact</label>
-                  <input id="admissions-parent-contact" name="parentContact" className="field-input" placeholder="Phone or email" />
-                </div>
-              </div>
-              <div style={{ marginBottom: 16 }}>
-                <label htmlFor="admissions-question" className="sr-only">Your question (optional)</label>
-                <textarea
-                  id="admissions-question"
-                  name="question"
-                  className="field-input"
-                  placeholder="Your question (optional): ages accepted, timings, fees, anything you'd like to ask"
-                  rows={2}
-                  style={{ fontFamily: 'var(--font-serif)', resize: 'vertical' }}
-                />
-              </div>
-              <button type="submit" className="btn btn-primary">Start an inquiry</button>
-            </form>
           </div>
         </div>
       )}

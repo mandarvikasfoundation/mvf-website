@@ -1,9 +1,8 @@
 import type { MetadataRoute } from 'next';
 
-// TODO: once the site has a real domain (after Vercel deploy), replace
-// this placeholder with the actual domain, and update the matching
-// Sitemap: line in public/robots.txt to match.
-const BASE_URL = 'https://your-real-domain.org';
+// Note: the old MVF website is still live on this domain right now;
+// this one takes over once it's finished and deployed.
+const BASE_URL = 'https://mandaarvikasfoundation.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
