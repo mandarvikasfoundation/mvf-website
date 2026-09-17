@@ -63,30 +63,21 @@ export default function GetInvolvedClient() {
               }}
             >
               <div style={{ flex: '0 0 200px', textAlign: 'center' }}>
-                <div
+                <img
+                  src="/images/upi-qr-code.png"
+                  alt={t('UPI QR code for donating to Mandar Vikas Foundation', 'मंदार विकास फाउंडेशन को दान करने हेतु UPI क्यूआर कोड')}
                   style={{
                     width: 190,
-                    height: 190,
+                    height: 'auto',
                     margin: '0 auto',
-                    background: 'var(--paper)',
-                    border: '1px dashed var(--rule)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: 11,
-                    color: 'var(--label-grey)',
-                    textAlign: 'center',
+                    display: 'block',
+                    borderRadius: 8,
+                    border: '1px solid var(--paper-line)',
                   }}
-                >
-                  {t('UPI QR code', 'UPI क्यूआर कोड')}
-                  <br />
-                  {t('(add real QR image)', '(असली क्यूआर छवि जोड़ें)')}
-                </div>
+                />
               </div>
               <div style={{ flex: 1, minWidth: 280, borderLeft: '1px solid var(--paper-line)', paddingLeft: 28 }}>
-                <CopyRow label={t('UPI ID', 'UPI आईडी')} value="mandarvikas@upi" copiedLabel={t('copied!', 'कॉपी हो गया!')} />
-                <CopyRow label={t('Phone (UPI)', 'फोन (UPI)')} value="9289928091" copiedLabel={t('copied!', 'कॉपी हो गया!')} />
+                <CopyRow label={t('UPI ID', 'UPI आईडी')} value="8826785091@sbi" copiedLabel={t('copied!', 'कॉपी हो गया!')} />
                 <div style={{ marginTop: 6, paddingTop: 6, borderTop: '0.5px dashed var(--paper-line)' }} />
                 <PlainRow label={t('Account Holder', 'खाताधारक')} value="Mandar Vikas Foundation" />
                 <PlainRow label={t('Bank', 'बैंक')} value="State Bank of India" />

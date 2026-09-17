@@ -255,16 +255,19 @@ export default function AboutClient() {
             label={t('Registered Society', 'पंजीकृत सोसाइटी')}
             detail={t('Reg. No. S000218, 10 Dec 2019, Banka, Bihar', 'पंजीकरण सं. S000218, 10 दिसंबर 2019, बांका, बिहार')}
             action={t('Download PDF', 'पीडीएफ डाउनलोड करें')}
+            href="/documents/registered-society-certificate.pdf"
           />
           <LegalRow
             label="NGO Darpan"
             detail={t('Unique ID BR/2021/0273689', 'यूनिक आईडी BR/2021/0273689')}
             action={t('View record \u2192', 'रिकॉर्ड देखें \u2192')}
+            href="/documents/ngo-darpan-registration.pdf"
           />
           <LegalRow
             label={t('12A Registration', '12A पंजीकरण')}
             detail={t('Provisional, granted 14 Sept 2025', 'अनंतिम, 14 सितंबर 2025 को स्वीकृत')}
             action={t('Download PDF', 'पीडीएफ डाउनलोड करें')}
+            href="/documents/12a-provisional-registration.pdf"
           />
         </div>
         <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 16 }}>
@@ -347,9 +350,12 @@ function LangPill({
   );
 }
 
-function LegalRow({ label, detail, action }: { label: string; detail: string; action: string }) {
+function LegalRow({ label, detail, action, href }: { label: string; detail: string; action: string; href: string }) {
   return (
-    <div
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className="card"
       style={{
         display: 'flex',
@@ -366,6 +372,6 @@ function LegalRow({ label, detail, action }: { label: string; detail: string; ac
       <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--saffron-600)', whiteSpace: 'nowrap' }}>
         {action}
       </div>
-    </div>
+    </a>
   );
 }
