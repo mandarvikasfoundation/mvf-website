@@ -219,7 +219,7 @@ export default function AboutClient() {
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
             <h2 className="section-heading" style={{ fontSize: 26, color: 'white' }}>
-              {deskLang === 'hi' ? 'अध्यक्ष का संदेश' : "President's Desk"}
+              {t("President's Desk", 'अध्यक्ष का संदेश')}
             </h2>
             <div style={{ display: 'flex', gap: 6 }}>
               <LangPill active={deskLang === 'hi'} onClick={() => setDeskLang('hi')}>

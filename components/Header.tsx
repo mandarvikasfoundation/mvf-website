@@ -80,7 +80,7 @@ export default function Header() {
           className="nav-desktop"
           style={{
             display: 'flex',
-            gap: 20,
+            gap: 32,
             alignItems: 'center',
             fontFamily: 'var(--font-mono)',
             fontSize: 13,
