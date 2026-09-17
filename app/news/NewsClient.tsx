@@ -2,14 +2,26 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useT } from '@/lib/LanguageContext';
 
 const TAGS = ['All', "Mandar's Pride", 'Community', 'Events', 'Other'];
+
+const TAG_LABELS_HI: Record<string, string> = {
+  All: 'सभी',
+  "Mandar's Pride": "Mandar's Pride",
+  Community: 'समुदाय',
+  Events: 'आयोजन',
+  Other: 'अन्य',
+};
 
 type Post = {
   slug: string;
   date: string;
+  dateHi: string;
   title: string;
+  titleHi: string;
   teaser: string;
+  teaserHi: string;
   thumb: string;
   tags: string[];
   featured?: boolean;
@@ -19,9 +31,12 @@ const POSTS: Post[] = [
   {
     slug: 'independence-day-2026',
     date: '15 August 2026',
+    dateHi: '15 अगस्त 2026',
     title: "Independence Day at Mandar's Pride Campus",
+    titleHi: "Mandar's Pride परिसर में स्वतंत्रता दिवस",
     teaser:
       'Students and staff came together to celebrate the 15th with flag hoisting and festivities on campus.',
+    teaserHi: 'छात्रों एवं स्टाफ ने परिसर में ध्वजारोहण एवं उत्सव के साथ 15 अगस्त मनाया।',
     thumb: '/images/news/independence-day-2026-flag-hoisting.png',
     tags: ['Community'],
     featured: true,
@@ -30,6 +45,7 @@ const POSTS: Post[] = [
 
 export default function NewsClient() {
   const [selected, setSelected] = useState<string[]>(['All']);
+  const t = useT();
 
   function toggleTag(tag: string) {
     if (tag === 'All') {
@@ -37,9 +53,9 @@ export default function NewsClient() {
       return;
     }
     setSelected((prev) => {
-      const withoutAll = prev.filter((t) => t !== 'All');
+      const withoutAll = prev.filter((tg) => tg !== 'All');
       const next = withoutAll.includes(tag)
-        ? withoutAll.filter((t) => t !== tag)
+        ? withoutAll.filter((tg) => tg !== tag)
         : [...withoutAll, tag];
       return next.length === 0 ? ['All'] : next;
     });
@@ -47,7 +63,7 @@ export default function NewsClient() {
 
   const visiblePosts = selected.includes('All')
     ? POSTS
-    : POSTS.filter((post) => post.tags.some((t) => selected.includes(t)));
+    : POSTS.filter((post) => post.tags.some((tg) => selected.includes(tg)));
 
   const featured = visiblePosts.find((p) => p.featured);
   const rest = visiblePosts.filter((p) => !p.featured);
@@ -55,12 +71,12 @@ export default function NewsClient() {
   return (
     <>
       <div className="container" style={{ padding: '30px 0 20px' }}>
-        <div className="eyebrow">Home / News &amp; Updates</div>
+        <div className="eyebrow">{t('Home / News & Updates', 'होम / समाचार एवं अपडेट')}</div>
         <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
-          News &amp; Updates
+          {t('News & Updates', 'समाचार एवं अपडेट')}
         </h1>
         <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2 }}>
-          Stories, milestones, and moments from Mandar Vikas Foundation.
+          {t('Stories, milestones, and moments from Mandar Vikas Foundation.', 'मंदार विकास फाउंडेशन की कहानियां, उपलब्धियां एवं यादगार पल।')}
         </p>
 
         <div style={{ display: 'flex', gap: 8, marginTop: 18, flexWrap: 'wrap' }}>
@@ -81,7 +97,7 @@ export default function NewsClient() {
                   cursor: 'pointer',
                 }}
               >
-                {tag}
+                {t(tag, TAG_LABELS_HI[tag])}
               </button>
             );
           })}
@@ -103,7 +119,7 @@ export default function NewsClient() {
             <div style={{ flex: '0 0 40%', position: 'relative', minHeight: 200 }}>
               <img
                 src={featured.thumb}
-                alt={featured.title}
+                alt={t(featured.title, featured.titleHi)}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }}
               />
               <div
@@ -119,18 +135,19 @@ export default function NewsClient() {
                   borderRadius: 10,
                 }}
               >
-                FEATURED
+                {t('FEATURED', 'विशेष')}
               </div>
             </div>
             <div style={{ flex: 1, padding: '26px 28px' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--saffron-600)' }}>
-                {featured.date.toUpperCase()} &middot; {featured.tags.join(', ').toUpperCase()}
+                {t(featured.date, featured.dateHi).toUpperCase()} &middot;{' '}
+                {featured.tags.map((tg) => t(tg, TAG_LABELS_HI[tg])).join(', ').toUpperCase()}
               </div>
               <h2 className="section-heading" style={{ fontSize: 22, marginTop: 6 }}>
-                {featured.title}
+                {t(featured.title, featured.titleHi)}
               </h2>
               <p style={{ fontSize: 13, lineHeight: 1.7, marginTop: 10, color: 'var(--ink-muted)' }}>
-                {featured.teaser}
+                {t(featured.teaser, featured.teaserHi)}
               </p>
             </div>
           </Link>
@@ -140,17 +157,18 @@ export default function NewsClient() {
           {rest.map((post) => (
             <Link key={post.slug} href={`/news/${post.slug}`} className="card" style={{ padding: 18, display: 'flex', gap: 14 }}>
               <div style={{ width: 56, height: 56, borderRadius: 4, overflow: 'hidden', flexShrink: 0 }}>
-                <img src={post.thumb} alt={post.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={post.thumb} alt={t(post.title, post.titleHi)} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--label-grey)' }}>
-                  {post.date.toUpperCase()} &middot; {post.tags.join(', ').toUpperCase()}
+                  {t(post.date, post.dateHi).toUpperCase()} &middot;{' '}
+                  {post.tags.map((tg) => t(tg, TAG_LABELS_HI[tg])).join(', ').toUpperCase()}
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--navy-700)', marginTop: 3 }}>
-                  {post.title}
+                  {t(post.title, post.titleHi)}
                 </div>
                 <div style={{ fontSize: 10.5, color: 'var(--ink-muted)', marginTop: 3, lineHeight: 1.5 }}>
-                  {post.teaser}
+                  {t(post.teaser, post.teaserHi)}
                 </div>
               </div>
             </Link>
@@ -161,14 +179,14 @@ export default function NewsClient() {
           {selected.includes('All') && (
             <div className="card" style={{ padding: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 88 }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--label-grey)', textAlign: 'center' }}>
-                More stories coming soon
+                {t('More stories coming soon', 'जल्द ही और कहानियां आ रही हैं')}
               </div>
             </div>
           )}
 
           {!selected.includes('All') && visiblePosts.length === 0 && (
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--label-grey)', gridColumn: '1 / -1' }}>
-              No posts under this tag yet.
+              {t('No posts under this tag yet.', 'इस टैग में अभी कोई पोस्ट नहीं है।')}
             </div>
           )}
         </div>

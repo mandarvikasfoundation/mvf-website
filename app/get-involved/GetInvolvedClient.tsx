@@ -1,29 +1,33 @@
 'use client';
 
 import { useState } from 'react';
+import { useT } from '@/lib/LanguageContext';
 
 export default function GetInvolvedClient() {
+  const t = useT();
+
   return (
     <>
       <div className="container" style={{ padding: '30px 0 6px', textAlign: 'left' }}>
-        <div className="eyebrow">Home / Get Involved</div>
+        <div className="eyebrow">{t('Home / Get Involved', 'होम / जुड़ें')}</div>
         <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
-          Get Involved
+          {t('Get Involved', 'जुड़ें')}
         </h1>
         <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2, maxWidth: 620 }}>
-          Every part of Mandar Vikas Foundation&apos;s work, from Mandar&apos;s
-          Pride to our community programs, runs on the support of people who
-          believe in it. Whatever you can offer, there&apos;s a way to help.
+          {t(
+            "Every part of Mandar Vikas Foundation's work, from Mandar's Pride to our community programs, runs on the support of people who believe in it. Whatever you can offer, there's a way to help.",
+            "मंदार विकास फाउंडेशन के कार्य का हर हिस्सा, Mandar's Pride से लेकर हमारे सामुदायिक कार्यक्रमों तक, उन लोगों के सहयोग पर चलता है जो इसमें विश्वास रखते हैं। आप जो भी दे सकें, मदद करने का एक तरीका जरूर है।"
+          )}
         </p>
         <div style={{ display: 'flex', gap: 12, marginTop: 20, justifyContent: 'center' }}>
           <a href="#donate" className="btn" style={{ background: 'var(--saffron-600)', color: '#FDF2E7', borderRadius: 16, boxShadow: '0 3px 8px rgba(198,99,31,0.35)' }}>
-            Donate
+            {t('Donate', 'दान करें')}
           </a>
           <a href="#volunteer" className="btn" style={{ background: 'var(--saffron-600)', color: '#FDF2E7', borderRadius: 16, boxShadow: '0 3px 8px rgba(198,99,31,0.35)' }}>
-            Volunteer
+            {t('Volunteer', 'स्वयंसेवा')}
           </a>
           <a href="#partner" className="btn" style={{ background: 'var(--saffron-600)', color: '#FDF2E7', borderRadius: 16, boxShadow: '0 3px 8px rgba(198,99,31,0.35)' }}>
-            Partner
+            {t('Partner', 'साझेदारी')}
           </a>
         </div>
       </div>
@@ -40,12 +44,13 @@ export default function GetInvolvedClient() {
             }}
           >
             <h2 className="section-heading" style={{ fontSize: 34, margin: '0 0 10px' }}>
-              Donate
+              {t('Donate', 'दान करें')}
             </h2>
             <p style={{ fontSize: 14, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 28px' }}>
-              School fees help fund Mandar&apos;s Pride, but they don&apos;t
-              cover everything. Since the school is only one part of what we
-              do, your donation helps us keep every program running.
+              {t(
+                "School fees help fund Mandar's Pride, but they don't cover everything. Since the school is only one part of what we do, your donation helps us keep every program running.",
+                "स्कूल की फीस Mandar's Pride को चलाने में मदद करती है, लेकिन इससे सब कुछ पूरा नहीं होता। चूंकि स्कूल हमारे कार्य का केवल एक हिस्सा है, आपका दान हमें हर कार्यक्रम को चलाए रखने में मदद करता है।"
+              )}
             </p>
 
             <div
@@ -74,20 +79,20 @@ export default function GetInvolvedClient() {
                     textAlign: 'center',
                   }}
                 >
-                  UPI QR code
+                  {t('UPI QR code', 'UPI क्यूआर कोड')}
                   <br />
-                  (add real QR image)
+                  {t('(add real QR image)', '(असली क्यूआर छवि जोड़ें)')}
                 </div>
               </div>
               <div style={{ flex: 1, minWidth: 280, borderLeft: '1px solid var(--paper-line)', paddingLeft: 28 }}>
-                <CopyRow label="UPI ID" value="mandarvikas@upi" />
-                <CopyRow label="Phone (UPI)" value="9289928091" />
+                <CopyRow label={t('UPI ID', 'UPI आईडी')} value="mandarvikas@upi" copiedLabel={t('copied!', 'कॉपी हो गया!')} />
+                <CopyRow label={t('Phone (UPI)', 'फोन (UPI)')} value="9289928091" copiedLabel={t('copied!', 'कॉपी हो गया!')} />
                 <div style={{ marginTop: 6, paddingTop: 6, borderTop: '0.5px dashed var(--paper-line)' }} />
-                <PlainRow label="Account Holder" value="Mandar Vikas Foundation" />
-                <PlainRow label="Bank" value="State Bank of India" />
-                <PlainRow label="Branch" value="Baunsi" />
-                <CopyRow label="A/C No." value="39921339380" />
-                <CopyRow label="IFSC" value="SBIN0012530" />
+                <PlainRow label={t('Account Holder', 'खाताधारक')} value="Mandar Vikas Foundation" />
+                <PlainRow label={t('Bank', 'बैंक')} value="State Bank of India" />
+                <PlainRow label={t('Branch', 'शाखा')} value="Baunsi" />
+                <CopyRow label={t('A/C No.', 'खाता सं.')} value="39921339380" copiedLabel={t('copied!', 'कॉपी हो गया!')} />
+                <CopyRow label="IFSC" value="SBIN0012530" copiedLabel={t('copied!', 'कॉपी हो गया!')} />
               </div>
             </div>
           </div>
@@ -100,12 +105,13 @@ export default function GetInvolvedClient() {
           <div style={{ position: 'absolute', left: 26, top: 0, bottom: 0, width: 1, background: 'var(--margin-red)', opacity: 0.3 }} />
           <div style={{ flex: '0 0 300px', paddingLeft: 26 }}>
             <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 10 }}>
-              Volunteer
+              {t('Volunteer', 'स्वयंसेवा')}
             </h2>
             <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.7, textAlign: 'justify' }}>
-              Whether it&apos;s teaching at Mandar&apos;s Pride, helping with
-              day-to-day tasks around the school, supporting an event, or
-              lending a specific skill, there&apos;s likely a way to help.
+              {t(
+                "Whether it's teaching at Mandar's Pride, helping with day-to-day tasks around the school, supporting an event, or lending a specific skill, there's likely a way to help.",
+                "चाहे वह Mandar's Pride में पढ़ाना हो, स्कूल के रोजमर्रा के कामों में मदद करना हो, किसी आयोजन में सहयोग देना हो, या अपना कोई खास हुनर देना हो, मदद करने का कोई न कोई तरीका जरूर मिलेगा।"
+              )}
             </p>
           </div>
           <form
@@ -116,30 +122,30 @@ export default function GetInvolvedClient() {
             <FormRow2>
               <div>
                 <label htmlFor="vol-name" className="sr-only">Full name</label>
-                <input id="vol-name" name="fullName" className="field-input" placeholder="Full name" />
+                <input id="vol-name" name="fullName" className="field-input" placeholder={t('Full name', 'पूरा नाम')} />
               </div>
               <div>
                 <label htmlFor="vol-contact" className="sr-only">Phone or email</label>
-                <input id="vol-contact" name="contact" className="field-input" placeholder="Phone or email" />
+                <input id="vol-contact" name="contact" className="field-input" placeholder={t('Phone or email', 'फोन या ईमेल')} />
               </div>
             </FormRow2>
             <FormRow2>
               <div>
                 <label htmlFor="vol-interest" className="sr-only">Area of interest / skills</label>
-                <input id="vol-interest" name="interest" className="field-input" placeholder="Area of interest / skills" />
+                <input id="vol-interest" name="interest" className="field-input" placeholder={t('Area of interest / skills', 'रुचि का क्षेत्र / हुनर')} />
               </div>
               <div>
                 <label htmlFor="vol-availability" className="sr-only">Availability</label>
-                <input id="vol-availability" name="availability" className="field-input" placeholder="Availability" />
+                <input id="vol-availability" name="availability" className="field-input" placeholder={t('Availability', 'उपलब्धता')} />
               </div>
             </FormRow2>
             <div style={{ marginBottom: 18 }}>
               <label htmlFor="vol-message" className="sr-only">Message (optional)</label>
-              <textarea id="vol-message" name="message" className="field-input" placeholder="Message (optional)" rows={3} />
+              <textarea id="vol-message" name="message" className="field-input" placeholder={t('Message (optional)', 'संदेश (वैकल्पिक)')} rows={3} />
             </div>
             <div style={{ textAlign: 'center' }}>
               <button type="submit" className="btn btn-primary">
-                Become a volunteer
+                {t('Become a volunteer', 'स्वयंसेवक बनें')}
               </button>
             </div>
           </form>
@@ -167,17 +173,17 @@ export default function GetInvolvedClient() {
             <FormRow2>
               <div>
                 <label htmlFor="partner-name" className="sr-only">Name</label>
-                <input id="partner-name" name="name" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Name" />
+                <input id="partner-name" name="name" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Name', 'नाम')} />
               </div>
               <div>
                 <label htmlFor="partner-org" className="sr-only">Organization / business (if any)</label>
-                <input id="partner-org" name="organization" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Organization / business (if any)" />
+                <input id="partner-org" name="organization" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Organization / business (if any)', 'संस्था / व्यवसाय (यदि कोई हो)')} />
               </div>
             </FormRow2>
             <FormRow2>
               <div>
                 <label htmlFor="partner-contact" className="sr-only">Phone or email</label>
-                <input id="partner-contact" name="contact" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Phone or email" />
+                <input id="partner-contact" name="contact" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Phone or email', 'फोन या ईमेल')} />
               </div>
               <div style={{ position: 'relative' }}>
                 <label htmlFor="partner-support-type" className="sr-only">Type of support</label>
@@ -187,12 +193,12 @@ export default function GetInvolvedClient() {
                   className="field-input"
                   style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)', appearance: 'none', width: '100%', paddingRight: 20 }}
                 >
-                  <option style={{ color: 'var(--ink)' }}>Type of support</option>
-                  <option style={{ color: 'var(--ink)' }}>Funding</option>
-                  <option style={{ color: 'var(--ink)' }}>In-kind support</option>
-                  <option style={{ color: 'var(--ink)' }}>Materials</option>
-                  <option style={{ color: 'var(--ink)' }}>Collaboration</option>
-                  <option style={{ color: 'var(--ink)' }}>Other</option>
+                  <option style={{ color: 'var(--ink)' }}>{t('Type of support', 'सहयोग का प्रकार')}</option>
+                  <option style={{ color: 'var(--ink)' }}>{t('Funding', 'वित्तीय सहयोग')}</option>
+                  <option style={{ color: 'var(--ink)' }}>{t('In-kind support', 'वस्तु रूप में सहयोग')}</option>
+                  <option style={{ color: 'var(--ink)' }}>{t('Materials', 'सामग्री')}</option>
+                  <option style={{ color: 'var(--ink)' }}>{t('Collaboration', 'सहयोग / साझेदारी')}</option>
+                  <option style={{ color: 'var(--ink)' }}>{t('Other', 'अन्य')}</option>
                 </select>
                 <span
                   style={{
@@ -211,7 +217,7 @@ export default function GetInvolvedClient() {
             </FormRow2>
             <div style={{ marginBottom: 18 }}>
               <label htmlFor="partner-message" className="sr-only">Message</label>
-              <textarea id="partner-message" name="message" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder="Message" rows={3} />
+              <textarea id="partner-message" name="message" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Message', 'संदेश')} rows={3} />
             </div>
             <div style={{ textAlign: 'center' }}>
               <button
@@ -219,22 +225,22 @@ export default function GetInvolvedClient() {
                 className="btn"
                 style={{ background: 'var(--saffron-300)', color: 'var(--navy-900)', fontWeight: 700 }}
               >
-                Partner with us
+                {t('Partner with us', 'हमारे साथ साझेदारी करें')}
               </button>
             </div>
           </form>
           <div style={{ flex: '0 0 340px', paddingRight: 26, textAlign: 'right' }}>
             <h2 className="section-heading" style={{ fontSize: 32, color: 'white', marginBottom: 8 }}>
-              Partner With Us
+              {t('Partner With Us', 'हमारे साथ साझेदारी करें')}
             </h2>
             <div style={{ fontSize: 20, color: 'var(--saffron-300)', marginBottom: 10 }}>
-              Individuals, businesses, and organizations, we welcome you.
+              {t('Individuals, businesses, and organizations, we welcome you.', 'व्यक्ति, व्यवसाय एवं संस्थाएं, हम आपका स्वागत करते हैं।')}
             </div>
             <p style={{ fontSize: 15, color: 'var(--sky-200)', lineHeight: 1.7, textAlign: 'right' }}>
-              We welcome support from individuals, local businesses, other
-              organizations, and institutions, whether through funding,
-              in-kind support, materials, or collaboration on a specific
-              initiative.
+              {t(
+                'We welcome support from individuals, local businesses, other organizations, and institutions, whether through funding, in-kind support, materials, or collaboration on a specific initiative.',
+                'हम व्यक्तियों, स्थानीय व्यवसायों, अन्य संस्थाओं एवं संगठनों से सहयोग का स्वागत करते हैं, चाहे वह वित्तीय सहयोग हो, वस्तु रूप में सहयोग हो, सामग्री हो, या किसी विशेष पहल पर साझेदारी हो।'
+              )}
             </p>
           </div>
         </div>
@@ -259,7 +265,7 @@ function PlainRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-function CopyRow({ label, value }: { label: string; value: string }) {
+function CopyRow({ label, value, copiedLabel }: { label: string; value: string; copiedLabel: string }) {
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
@@ -287,7 +293,7 @@ function CopyRow({ label, value }: { label: string; value: string }) {
           padding: 0,
         }}
       >
-        {copied ? 'copied!' : '[copy]'}
+        {copied ? copiedLabel : '[copy]'}
       </button>
     </div>
   );

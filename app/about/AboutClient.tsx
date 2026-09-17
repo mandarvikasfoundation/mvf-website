@@ -2,15 +2,16 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useT } from '@/lib/LanguageContext';
 
 const MANAGING_COMMITTEE = [
-  { name: 'Ranjana Choudhary', role: 'President' },
-  { name: 'Pritish Shankar', role: 'Secretary' },
-  { name: 'Punam Kumari', role: 'Treasurer' },
-  { name: 'Isha Kumari', role: 'Member' },
-  { name: 'Praful Chandra Yadav', role: 'Member' },
-  { name: 'Kunj Jha', role: 'Member' },
-  { name: 'Shamlesh Kumar', role: 'Member' },
+  { name: 'Ranjana Choudhary', role: 'President', roleHi: 'अध्यक्ष' },
+  { name: 'Pritish Shankar', role: 'Secretary', roleHi: 'सचिव' },
+  { name: 'Punam Kumari', role: 'Treasurer', roleHi: 'कोषाध्यक्ष' },
+  { name: 'Isha Kumari', role: 'Member', roleHi: 'सदस्य' },
+  { name: 'Praful Chandra Yadav', role: 'Member', roleHi: 'सदस्य' },
+  { name: 'Kunj Jha', role: 'Member', roleHi: 'सदस्य' },
+  { name: 'Shamlesh Kumar', role: 'Member', roleHi: 'सदस्य' },
 ];
 
 const GENERAL_BODY = [
@@ -51,19 +52,21 @@ Jai Hind! Jai Bharat!`;
 export default function AboutClient() {
   const [activeTab, setActiveTab] = useState<'committee' | 'body'>('committee');
   const [deskLang, setDeskLang] = useState<'hi' | 'en'>('hi');
+  const t = useT();
 
   return (
     <>
       {/* HEADER / INTRO */}
       <div className="container" style={{ padding: '30px 0 6px' }}>
-        <div className="eyebrow">Home / About Us</div>
+        <div className="eyebrow">{t('Home / About Us', 'होम / हमारे बारे में')}</div>
         <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
-          About Mandar Vikas Foundation
+          {t('About Mandar Vikas Foundation', 'मंदार विकास फाउंडेशन के बारे में')}
         </h1>
         <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2 }}>
-          Established in 2019, MVF works towards women&apos;s empowerment,
-          the growth and education of children, and dignity for
-          underprivileged people.
+          {t(
+            "Established in 2019, MVF works towards women's empowerment, the growth and education of children, and dignity for underprivileged people.",
+            '2019 में स्थापित, MVF महिलाओं के सशक्तिकरण, बच्चों के विकास एवं शिक्षा, और वंचित लोगों की गरिमा के लिए कार्यरत है।'
+          )}
         </p>
       </div>
 
@@ -77,20 +80,17 @@ export default function AboutClient() {
         <div className="container" style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ flex: '0 0 260px' }}>
             <div className="section-heading" style={{ fontSize: 44, lineHeight: 1.02, color: 'white' }}>
-              Our
+              {t('Our', 'हमारी')}
               <br />
-              Roots
+              {t('Roots', 'जड़ें')}
             </div>
           </div>
           <div style={{ flex: 1, minWidth: 280 }}>
             <p style={{ fontSize: 13.5, lineHeight: 1.8, textAlign: 'justify', color: 'var(--sky-200)' }}>
-              Here at Mandar Vikas Foundation, we know that sometimes all it
-              takes to change the world is a little support. Since our
-              establishment in 2019, we have been determined to make an
-              impact in our society. The core of our efforts is to bring our
-              team&apos;s fresh ideas and passion to the range of activities
-              we&apos;re involved in. Through all of our endeavors, we hope
-              to display the conviction behind our beliefs.
+              {t(
+                "Here at Mandar Vikas Foundation, we know that sometimes all it takes to change the world is a little support. Since our establishment in 2019, we have been determined to make an impact in our society. The core of our efforts is to bring our team's fresh ideas and passion to the range of activities we're involved in. Through all of our endeavors, we hope to display the conviction behind our beliefs.",
+                'मंदार विकास फाउंडेशन में, हम जानते हैं कि कभी-कभी दुनिया बदलने के लिए बस थोड़े से सहयोग की आवश्यकता होती है। 2019 में अपनी स्थापना के बाद से, हम अपने समाज में बदलाव लाने के लिए दृढ़ संकल्पित रहे हैं। हमारे प्रयासों का मूल यही है कि हम अपनी टीम के नए विचारों और जुनून को अपनी सभी गतिविधियों में शामिल करें। अपने हर प्रयास के माध्यम से, हम अपने विश्वासों के पीछे की प्रतिबद्धता को दर्शाना चाहते हैं।'
+              )}
             </p>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function AboutClient() {
             className="section-heading"
             style={{ fontSize: 44, textAlign: 'center', marginBottom: 22 }}
           >
-            Our Vision
+            {t('Our Vision', 'हमारी दृष्टि')}
           </h2>
           <div
             style={{
@@ -112,9 +112,27 @@ export default function AboutClient() {
               gap: 14,
             }}
           >
-            <VisionCard n="01" text="Empowered and self-sufficient women living with dignity and contributing equally to a development of a respectable environment, free from violence and discrimination." />
-            <VisionCard n="02" text="Well-nurtured children with full opportunities for their social, mental, and educational growth in a safe and protective environment." />
-            <VisionCard n="03" text="Opportunity for the underprivileged sections of society, including the elderly, to live with dignity." />
+            <VisionCard
+              n="01"
+              text={t(
+                'Empowered and self-sufficient women living with dignity and contributing equally to a development of a respectable environment, free from violence and discrimination.',
+                'सशक्त एवं आत्मनिर्भर महिलाएं, जो गरिमा के साथ जीवन व्यतीत करें और हिंसा व भेदभाव से मुक्त, सम्मानजनक वातावरण के विकास में समान रूप से योगदान दें।'
+              )}
+            />
+            <VisionCard
+              n="02"
+              text={t(
+                'Well-nurtured children with full opportunities for their social, mental, and educational growth in a safe and protective environment.',
+                'सुपोषित बच्चे, जिन्हें एक सुरक्षित एवं संरक्षणात्मक वातावरण में सामाजिक, मानसिक एवं शैक्षणिक विकास के पूर्ण अवसर प्राप्त हों।'
+              )}
+            />
+            <VisionCard
+              n="03"
+              text={t(
+                'Opportunity for the underprivileged sections of society, including the elderly, to live with dignity.',
+                'वृद्धजनों सहित समाज के वंचित वर्गों को गरिमा के साथ जीवन जीने का अवसर।'
+              )}
+            />
           </div>
         </div>
       </section>
@@ -128,16 +146,31 @@ export default function AboutClient() {
         >
           <div style={{ flex: '0 0 260px' }}>
             <div className="section-heading" style={{ fontSize: 44, lineHeight: 1.02, color: 'white' }}>
-              Our
+              {t('Our', 'हमारा')}
               <br />
-              Mission
+              {t('Mission', 'मिशन')}
             </div>
           </div>
           <div style={{ flex: 1, minWidth: 280 }}>
             <ul style={{ fontSize: 13, lineHeight: 1.85, color: 'var(--sky-200)', paddingLeft: 18, margin: 0 }}>
-              <li style={{ marginBottom: 12 }}>Promoting the financial and social empowerment of women through adaptable, cross-cutting programmes, building awareness of their rights and facilitating institutional support for their growth.</li>
-              <li style={{ marginBottom: 12 }}>Ensuring the care, protection, education, and all-round growth of children by extending access to health, nutrition, education, and awareness of their rights, with the involvement of the wider society.</li>
-              <li>Giving underprivileged and in-need members of society access to the basic support that enables them to live with dignity.</li>
+              <li style={{ marginBottom: 12 }}>
+                {t(
+                  'Promoting the financial and social empowerment of women through adaptable, cross-cutting programmes, building awareness of their rights and facilitating institutional support for their growth.',
+                  'लचीले एवं व्यापक कार्यक्रमों के माध्यम से महिलाओं के आर्थिक एवं सामाजिक सशक्तिकरण को बढ़ावा देना, उनके अधिकारों के प्रति जागरूकता बढ़ाना और उनके विकास हेतु संस्थागत सहयोग सुनिश्चित करना।'
+                )}
+              </li>
+              <li style={{ marginBottom: 12 }}>
+                {t(
+                  'Ensuring the care, protection, education, and all-round growth of children by extending access to health, nutrition, education, and awareness of their rights, with the involvement of the wider society.',
+                  'व्यापक समाज की भागीदारी के साथ स्वास्थ्य, पोषण, शिक्षा एवं अधिकारों के प्रति जागरूकता तक पहुंच बढ़ाकर बच्चों की देखभाल, सुरक्षा, शिक्षा एवं सर्वांगीण विकास सुनिश्चित करना।'
+                )}
+              </li>
+              <li>
+                {t(
+                  'Giving underprivileged and in-need members of society access to the basic support that enables them to live with dignity.',
+                  'समाज के वंचित एवं जरूरतमंद सदस्यों को गरिमापूर्ण जीवन जीने हेतु आवश्यक बुनियादी सहयोग उपलब्ध कराना।'
+                )}
+              </li>
             </ul>
           </div>
         </div>
@@ -147,10 +180,10 @@ export default function AboutClient() {
       <section className="container" style={{ padding: '48px 0' }}>
         <div style={{ display: 'flex', gap: 4, justifyContent: 'center' }}>
           <TabButton active={activeTab === 'committee'} onClick={() => setActiveTab('committee')}>
-            Managing Committee
+            {t('Managing Committee', 'प्रबंध समिति')}
           </TabButton>
           <TabButton active={activeTab === 'body'} onClick={() => setActiveTab('body')}>
-            General Body
+            {t('General Body', 'सामान्य निकाय')}
           </TabButton>
         </div>
 
@@ -161,7 +194,7 @@ export default function AboutClient() {
               {MANAGING_COMMITTEE.map((m) => (
                 <div key={m.name} className="card" style={{ padding: '14px 12px', textAlign: 'center' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--navy-700)' }}>{m.name}</div>
-                  <div className="eyebrow" style={{ marginTop: 3 }}>{m.role}</div>
+                  <div className="eyebrow" style={{ marginTop: 3 }}>{t(m.role, m.roleHi)}</div>
                 </div>
               ))}
             </div>
@@ -186,7 +219,7 @@ export default function AboutClient() {
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
             <h2 className="section-heading" style={{ fontSize: 26, color: 'white' }}>
-              President&apos;s Desk
+              {deskLang === 'hi' ? 'अध्यक्ष का संदेश' : "President's Desk"}
             </h2>
             <div style={{ display: 'flex', gap: 6 }}>
               <LangPill active={deskLang === 'hi'} onClick={() => setDeskLang('hi')}>
@@ -215,20 +248,31 @@ export default function AboutClient() {
       {/* LEGAL & TRANSPARENCY */}
       <section className="container" style={{ padding: '48px 0 60px' }}>
         <h2 className="section-heading" style={{ fontSize: 22, marginBottom: 16 }}>
-          Legal &amp; Transparency
+          {t('Legal & Transparency', 'कानूनी एवं पारदर्शिता')}
         </h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 620 }}>
-          <LegalRow label="Registered Society" detail="Reg. No. S000218, 10 Dec 2019, Banka, Bihar" action="Download PDF" />
-          <LegalRow label="NGO Darpan" detail="Unique ID BR/2021/0273689" action="View record →" />
-          <LegalRow label="12A Registration" detail="Provisional, granted 14 Sept 2025" action="Download PDF" />
+          <LegalRow
+            label={t('Registered Society', 'पंजीकृत सोसाइटी')}
+            detail={t('Reg. No. S000218, 10 Dec 2019, Banka, Bihar', 'पंजीकरण सं. S000218, 10 दिसंबर 2019, बांका, बिहार')}
+            action={t('Download PDF', 'पीडीएफ डाउनलोड करें')}
+          />
+          <LegalRow
+            label="NGO Darpan"
+            detail={t('Unique ID BR/2021/0273689', 'यूनिक आईडी BR/2021/0273689')}
+            action={t('View record \u2192', 'रिकॉर्ड देखें \u2192')}
+          />
+          <LegalRow
+            label={t('12A Registration', '12A पंजीकरण')}
+            detail={t('Provisional, granted 14 Sept 2025', 'अनंतिम, 14 सितंबर 2025 को स्वीकृत')}
+            action={t('Download PDF', 'पीडीएफ डाउनलोड करें')}
+          />
         </div>
         <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 16 }}>
-          For any questions about our registration or finances, feel free to
-          reach out via our{' '}
+          {t('For any questions about our registration or finances, feel free to reach out via our', 'हमारे पंजीकरण या वित्त संबंधी किसी भी प्रश्न के लिए, कृपया हमारे')}{' '}
           <Link href="/contact" style={{ color: 'var(--saffron-600)' }}>
-            Contact page
+            {t('Contact page', 'संपर्क पृष्ठ')}
           </Link>
-          .
+          {t('.', ' के माध्यम से हमसे जुड़ें।')}
         </p>
       </section>
     </>

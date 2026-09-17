@@ -1,33 +1,39 @@
 'use client';
 
+import { useT } from '@/lib/LanguageContext';
+
 export default function ContactClient() {
+  const t = useT();
+
   return (
     <div className="container" style={{ padding: '30px 0 50px' }}>
-      <div className="eyebrow">Home / Contact</div>
+      <div className="eyebrow">{t('Home / Contact', 'होम / संपर्क')}</div>
       <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
-        Contact Us
+        {t('Contact Us', 'संपर्क करें')}
       </h1>
       <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2, whiteSpace: 'nowrap' }}>
-        We&apos;d love to hear from you, whether you have a question, want
-        to get involved, or anything else!
+        {t(
+          "We'd love to hear from you, whether you have a question, want to get involved, or anything else!",
+          'हमें आपसे सुनकर खुशी होगी, चाहे आपका कोई प्रश्न हो, आप जुड़ना चाहते हों, या कुछ और!'
+        )}
       </p>
 
       <div style={{ display: 'flex', gap: 32, marginTop: 30, flexWrap: 'wrap' }}>
         <div style={{ flex: '0 0 42%', minWidth: 280 }}>
           <h2 className="section-heading" style={{ fontSize: 30, margin: '0 0 14px', whiteSpace: 'nowrap' }}>
-            Get In Touch
+            {t('Get In Touch', 'संपर्क में रहें')}
           </h2>
           <div style={{ fontSize: 13, lineHeight: 1.9 }}>
-            <b>Mandar Vikas Foundation</b>
+            <b>{t('Mandar Vikas Foundation', 'मंदार विकास फाउंडेशन')}</b>
             <br />
-            Dam Road, Bhaga, P.O. &amp; P.S. Bounsi
+            {t('Dam Road, Bhaga, P.O. & P.S. Bounsi', 'डैम रोड, भागा, पो. एवं पु.स्टे. बौंसी')}
             <br />
-            District Banka, Bihar, <b>PIN</b> 813104
+            {t('District Banka, Bihar,', 'जिला बांका, बिहार,')} <b>{t('PIN', 'पिन')}</b> 813104
             <br />
             <br />
-            <b>Phone:</b> 9289928091
+            <b>{t('Phone:', 'फ़ोन:')}</b> 9289928091
             <br />
-            <b>Email:</b> mandarvikasfoundation@gmail.com
+            <b>{t('Email:', 'ईमेल:')}</b> mandarvikasfoundation@gmail.com
           </div>
 
           <iframe
@@ -48,31 +54,31 @@ export default function ContactClient() {
 
         <div className="card" style={{ flex: 1, minWidth: 300, padding: 28 }}>
           <div className="section-heading" style={{ fontSize: 20, textAlign: 'center', marginBottom: 18 }}>
-            Send Us a Message
+            {t('Send Us a Message', 'हमें संदेश भेजें')}
           </div>
           <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', height: 340 }}>
             <div style={{ marginBottom: 20 }}>
               <label htmlFor="contact-reason" className="sr-only">What is this about?</label>
               <select id="contact-reason" className="field-input" style={{ appearance: 'none' }} defaultValue="">
                 <option value="" disabled>
-                  What is this about?
+                  {t('What is this about?', 'यह किस बारे में है?')}
                 </option>
-                <option>General inquiry</option>
-                <option>Mandar&apos;s Pride admissions</option>
-                <option>Donations</option>
-                <option>Volunteering</option>
-                <option>Partnership / CSR</option>
-                <option>Other</option>
+                <option>{t('General inquiry', 'सामान्य पूछताछ')}</option>
+                <option>{t("Mandar's Pride admissions", "Mandar's Pride में प्रवेश")}</option>
+                <option>{t('Donations', 'दान')}</option>
+                <option>{t('Volunteering', 'स्वयंसेवा')}</option>
+                <option>{t('Partnership / CSR', 'साझेदारी / सीएसआर')}</option>
+                <option>{t('Other', 'अन्य')}</option>
               </select>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 20 }}>
               <div>
                 <label htmlFor="contact-name" className="sr-only">Name</label>
-                <input id="contact-name" name="name" className="field-input" placeholder="Name" />
+                <input id="contact-name" name="name" className="field-input" placeholder={t('Name', 'नाम')} />
               </div>
               <div>
                 <label htmlFor="contact-email" className="sr-only">Email or phone</label>
-                <input id="contact-email" name="emailOrPhone" className="field-input" placeholder="Email or phone" />
+                <input id="contact-email" name="emailOrPhone" className="field-input" placeholder={t('Email or phone', 'ईमेल या फोन')} />
               </div>
             </div>
             <div style={{ flex: 1, marginBottom: 20 }}>
@@ -81,17 +87,19 @@ export default function ContactClient() {
                 id="contact-message"
                 name="message"
                 className="field-input"
-                placeholder="Message"
+                placeholder={t('Message', 'संदेश')}
                 style={{ height: '100%', resize: 'none', fontFamily: 'var(--font-serif)' }}
               />
             </div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--label-grey)', textAlign: 'center', marginBottom: 16 }}>
-              Thank you for taking the time to reach out. We&apos;ll get
-              back to you within 3 working days.
+              {t(
+                "Thank you for taking the time to reach out. We'll get back to you within 3 working days.",
+                'हमसे संपर्क करने के लिए धन्यवाद। हम 3 कार्यदिवसों के भीतर आपसे संपर्क करेंगे।'
+              )}
             </div>
             <div style={{ textAlign: 'center' }}>
               <button type="submit" className="btn btn-primary">
-                Send message
+                {t('Send message', 'संदेश भेजें')}
               </button>
             </div>
           </form>
