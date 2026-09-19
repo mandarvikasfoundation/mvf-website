@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useT } from '@/lib/LanguageContext';
+import { createClient } from '@/lib/supabase/client';
 
 const TAGS = ["All", "Mandar's Pride", 'Learning Centre', 'Horticulture', 'Skill Development', 'Events', 'Other'];
 
@@ -16,33 +17,29 @@ const TAG_LABELS_HI: Record<string, string> = {
 };
 
 type Photo = {
-  src: string;
+  id: string;
+  src_url: string;
   tags: string[];
-  caption?: string;
-  captionHi?: string;
+  caption_en: string | null;
+  caption_hi: string | null;
 };
-
-const PHOTOS: Photo[] = [
-  { src: '/images/campus-gate.jpg', tags: ["Mandar's Pride"], caption: 'The campus gate', captionHi: 'परिसर का प्रवेश द्वार' },
-  { src: '/images/mandars-pride/gate-evening.jpg', tags: ["Mandar's Pride"] },
-  { src: '/images/mandars-pride/admissions-event.jpg', tags: ["Mandar's Pride"], caption: 'Admissions day', captionHi: 'प्रवेश दिवस' },
-  { src: '/images/mandars-pride/classroom.jpg', tags: ["Mandar's Pride"] },
-  { src: '/images/our-work/learning-1.jpg', tags: ['Learning Centre'] },
-  { src: '/images/our-work/learning-2.jpg', tags: ['Learning Centre'], caption: 'At the gate', captionHi: 'द्वार पर' },
-  { src: '/images/our-work/learning-3.jpg', tags: ['Learning Centre'] },
-  { src: '/images/our-work/horticulture-1.jpg', tags: ['Horticulture'], caption: 'Marigolds in bloom', captionHi: 'खिलते हुए गेंदे के फूल' },
-  { src: '/images/our-work/horticulture-2.jpg', tags: ['Horticulture'] },
-  { src: '/images/our-work/horticulture-3.jpg', tags: ['Horticulture'] },
-  { src: '/images/our-work/skill-1.jpg', tags: ['Skill Development'] },
-  { src: '/images/our-work/skill-2.jpg', tags: ['Skill Development'], caption: 'Tailoring class', captionHi: 'सिलाई कक्षा' },
-  { src: '/images/our-work/skill-3.jpg', tags: ['Skill Development'] },
-  { src: '/images/news/independence-day-2026-flag-hoisting.png', tags: ['Events'], caption: 'Independence Day, 2026', captionHi: 'स्वतंत्रता दिवस, 2026' },
-];
 
 export default function GalleryClient() {
   const [selected, setSelected] = useState<string[]>(['All']);
   const [lightbox, setLightbox] = useState<Photo | null>(null);
+  const [photos, setPhotos] = useState<Photo[] | null>(null);
   const t = useT();
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase
+      .from('gallery_photos')
+      .select('id, src_url, tags, caption_en, caption_hi')
+      .order('sort_order', { ascending: true })
+      .then(({ data }) => {
+        if (data) setPhotos(data as Photo[]);
+      });
+  }, []);
 
   function toggleTag(tag: string) {
     if (tag === 'All') {
@@ -58,9 +55,11 @@ export default function GalleryClient() {
     });
   }
 
-  const visiblePhotos = selected.includes('All')
-    ? PHOTOS
-    : PHOTOS.filter((p) => p.tags.some((tg) => selected.includes(tg)));
+  const visiblePhotos = !photos
+    ? []
+    : selected.includes('All')
+    ? photos
+    : photos.filter((p) => p.tags.some((tg) => selected.includes(tg)));
 
   return (
     <div className="container" style={{ padding: '30px 0 50px' }}>
@@ -99,17 +98,21 @@ export default function GalleryClient() {
         })}
       </div>
 
-      {visiblePhotos.length === 0 ? (
+      {photos === null ? (
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--label-grey)' }}>
+          {t('Loading\u2026', 'लोड हो रहा है\u2026')}
+        </div>
+      ) : visiblePhotos.length === 0 ? (
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--label-grey)' }}>
           {t('No photos under this tag yet.', 'इस टैग में अभी कोई फोटो नहीं है।')}
         </div>
       ) : (
         <div style={{ columnCount: 3, columnGap: 12 }}>
           {visiblePhotos.map((photo) => {
-            const caption = t(photo.caption ?? '', photo.captionHi ?? photo.caption ?? '');
+            const caption = t(photo.caption_en ?? '', photo.caption_hi ?? photo.caption_en ?? '');
             return (
               <button
-                key={photo.src}
+                key={photo.id}
                 onClick={() => setLightbox(photo)}
                 style={{
                   position: 'relative',
@@ -126,12 +129,12 @@ export default function GalleryClient() {
                 }}
               >
                 <img
-                  src={photo.src}
+                  src={photo.src_url}
                   alt={caption}
                   loading="lazy"
                   style={{ width: '100%', height: 'auto', display: 'block' }}
                 />
-                {photo.caption && (
+                {photo.caption_en && (
                   <div
                     style={{
                       position: 'absolute',
@@ -172,13 +175,13 @@ export default function GalleryClient() {
         >
           <div style={{ maxWidth: '90vw', maxHeight: '85vh', textAlign: 'center' }}>
             <img
-              src={lightbox.src}
-              alt={t(lightbox.caption ?? '', lightbox.captionHi ?? lightbox.caption ?? '')}
+              src={lightbox.src_url}
+              alt={t(lightbox.caption_en ?? '', lightbox.caption_hi ?? lightbox.caption_en ?? '')}
               style={{ maxWidth: '100%', maxHeight: '75vh', borderRadius: 4, display: 'block', margin: '0 auto' }}
             />
-            {lightbox.caption && (
+            {lightbox.caption_en && (
               <div style={{ color: 'white', fontFamily: 'var(--font-mono)', fontSize: 12, marginTop: 12 }}>
-                {t(lightbox.caption, lightbox.captionHi ?? lightbox.caption)}
+                {t(lightbox.caption_en, lightbox.caption_hi ?? lightbox.caption_en)}
               </div>
             )}
             <div style={{ color: 'var(--sky-300)', fontFamily: 'var(--font-mono)', fontSize: 10, marginTop: 8 }}>

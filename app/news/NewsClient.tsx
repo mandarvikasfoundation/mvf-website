@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useT } from '@/lib/LanguageContext';
+import { createClient } from '@/lib/supabase/client';
 
 const TAGS = ['All', "Mandar's Pride", 'Community', 'Events', 'Other'];
 
@@ -14,38 +15,44 @@ const TAG_LABELS_HI: Record<string, string> = {
   Other: 'अन्य',
 };
 
-type Post = {
-  slug: string;
-  date: string;
-  dateHi: string;
-  title: string;
-  titleHi: string;
-  teaser: string;
-  teaserHi: string;
-  thumb: string;
-  tags: string[];
-  featured?: boolean;
-};
+const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const MONTHS_HI = ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'];
 
-const POSTS: Post[] = [
-  {
-    slug: 'independence-day-2026',
-    date: '15 August 2026',
-    dateHi: '15 अगस्त 2026',
-    title: "Independence Day at Mandar's Pride Campus",
-    titleHi: "Mandar's Pride परिसर में स्वतंत्रता दिवस",
-    teaser:
-      'Students and staff came together to celebrate the 15th with flag hoisting and festivities on campus.',
-    teaserHi: 'छात्रों एवं स्टाफ ने परिसर में ध्वजारोहण एवं उत्सव के साथ 15 अगस्त मनाया।',
-    thumb: '/images/news/independence-day-2026-flag-hoisting.png',
-    tags: ['Community'],
-    featured: true,
-  },
-];
+function formatDate(isoDate: string, hi: boolean) {
+  const d = new Date(isoDate + 'T00:00:00');
+  const months = hi ? MONTHS_HI : MONTHS_EN;
+  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+type Post = {
+  id: string;
+  slug: string;
+  post_date: string;
+  title_en: string;
+  title_hi: string;
+  teaser_en: string;
+  teaser_hi: string;
+  thumb_url: string | null;
+  tags: string[];
+  featured: boolean;
+};
 
 export default function NewsClient() {
   const [selected, setSelected] = useState<string[]>(['All']);
+  const [posts, setPosts] = useState<Post[] | null>(null);
   const t = useT();
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase
+      .from('news_posts')
+      .select('id, slug, post_date, title_en, title_hi, teaser_en, teaser_hi, thumb_url, tags, featured')
+      .eq('published', true)
+      .order('post_date', { ascending: false })
+      .then(({ data }) => {
+        if (data) setPosts(data as Post[]);
+      });
+  }, []);
 
   function toggleTag(tag: string) {
     if (tag === 'All') {
@@ -61,9 +68,11 @@ export default function NewsClient() {
     });
   }
 
-  const visiblePosts = selected.includes('All')
-    ? POSTS
-    : POSTS.filter((post) => post.tags.some((tg) => selected.includes(tg)));
+  const visiblePosts = !posts
+    ? []
+    : selected.includes('All')
+    ? posts
+    : posts.filter((post) => post.tags.some((tg) => selected.includes(tg)));
 
   const featured = visiblePosts.find((p) => p.featured);
   const rest = visiblePosts.filter((p) => !p.featured);
@@ -105,6 +114,12 @@ export default function NewsClient() {
       </div>
 
       <div className="container" style={{ paddingBottom: 20 }}>
+        {posts === null && (
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--label-grey)' }}>
+            {t('Loading\u2026', 'लोड हो रहा है\u2026')}
+          </div>
+        )}
+
         {featured && (
           <Link
             href={`/news/${featured.slug}`}
@@ -117,11 +132,13 @@ export default function NewsClient() {
             }}
           >
             <div style={{ flex: '0 0 40%', position: 'relative', minHeight: 200 }}>
-              <img
-                src={featured.thumb}
-                alt={t(featured.title, featured.titleHi)}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }}
-              />
+              {featured.thumb_url && (
+                <img
+                  src={featured.thumb_url}
+                  alt={t(featured.title_en, featured.title_hi)}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }}
+                />
+              )}
               <div
                 style={{
                   position: 'absolute',
@@ -140,14 +157,14 @@ export default function NewsClient() {
             </div>
             <div style={{ flex: 1, padding: '26px 28px' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--saffron-600)' }}>
-                {t(featured.date, featured.dateHi).toUpperCase()} &middot;{' '}
-                {featured.tags.map((tg) => t(tg, TAG_LABELS_HI[tg])).join(', ').toUpperCase()}
+                {formatDate(featured.post_date, false).toUpperCase()} &middot;{' '}
+                {featured.tags.map((tg) => t(tg, TAG_LABELS_HI[tg] ?? tg)).join(', ').toUpperCase()}
               </div>
               <h2 className="section-heading" style={{ fontSize: 22, marginTop: 6 }}>
-                {t(featured.title, featured.titleHi)}
+                {t(featured.title_en, featured.title_hi)}
               </h2>
               <p style={{ fontSize: 13, lineHeight: 1.7, marginTop: 10, color: 'var(--ink-muted)' }}>
-                {t(featured.teaser, featured.teaserHi)}
+                {t(featured.teaser_en, featured.teaser_hi)}
               </p>
             </div>
           </Link>
@@ -155,20 +172,22 @@ export default function NewsClient() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
           {rest.map((post) => (
-            <Link key={post.slug} href={`/news/${post.slug}`} className="card" style={{ padding: 18, display: 'flex', gap: 14 }}>
-              <div style={{ width: 56, height: 56, borderRadius: 4, overflow: 'hidden', flexShrink: 0 }}>
-                <img src={post.thumb} alt={t(post.title, post.titleHi)} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <Link key={post.id} href={`/news/${post.slug}`} className="card" style={{ padding: 18, display: 'flex', gap: 14 }}>
+              <div style={{ width: 56, height: 56, borderRadius: 4, overflow: 'hidden', flexShrink: 0, background: 'var(--paper)' }}>
+                {post.thumb_url && (
+                  <img src={post.thumb_url} alt={t(post.title_en, post.title_hi)} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                )}
               </div>
               <div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--label-grey)' }}>
-                  {t(post.date, post.dateHi).toUpperCase()} &middot;{' '}
-                  {post.tags.map((tg) => t(tg, TAG_LABELS_HI[tg])).join(', ').toUpperCase()}
+                  {formatDate(post.post_date, false).toUpperCase()} &middot;{' '}
+                  {post.tags.map((tg) => t(tg, TAG_LABELS_HI[tg] ?? tg)).join(', ').toUpperCase()}
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--navy-700)', marginTop: 3 }}>
-                  {t(post.title, post.titleHi)}
+                  {t(post.title_en, post.title_hi)}
                 </div>
                 <div style={{ fontSize: 10.5, color: 'var(--ink-muted)', marginTop: 3, lineHeight: 1.5 }}>
-                  {t(post.teaser, post.teaserHi)}
+                  {t(post.teaser_en, post.teaser_hi)}
                 </div>
               </div>
             </Link>
@@ -176,7 +195,7 @@ export default function NewsClient() {
 
           {/* Placeholder slot for the next update, shown only when "All" is
               selected so it doesn't look like a real filtered result. */}
-          {selected.includes('All') && (
+          {posts !== null && selected.includes('All') && (
             <div className="card" style={{ padding: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 88 }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--label-grey)', textAlign: 'center' }}>
                 {t('More stories coming soon', 'जल्द ही और कहानियां आ रही हैं')}
@@ -184,7 +203,7 @@ export default function NewsClient() {
             </div>
           )}
 
-          {!selected.includes('All') && visiblePosts.length === 0 && (
+          {posts !== null && !selected.includes('All') && visiblePosts.length === 0 && (
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--label-grey)', gridColumn: '1 / -1' }}>
               {t('No posts under this tag yet.', 'इस टैग में अभी कोई पोस्ट नहीं है।')}
             </div>

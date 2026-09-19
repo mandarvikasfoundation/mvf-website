@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PhotoStack from '@/components/PhotoStack';
 import { useT } from '@/lib/LanguageContext';
+import { createClient } from '@/lib/supabase/client';
 
 const TABS = ['Overview', 'Admissions', 'Academics', 'Facilities & Safety', 'Gallery', 'FAQ'] as const;
 type Tab = (typeof TABS)[number];
@@ -23,12 +24,7 @@ const STACK_PHOTOS = [
   { src: '/images/mandars-pride/classroom.jpg', caption: 'classroom' },
 ];
 
-const GALLERY_PHOTOS: { src: string; caption?: string; captionHi?: string }[] = [
-  { src: '/images/campus-gate.jpg', caption: 'The campus gate', captionHi: 'परिसर का प्रवेश द्वार' },
-  { src: '/images/mandars-pride/gate-evening.jpg' },
-  { src: '/images/mandars-pride/admissions-event.jpg', caption: 'Admissions day', captionHi: 'प्रवेश दिवस' },
-  { src: '/images/mandars-pride/classroom.jpg' },
-];
+type GalleryPhoto = { id: string; src_url: string; caption_en: string | null; caption_hi: string | null };
 
 const FAQS = [
   {
@@ -71,8 +67,22 @@ const FAQS = [
 
 export default function MandarsPrideClient() {
   const [activeTab, setActiveTab] = useState<Tab>('Overview');
-  const [lightbox, setLightbox] = useState<{ src: string; caption?: string; captionHi?: string } | null>(null);
+  const [lightbox, setLightbox] = useState<GalleryPhoto | null>(null);
+  const [galleryPhotos, setGalleryPhotos] = useState<GalleryPhoto[] | null>(null);
   const t = useT();
+
+  useEffect(() => {
+    if (activeTab !== 'Gallery' || galleryPhotos !== null) return;
+    const supabase = createClient();
+    supabase
+      .from('gallery_photos')
+      .select('id, src_url, caption_en, caption_hi')
+      .contains('tags', ["Mandar's Pride"])
+      .order('sort_order', { ascending: true })
+      .then(({ data }) => {
+        if (data) setGalleryPhotos(data as GalleryPhoto[]);
+      });
+  }, [activeTab, galleryPhotos]);
 
   return (
     <>
@@ -276,37 +286,7 @@ export default function MandarsPrideClient() {
                   {t('Email:', 'ईमेल:')} mandarspride@gmail.com
                 </div>
               </div>
-              <form onSubmit={(e) => e.preventDefault()} style={{ flex: '1 1 320px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }}>
-                  <div>
-                    <label htmlFor="admissions-parent-name" className="sr-only">Parent&apos;s name</label>
-                    <input id="admissions-parent-name" name="parentName" className="field-input" placeholder={t("Parent's name", 'अभिभावक का नाम')} />
-                  </div>
-                  <div>
-                    <label htmlFor="admissions-child-name" className="sr-only">Child&apos;s name</label>
-                    <input id="admissions-child-name" name="childName" className="field-input" placeholder={t("Child's name", 'बच्चे का नाम')} />
-                  </div>
-                  <div style={{ gridColumn: '1 / -1' }}>
-                    <label htmlFor="admissions-parent-contact" className="sr-only">Parent contact</label>
-                    <input id="admissions-parent-contact" name="parentContact" className="field-input" placeholder={t('Your phone or email', 'आपका फोन या ईमेल')} />
-                  </div>
-                </div>
-                <div style={{ marginBottom: 16 }}>
-                  <label htmlFor="admissions-question" className="sr-only">Your question (optional)</label>
-                  <textarea
-                    id="admissions-question"
-                    name="question"
-                    className="field-input"
-                    placeholder={t(
-                      "Your question (optional): ages accepted, timings, fees, anything you'd like to ask",
-                      'आपका प्रश्न (वैकल्पिक): स्वीकृत आयु, समय, फीस, या जो भी पूछना चाहें'
-                    )}
-                    rows={2}
-                    style={{ fontFamily: 'var(--font-serif)', resize: 'vertical' }}
-                  />
-                </div>
-                <button type="submit" className="btn btn-primary">{t('Start an inquiry', 'पूछताछ शुरू करें')}</button>
-              </form>
+              <AdmissionsForm t={t} />
             </div>
           </div>
         </div>
@@ -457,37 +437,47 @@ export default function MandarsPrideClient() {
         <div className="container" style={{ padding: '30px 0 50px' }}>
           <div className="section-heading" style={{ fontSize: 26, marginBottom: 6 }}>{t('Gallery', 'गैलरी')}</div>
           <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: 20 }}>{t("Photos from life at Mandar's Pride.", "Mandar's Pride में जीवन की तस्वीरें।")}</p>
-          <div style={{ columnCount: 3, columnGap: 12 }}>
-            {GALLERY_PHOTOS.map((photo) => {
-              const caption = t(photo.caption ?? '', photo.captionHi ?? photo.caption ?? '');
-              return (
-                <button
-                  key={photo.src}
-                  onClick={() => setLightbox(photo)}
-                  style={{
-                    position: 'relative',
-                    display: 'block',
-                    width: '100%',
-                    border: 'none',
-                    padding: 0,
-                    marginBottom: 12,
-                    cursor: 'pointer',
-                    borderRadius: 4,
-                    overflow: 'hidden',
-                    breakInside: 'avoid',
-                    background: 'var(--card-bg)',
-                  }}
-                >
-                  <img src={photo.src} alt={caption} loading="lazy" style={{ width: '100%', height: 'auto', display: 'block' }} />
-                  {photo.caption && (
-                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'rgba(15,42,74,0.75)', color: 'white', fontFamily: 'var(--font-mono)', fontSize: 10, padding: '6px 8px' }}>
-                      {caption}
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
+          {galleryPhotos === null ? (
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--label-grey)' }}>
+              {t('Loading\u2026', 'लोड हो रहा है\u2026')}
+            </div>
+          ) : galleryPhotos.length === 0 ? (
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--label-grey)' }}>
+              {t('No photos yet.', 'अभी कोई फोटो नहीं है।')}
+            </div>
+          ) : (
+            <div style={{ columnCount: 3, columnGap: 12 }}>
+              {galleryPhotos.map((photo) => {
+                const caption = t(photo.caption_en ?? '', photo.caption_hi ?? photo.caption_en ?? '');
+                return (
+                  <button
+                    key={photo.id}
+                    onClick={() => setLightbox(photo)}
+                    style={{
+                      position: 'relative',
+                      display: 'block',
+                      width: '100%',
+                      border: 'none',
+                      padding: 0,
+                      marginBottom: 12,
+                      cursor: 'pointer',
+                      borderRadius: 4,
+                      overflow: 'hidden',
+                      breakInside: 'avoid',
+                      background: 'var(--card-bg)',
+                    }}
+                  >
+                    <img src={photo.src_url} alt={caption} loading="lazy" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                    {photo.caption_en && (
+                      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'rgba(15,42,74,0.75)', color: 'white', fontFamily: 'var(--font-mono)', fontSize: 10, padding: '6px 8px' }}>
+                        {caption}
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
 
@@ -557,12 +547,118 @@ export default function MandarsPrideClient() {
           style={{ position: 'fixed', inset: 0, background: 'rgba(15,42,74,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100, padding: 24, cursor: 'zoom-out' }}
         >
           <img
-            src={lightbox.src}
-            alt={t(lightbox.caption ?? '', lightbox.captionHi ?? lightbox.caption ?? '')}
+            src={lightbox.src_url}
+            alt={t(lightbox.caption_en ?? '', lightbox.caption_hi ?? lightbox.caption_en ?? '')}
             style={{ maxWidth: '90vw', maxHeight: '85vh', borderRadius: 4 }}
           />
         </div>
       )}
     </>
+  );
+}
+
+type TFunc = (en: string, hi: string) => string;
+
+function AdmissionsForm({ t }: { t: TFunc }) {
+  const [parentName, setParentName] = useState('');
+  const [childName, setChildName] = useState('');
+  const [parentContact, setParentContact] = useState('');
+  const [question, setQuestion] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus('sending');
+    const supabase = createClient();
+    const { error } = await supabase.from('form_submissions').insert({
+      form_type: 'admissions',
+      data: { parentName, childName, parentContact, question },
+    });
+    if (error) {
+      setStatus('error');
+      return;
+    }
+    setStatus('sent');
+    setParentName('');
+    setChildName('');
+    setParentContact('');
+    setQuestion('');
+  }
+
+  if (status === 'sent') {
+    return (
+      <div style={{ flex: '1 1 320px', textAlign: 'center', padding: '20px 0' }}>
+        <div style={{ fontSize: 14, color: 'var(--green-700)' }}>
+          {t("Thank you! We'll be in touch soon.", 'धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।')}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} style={{ flex: '1 1 320px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }}>
+        <div>
+          <label htmlFor="admissions-parent-name" className="sr-only">Parent&apos;s name</label>
+          <input
+            id="admissions-parent-name"
+            name="parentName"
+            className="field-input"
+            placeholder={t("Parent's name", 'अभिभावक का नाम')}
+            value={parentName}
+            onChange={(e) => setParentName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="admissions-child-name" className="sr-only">Child&apos;s name</label>
+          <input
+            id="admissions-child-name"
+            name="childName"
+            className="field-input"
+            placeholder={t("Child's name", 'बच्चे का नाम')}
+            value={childName}
+            onChange={(e) => setChildName(e.target.value)}
+            required
+          />
+        </div>
+        <div style={{ gridColumn: '1 / -1' }}>
+          <label htmlFor="admissions-parent-contact" className="sr-only">Parent contact</label>
+          <input
+            id="admissions-parent-contact"
+            name="parentContact"
+            className="field-input"
+            placeholder={t('Your phone or email', 'आपका फोन या ईमेल')}
+            value={parentContact}
+            onChange={(e) => setParentContact(e.target.value)}
+            required
+          />
+        </div>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label htmlFor="admissions-question" className="sr-only">Your question (optional)</label>
+        <textarea
+          id="admissions-question"
+          name="question"
+          className="field-input"
+          placeholder={t(
+            "Your question (optional): ages accepted, timings, fees, anything you'd like to ask",
+            'आपका प्रश्न (वैकल्पिक): स्वीकृत आयु, समय, फीस, या जो भी पूछना चाहें'
+          )}
+          rows={2}
+          style={{ fontFamily: 'var(--font-serif)', resize: 'vertical' }}
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+        />
+      </div>
+      {status === 'error' && (
+        <div style={{ fontSize: 12, color: '#b91c1c', marginBottom: 10 }}>
+          {t('Something went wrong. Please try again.', 'कुछ गलत हो गया। कृपया पुनः प्रयास करें।')}
+        </div>
+      )}
+      <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
+        {status === 'sending' ? t('Sending\u2026', 'भेजा जा रहा है\u2026') : t('Start an inquiry', 'पूछताछ शुरू करें')}
+      </button>
+    </form>
   );
 }

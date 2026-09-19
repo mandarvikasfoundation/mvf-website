@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import PhotoStack from '@/components/PhotoStack';
 import { useT } from '@/lib/LanguageContext';
+import { createClient } from '@/lib/supabase/client';
 
 const STACK_PHOTOS = [
   { src: '/images/mandars-pride/gate-evening.jpg', caption: "Mandar's Pride gate" },
@@ -10,8 +12,26 @@ const STACK_PHOTOS = [
   { src: '/images/mandars-pride/classroom.jpg', caption: 'classroom' },
 ];
 
+// These are shown immediately (no layout shift on load) and replaced the
+// moment the real values come back from site_settings, which is what the
+// admin panel's "Homepage Stats" page edits.
+const DEFAULT_STATS = { founded_year: '2019', students_count: '20+', women_trained_count: '100+' };
+
 export default function HomePage() {
   const t = useT();
+  const [stats, setStats] = useState(DEFAULT_STATS);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase
+      .from('site_settings')
+      .select('founded_year, students_count, women_trained_count')
+      .eq('id', 1)
+      .single()
+      .then(({ data }) => {
+        if (data) setStats(data);
+      });
+  }, []);
 
   return (
     <>
@@ -70,14 +90,13 @@ export default function HomePage() {
             gap: 14,
           }}
         >
-          <StatCard value="2019" label={t('founded in Bihar', 'बिहार में स्थापित')} color="var(--navy-700)" />
-          {/* Replace with real numbers as MVF shares them */}
+          <StatCard value={stats.founded_year} label={t('founded in Bihar', 'बिहार में स्थापित')} color="var(--navy-700)" />
           <StatCard
-            value="20+"
+            value={stats.students_count}
             label={t("students at Mandar's Pride", "Mandar's Pride में छात्र")}
             color="var(--saffron-600)"
           />
-          <StatCard value="100+" label={t('women trained', 'प्रशिक्षित महिलाएं')} color="var(--green-700)" />
+          <StatCard value={stats.women_trained_count} label={t('women trained', 'प्रशिक्षित महिलाएं')} color="var(--green-700)" />
         </div>
       </section>
 

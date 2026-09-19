@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { LanguageProvider } from '@/lib/LanguageContext';
+import SiteChrome from '@/components/SiteChrome';
 
 export const metadata: Metadata = {
   // Note: the old MVF website is still live on this domain right now;
@@ -34,9 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <LanguageProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
         </LanguageProvider>
       </body>
     </html>

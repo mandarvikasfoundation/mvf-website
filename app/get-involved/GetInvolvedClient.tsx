@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useT } from '@/lib/LanguageContext';
+import { createClient } from '@/lib/supabase/client';
 
 export default function GetInvolvedClient() {
   const t = useT();
@@ -105,41 +106,7 @@ export default function GetInvolvedClient() {
               )}
             </p>
           </div>
-          <form
-            className="card"
-            style={{ flex: 1, minWidth: 320, padding: 30 }}
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <FormRow2>
-              <div>
-                <label htmlFor="vol-name" className="sr-only">Full name</label>
-                <input id="vol-name" name="fullName" className="field-input" placeholder={t('Full name', 'पूरा नाम')} />
-              </div>
-              <div>
-                <label htmlFor="vol-contact" className="sr-only">Phone or email</label>
-                <input id="vol-contact" name="contact" className="field-input" placeholder={t('Phone or email', 'फोन या ईमेल')} />
-              </div>
-            </FormRow2>
-            <FormRow2>
-              <div>
-                <label htmlFor="vol-interest" className="sr-only">Area of interest / skills</label>
-                <input id="vol-interest" name="interest" className="field-input" placeholder={t('Area of interest / skills', 'रुचि का क्षेत्र / हुनर')} />
-              </div>
-              <div>
-                <label htmlFor="vol-availability" className="sr-only">Availability</label>
-                <input id="vol-availability" name="availability" className="field-input" placeholder={t('Availability', 'उपलब्धता')} />
-              </div>
-            </FormRow2>
-            <div style={{ marginBottom: 18 }}>
-              <label htmlFor="vol-message" className="sr-only">Message (optional)</label>
-              <textarea id="vol-message" name="message" className="field-input" placeholder={t('Message (optional)', 'संदेश (वैकल्पिक)')} rows={3} />
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <button type="submit" className="btn btn-primary">
-                {t('Become a volunteer', 'स्वयंसेवक बनें')}
-              </button>
-            </div>
-          </form>
+          <VolunteerForm t={t} />
         </div>
       </section>
 
@@ -151,75 +118,7 @@ export default function GetInvolvedClient() {
       >
         <div className="container" style={{ display: 'flex', gap: 30, alignItems: 'center', flexWrap: 'wrap-reverse', position: 'relative' }}>
           <div style={{ position: 'absolute', right: 26, top: 0, bottom: 0, width: 1, background: 'var(--saffron-300)', opacity: 0.3 }} />
-          <form
-            style={{
-              flex: '1 1 260px',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.15)',
-              borderRadius: 4,
-              padding: 28,
-            }}
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <FormRow2>
-              <div>
-                <label htmlFor="partner-name" className="sr-only">Name</label>
-                <input id="partner-name" name="name" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Name', 'नाम')} />
-              </div>
-              <div>
-                <label htmlFor="partner-org" className="sr-only">Organization / business (if any)</label>
-                <input id="partner-org" name="organization" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Organization / business (if any)', 'संस्था / व्यवसाय (यदि कोई हो)')} />
-              </div>
-            </FormRow2>
-            <FormRow2>
-              <div>
-                <label htmlFor="partner-contact" className="sr-only">Phone or email</label>
-                <input id="partner-contact" name="contact" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Phone or email', 'फोन या ईमेल')} />
-              </div>
-              <div style={{ position: 'relative' }}>
-                <label htmlFor="partner-support-type" className="sr-only">Type of support</label>
-                <select
-                  id="partner-support-type"
-                  name="supportType"
-                  className="field-input"
-                  style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)', appearance: 'none', width: '100%', paddingRight: 20 }}
-                >
-                  <option style={{ color: 'var(--ink)' }}>{t('Type of support', 'सहयोग का प्रकार')}</option>
-                  <option style={{ color: 'var(--ink)' }}>{t('Funding', 'वित्तीय सहयोग')}</option>
-                  <option style={{ color: 'var(--ink)' }}>{t('In-kind support', 'वस्तु रूप में सहयोग')}</option>
-                  <option style={{ color: 'var(--ink)' }}>{t('Materials', 'सामग्री')}</option>
-                  <option style={{ color: 'var(--ink)' }}>{t('Collaboration', 'सहयोग / साझेदारी')}</option>
-                  <option style={{ color: 'var(--ink)' }}>{t('Other', 'अन्य')}</option>
-                </select>
-                <span
-                  style={{
-                    position: 'absolute',
-                    right: 2,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    pointerEvents: 'none',
-                    color: 'rgba(255,255,255,0.85)',
-                    fontSize: 18,
-                  }}
-                >
-                  &#9662;
-                </span>
-              </div>
-            </FormRow2>
-            <div style={{ marginBottom: 18 }}>
-              <label htmlFor="partner-message" className="sr-only">Message</label>
-              <textarea id="partner-message" name="message" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Message', 'संदेश')} rows={3} />
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <button
-                type="submit"
-                className="btn"
-                style={{ background: 'var(--saffron-300)', color: 'var(--navy-900)', fontWeight: 700 }}
-              >
-                {t('Partner with us', 'हमारे साथ साझेदारी करें')}
-              </button>
-            </div>
-          </form>
+          <PartnerForm t={t} />
           <div style={{ flex: '0 0 340px', paddingRight: 26, textAlign: 'right' }}>
             <h2 className="section-heading" style={{ fontSize: 32, color: 'white', marginBottom: 8 }}>
               {t('Partner With Us', 'हमारे साथ साझेदारी करें')}
@@ -237,6 +136,200 @@ export default function GetInvolvedClient() {
         </div>
       </section>
     </>
+  );
+}
+
+type TFunc = (en: string, hi: string) => string;
+
+function VolunteerForm({ t }: { t: TFunc }) {
+  const [fullName, setFullName] = useState('');
+  const [contact, setContact] = useState('');
+  const [interest, setInterest] = useState('');
+  const [availability, setAvailability] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus('sending');
+    const supabase = createClient();
+    const { error } = await supabase.from('form_submissions').insert({
+      form_type: 'volunteer',
+      data: { fullName, contact, interest, availability, message },
+    });
+    if (error) {
+      setStatus('error');
+      return;
+    }
+    setStatus('sent');
+    setFullName('');
+    setContact('');
+    setInterest('');
+    setAvailability('');
+    setMessage('');
+  }
+
+  if (status === 'sent') {
+    return (
+      <div className="card" style={{ flex: 1, minWidth: 320, padding: 30, textAlign: 'center' }}>
+        <div style={{ fontSize: 14, color: 'var(--green-700)' }}>
+          {t("Thank you! We'll be in touch soon.", 'धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।')}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form className="card" style={{ flex: 1, minWidth: 320, padding: 30 }} onSubmit={handleSubmit}>
+      <FormRow2>
+        <div>
+          <label htmlFor="vol-name" className="sr-only">Full name</label>
+          <input id="vol-name" name="fullName" className="field-input" placeholder={t('Full name', 'पूरा नाम')} value={fullName} onChange={(e) => setFullName(e.target.value)} required />
+        </div>
+        <div>
+          <label htmlFor="vol-contact" className="sr-only">Phone or email</label>
+          <input id="vol-contact" name="contact" className="field-input" placeholder={t('Phone or email', 'फोन या ईमेल')} value={contact} onChange={(e) => setContact(e.target.value)} required />
+        </div>
+      </FormRow2>
+      <FormRow2>
+        <div>
+          <label htmlFor="vol-interest" className="sr-only">Area of interest / skills</label>
+          <input id="vol-interest" name="interest" className="field-input" placeholder={t('Area of interest / skills', 'रुचि का क्षेत्र / हुनर')} value={interest} onChange={(e) => setInterest(e.target.value)} />
+        </div>
+        <div>
+          <label htmlFor="vol-availability" className="sr-only">Availability</label>
+          <input id="vol-availability" name="availability" className="field-input" placeholder={t('Availability', 'उपलब्धता')} value={availability} onChange={(e) => setAvailability(e.target.value)} />
+        </div>
+      </FormRow2>
+      <div style={{ marginBottom: 18 }}>
+        <label htmlFor="vol-message" className="sr-only">Message (optional)</label>
+        <textarea id="vol-message" name="message" className="field-input" placeholder={t('Message (optional)', 'संदेश (वैकल्पिक)')} rows={3} value={message} onChange={(e) => setMessage(e.target.value)} />
+      </div>
+      {status === 'error' && (
+        <div style={{ fontSize: 12, color: '#b91c1c', textAlign: 'center', marginBottom: 10 }}>
+          {t('Something went wrong. Please try again.', 'कुछ गलत हो गया। कृपया पुनः प्रयास करें।')}
+        </div>
+      )}
+      <div style={{ textAlign: 'center' }}>
+        <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
+          {status === 'sending' ? t('Sending\u2026', 'भेजा जा रहा है\u2026') : t('Become a volunteer', 'स्वयंसेवक बनें')}
+        </button>
+      </div>
+    </form>
+  );
+}
+
+function PartnerForm({ t }: { t: TFunc }) {
+  const [name, setName] = useState('');
+  const [organization, setOrganization] = useState('');
+  const [contact, setContact] = useState('');
+  const [supportType, setSupportType] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus('sending');
+    const supabase = createClient();
+    const { error } = await supabase.from('form_submissions').insert({
+      form_type: 'partner',
+      data: { name, organization, contact, supportType, message },
+    });
+    if (error) {
+      setStatus('error');
+      return;
+    }
+    setStatus('sent');
+    setName('');
+    setOrganization('');
+    setContact('');
+    setSupportType('');
+    setMessage('');
+  }
+
+  if (status === 'sent') {
+    return (
+      <div style={{ flex: '1 1 260px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 4, padding: 28, textAlign: 'center' }}>
+        <div style={{ fontSize: 14, color: 'var(--saffron-300)' }}>
+          {t("Thank you! We'll be in touch soon.", 'धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।')}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      style={{ flex: '1 1 260px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 4, padding: 28 }}
+      onSubmit={handleSubmit}
+    >
+      <FormRow2>
+        <div>
+          <label htmlFor="partner-name" className="sr-only">Name</label>
+          <input id="partner-name" name="name" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Name', 'नाम')} value={name} onChange={(e) => setName(e.target.value)} required />
+        </div>
+        <div>
+          <label htmlFor="partner-org" className="sr-only">Organization / business (if any)</label>
+          <input id="partner-org" name="organization" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Organization / business (if any)', 'संस्था / व्यवसाय (यदि कोई हो)')} value={organization} onChange={(e) => setOrganization(e.target.value)} />
+        </div>
+      </FormRow2>
+      <FormRow2>
+        <div>
+          <label htmlFor="partner-contact" className="sr-only">Phone or email</label>
+          <input id="partner-contact" name="contact" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Phone or email', 'फोन या ईमेल')} value={contact} onChange={(e) => setContact(e.target.value)} required />
+        </div>
+        <div style={{ position: 'relative' }}>
+          <label htmlFor="partner-support-type" className="sr-only">Type of support</label>
+          <select
+            id="partner-support-type"
+            name="supportType"
+            className="field-input"
+            style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)', appearance: 'none', width: '100%', paddingRight: 20 }}
+            value={supportType}
+            onChange={(e) => setSupportType(e.target.value)}
+            required
+          >
+            <option value="" style={{ color: 'var(--ink)' }}>{t('Type of support', 'सहयोग का प्रकार')}</option>
+            <option style={{ color: 'var(--ink)' }}>{t('Funding', 'वित्तीय सहयोग')}</option>
+            <option style={{ color: 'var(--ink)' }}>{t('In-kind support', 'वस्तु रूप में सहयोग')}</option>
+            <option style={{ color: 'var(--ink)' }}>{t('Materials', 'सामग्री')}</option>
+            <option style={{ color: 'var(--ink)' }}>{t('Collaboration', 'सहयोग / साझेदारी')}</option>
+            <option style={{ color: 'var(--ink)' }}>{t('Other', 'अन्य')}</option>
+          </select>
+          <span
+            style={{
+              position: 'absolute',
+              right: 2,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              pointerEvents: 'none',
+              color: 'rgba(255,255,255,0.85)',
+              fontSize: 18,
+            }}
+          >
+            &#9662;
+          </span>
+        </div>
+      </FormRow2>
+      <div style={{ marginBottom: 18 }}>
+        <label htmlFor="partner-message" className="sr-only">Message</label>
+        <textarea id="partner-message" name="message" className="field-input" style={{ color: 'white', borderBottomColor: 'rgba(255,255,255,0.3)' }} placeholder={t('Message', 'संदेश')} rows={3} value={message} onChange={(e) => setMessage(e.target.value)} />
+      </div>
+      {status === 'error' && (
+        <div style={{ fontSize: 12, color: '#fca5a5', textAlign: 'center', marginBottom: 10 }}>
+          {t('Something went wrong. Please try again.', 'कुछ गलत हो गया। कृपया पुनः प्रयास करें।')}
+        </div>
+      )}
+      <div style={{ textAlign: 'center' }}>
+        <button
+          type="submit"
+          className="btn"
+          style={{ background: 'var(--saffron-300)', color: 'var(--navy-900)', fontWeight: 700 }}
+          disabled={status === 'sending'}
+        >
+          {status === 'sending' ? t('Sending\u2026', 'भेजा जा रहा है\u2026') : t('Partner with us', 'हमारे साथ साझेदारी करें')}
+        </button>
+      </div>
+    </form>
   );
 }
 

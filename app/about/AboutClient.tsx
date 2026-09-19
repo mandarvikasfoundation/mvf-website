@@ -260,7 +260,7 @@ export default function AboutClient() {
           <LegalRow
             label="NGO Darpan"
             detail={t('Unique ID BR/2021/0273689', 'यूनिक आईडी BR/2021/0273689')}
-            action={t('View record \u2192', 'रिकॉर्ड देखें \u2192')}
+            action={t('Download PDF', 'पीडीएफ डाउनलोड करें')}
             href="/documents/ngo-darpan-registration.pdf"
           />
           <LegalRow
