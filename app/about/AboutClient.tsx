@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { useT } from '@/lib/LanguageContext';
 
 const MANAGING_COMMITTEE = [
@@ -49,14 +48,13 @@ In the future, we plan to start several more development-oriented projects under
 
 Jai Hind! Jai Bharat!`;
 
-const TABS = ['Overview', 'Committee', "President's Desk", 'Legal & Transparency'] as const;
+const TABS = ['Overview', 'Committee', "President's Desk"] as const;
 type Tab = (typeof TABS)[number];
 
 const TAB_LABELS_HI: Record<Tab, string> = {
   Overview: 'अवलोकन',
   Committee: 'समिति',
   "President's Desk": 'अध्यक्ष का संदेश',
-  'Legal & Transparency': 'कानूनी एवं पारदर्शिता',
 };
 
 export default function AboutClient() {
@@ -300,42 +298,6 @@ export default function AboutClient() {
         </div>
       </section>
       )}
-
-      {activeTab === 'Legal & Transparency' && (
-      /* LEGAL & TRANSPARENCY */
-      <section className="container" style={{ padding: '48px 0 60px' }}>
-        <h2 className="section-heading" style={{ fontSize: 22, marginBottom: 16 }}>
-          {t('Legal & Transparency', 'कानूनी एवं पारदर्शिता')}
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 620 }}>
-          <LegalRow
-            label={t('Registered Society', 'पंजीकृत सोसाइटी')}
-            detail={t('Reg. No. S000218, 10 Dec 2019, Banka, Bihar', 'पंजीकरण सं. S000218, 10 दिसंबर 2019, बांका, बिहार')}
-            action={t('Download PDF', 'पीडीएफ डाउनलोड करें')}
-            href="/documents/registered-society-certificate.pdf"
-          />
-          <LegalRow
-            label="NGO Darpan"
-            detail={t('Unique ID BR/2021/0273689', 'यूनिक आईडी BR/2021/0273689')}
-            action={t('Download PDF', 'पीडीएफ डाउनलोड करें')}
-            href="/documents/ngo-darpan-registration.pdf"
-          />
-          <LegalRow
-            label={t('12A Registration', '12A पंजीकरण')}
-            detail={t('Provisional, granted 14 Sept 2025', 'अनंतिम, 14 सितंबर 2025 को स्वीकृत')}
-            action={t('Download PDF', 'पीडीएफ डाउनलोड करें')}
-            href="/documents/12a-provisional-registration.pdf"
-          />
-        </div>
-        <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 16 }}>
-          {t('For any questions about our registration or finances, feel free to reach out via our', 'हमारे पंजीकरण या वित्त संबंधी किसी भी प्रश्न के लिए, कृपया हमारे')}{' '}
-          <Link href="/contact" style={{ color: 'var(--saffron-600)' }}>
-            {t('Contact page', 'संपर्क पृष्ठ')}
-          </Link>
-          {t('.', ' के माध्यम से हमसे जुड़ें।')}
-        </p>
-      </section>
-      )}
     </>
   );
 }
@@ -405,31 +367,5 @@ function LangPill({
     >
       {children}
     </button>
-  );
-}
-
-function LegalRow({ label, detail, action, href }: { label: string; detail: string; action: string; href: string }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="card"
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        gap: 14,
-        padding: '12px 16px',
-        flexWrap: 'wrap',
-      }}
-    >
-      <div style={{ fontSize: 12.5 }}>
-        <b>{label}:</b> {detail}
-      </div>
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--saffron-600)', whiteSpace: 'nowrap' }}>
-        {action}
-      </div>
-    </a>
   );
 }
