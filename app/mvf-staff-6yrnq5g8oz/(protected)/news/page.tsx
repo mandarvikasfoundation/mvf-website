@@ -210,7 +210,7 @@ export default function NewsAdminPage() {
                 onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0])}
                 disabled={uploading}
               />
-              {uploading && <span style={{ fontSize: 12, color: 'var(--ink-muted)' }}>Uploading\u2026</span>}
+              {uploading && <span style={{ fontSize: 12, color: 'var(--ink-muted)' }}>Uploading…</span>}
             </div>
           </Field>
 

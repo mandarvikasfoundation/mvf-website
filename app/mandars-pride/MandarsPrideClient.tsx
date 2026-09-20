@@ -42,8 +42,8 @@ const FAQS = [
   {
     q: 'What age is my child for each class?',
     qHi: 'प्रत्येक कक्षा के लिए मेरे बच्चे की उम्र क्या होनी चाहिए?',
-    a: 'Nursery 3+, LKG 4+, UKG 5+, Standard 1 6+, and so on.',
-    aHi: 'नर्सरी 3+, एलकेजी 4+, यूकेजी 5+, कक्षा 1 6+, और इसी प्रकार आगे।',
+    a: 'Nursery 3+, LKG 4+, UKG 5+, Std. I 6+, and so on.',
+    aHi: 'नर्सरी 3+, एलकेजी 4+, यूकेजी 5+, कक्षा-1 6+, और इसी प्रकार आगे।',
   },
   {
     q: 'What language is used for teaching?',
@@ -110,6 +110,7 @@ export default function MandarsPrideClient() {
           style={{
             display: 'flex',
             gap: 8,
+            justifyContent: 'center',
             overflowX: 'auto',
             background: 'var(--card-bg)',
             border: '1px solid var(--paper-line)',
@@ -167,7 +168,7 @@ export default function MandarsPrideClient() {
                   borderRadius: 12,
                 }}
               >
-                {t('Admissions for 2026-27 open for Nursery, LKG, UKG and Standard 1', 'शैक्षणिक सत्र 2026-27 के लिए नर्सरी, एलकेजी, यूकेजी एवं कक्षा 1 में प्रवेश खुले हैं')}
+                {t('Admissions for 2026-27 open for Nursery, LKG, UKG and Std. I', 'शैक्षणिक सत्र 2026-27 के लिए नर्सरी, एलकेजी, यूकेजी एवं कक्षा-1 में प्रवेश खुले हैं')}
               </div>
             </div>
           </div>
@@ -250,15 +251,15 @@ export default function MandarsPrideClient() {
                 <div style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
                   <span style={{ color: 'var(--saffron-300)', fontWeight: 700 }}>2.</span>
                   {t(
-                    'Admission proceeds through an informal interaction between the child, the parents, and our Principal and Teachers. The date and time will be shared with parents in advance.',
-                    'प्रवेश बच्चे, माता-पिता एवं हमारे प्राचार्य व शिक्षकों के बीच एक अनौपचारिक बातचीत के माध्यम से होता है। तिथि एवं समय अभिभावकों को पहले से बता दिया जाएगा।'
+                    'Admission proceeds through an informal interaction between the child, the parents, and our Principal and Teachers.',
+                    'प्रवेश बच्चे, माता-पिता एवं हमारे प्राचार्य व शिक्षकों के बीच एक अनौपचारिक बातचीत के माध्यम से होता है।'
                   )}
                 </div>
                 <div style={{ display: 'flex', gap: 10 }}>
                   <span style={{ color: 'var(--saffron-300)', fontWeight: 700 }}>3.</span>
                   {t(
                     'The school management reserves the right to make all final admission decisions.',
-                    'स्कूल प्रबंधन के पास सभी अंतिम प्रवेश निर्णय लेने का अधिकार सुरक्षित है।'
+                    'विद्यालय प्रबंधक के पास प्रवेश लेने का सभी अंतिम निर्णय का अधिकार है।'
                   )}
                 </div>
               </div>
@@ -317,8 +318,8 @@ export default function MandarsPrideClient() {
           </div>
           <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--ink-muted)', marginTop: 12 }}>
             {t(
-              'Each day includes prayer, exercise, yoga, and meditation before classes begin, and a lunch break around midday.',
-              'हर दिन कक्षाएं शुरू होने से पहले प्रार्थना, व्यायाम, योग एवं ध्यान शामिल हैं, और दोपहर के आसपास भोजन अवकाश होता है।'
+              'Each day includes prayer, exercise, yoga, and meditation before classes begin, and a lunch break around mid-time.',
+              'हर दिन कक्षाएं शुरू होने से पहले प्रार्थना, व्यायाम, योग एवं ध्यान शामिल हैं, और बीच के समय के आसपास भोजन अवकाश होता है।'
             )}
           </p>
           <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--ink-muted)', marginTop: 4 }}>
@@ -361,11 +362,11 @@ export default function MandarsPrideClient() {
                 },
                 {
                   en: 'A high boundary wall to restrict any infiltration',
-                  hi: 'किसी भी अनधिकृत प्रवेश को रोकने के लिए एक ऊंची सीमा दीवार',
+                  hi: 'किसी भी अनधिकृत प्रवेश को रोकने के लिए एक ऊंची चाहार दिवारी',
                 },
                 {
                   en: 'Washrooms supervised by attendants, with teachers taking frequent rounds',
-                  hi: 'वॉशरूम अटेंडेंट की निगरानी में हैं, और शिक्षक नियमित रूप से दौरा करते हैं',
+                  hi: 'शौचालय परिचारक के निगरानी में रहता है, और शिक्षक निरक्षण करते हैं।',
                 },
                 {
                   en: 'Teacher-managed dispersal of students at the end of the day',

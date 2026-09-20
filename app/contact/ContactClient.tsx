@@ -52,9 +52,9 @@ export default function ContactClient() {
           <div style={{ fontSize: 14.5, lineHeight: 1.9 }}>
             <b style={{ fontSize: 16 }}>{t('Mandar Vikas Foundation', 'मंदार विकास फाउंडेशन')}</b>
             <br />
-            {t('Dam Road, Bhaga, P.O. & P.S. Bounsi', 'डैम रोड, भागा, पो. एवं पु.स्टे. बौंसी')}
+            {t('Dam Road, Bhaga, P.O. & P.S.- Bounsi', 'डैम रोड, भागा, पो. एवं पु. स्टे. बौंसी')}
             <br />
-            {t('District Banka, Bihar,', 'जिला बांका, बिहार,')} <b>{t('PIN', 'पिन')}</b> 813104
+            {t('District- Banka, Bihar,', 'जिला बांका, बिहार,')} <b>{t('PIN', 'पिन')}</b> 813104
             <br />
             <br />
             <b>{t('Phone:', 'फ़ोन:')}</b> 9289928091

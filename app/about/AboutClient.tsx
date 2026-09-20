@@ -85,6 +85,7 @@ export default function AboutClient() {
           style={{
             display: 'flex',
             gap: 8,
+            justifyContent: 'center',
             overflowX: 'auto',
             background: 'var(--card-bg)',
             border: '1px solid var(--paper-line)',

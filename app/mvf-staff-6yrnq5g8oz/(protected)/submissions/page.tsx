@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
 type Submission = {
@@ -45,14 +46,70 @@ const FIELD_LABELS: Record<string, string> = {
   question: 'Question',
 };
 
+// Scans a submission's free-form data for anything that looks like an email
+// or a phone number, so we can offer one-tap Email / Call / WhatsApp reply
+// buttons without needing separate structured fields for every form.
+function detectContact(data: Record<string, string>) {
+  let email: string | undefined;
+  let phone: string | undefined;
+
+  for (const raw of Object.values(data)) {
+    const value = (raw ?? '').trim();
+    if (!value) continue;
+
+    if (!email && /\S+@\S+\.\S+/.test(value)) {
+      email = value;
+      continue;
+    }
+    if (!phone) {
+      const digits = value.replace(/\D/g, '');
+      if (digits.length >= 7 && digits.length <= 13 && /^[\d+\-\s()]+$/.test(value)) {
+        phone = digits;
+      }
+    }
+  }
+
+  return { email, phone };
+}
+
+// Assumes an Indian mobile number when exactly 10 digits are given (the
+// common case for this site's visitors); otherwise uses the digits as typed
+// rather than guessing a country code.
+function toWhatsAppNumber(phone: string) {
+  return phone.length === 10 ? `91${phone}` : phone;
+}
+
 export default function SubmissionsPage() {
+  const searchParams = useSearchParams();
   const [submissions, setSubmissions] = useState<Submission[] | null>(null);
   const [filter, setFilter] = useState<'all' | Submission['form_type']>('all');
   const [error, setError] = useState<string | null>(null);
+  const [highlightId, setHighlightId] = useState<string | null>(null);
+  const rowRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const appliedLinkParams = useRef(false);
 
   useEffect(() => {
     load();
   }, []);
+
+  // Arriving from the dashboard's "Recent Activity" (?id=...&type=...):
+  // jump the filter to that type, then scroll to and briefly highlight the
+  // specific submission once it's on screen.
+  useEffect(() => {
+    if (appliedLinkParams.current || !submissions) return;
+    const id = searchParams.get('id');
+    const type = searchParams.get('type') as Submission['form_type'] | null;
+    if (!id) return;
+
+    appliedLinkParams.current = true;
+    if (type) setFilter(type);
+
+    setTimeout(() => {
+      rowRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setHighlightId(id);
+      setTimeout(() => setHighlightId(null), 2500);
+    }, 50);
+  }, [submissions, searchParams]);
 
   async function load() {
     const supabase = createClient();
@@ -136,7 +193,7 @@ export default function SubmissionsPage() {
       {error && <div style={{ fontSize: 13, color: '#b91c1c', marginBottom: 16 }}>{error}</div>}
 
       {submissions === null && !error && (
-        <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>Loading\u2026</div>
+        <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>Loading…</div>
       )}
 
       {submissions !== null && visible.length === 0 && (
@@ -144,71 +201,98 @@ export default function SubmissionsPage() {
       )}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {visible.map((s) => (
-          <div
-            key={s.id}
-            style={{
-              background: 'var(--card-bg)',
-              borderRadius: 8,
-              padding: '16px 20px',
-              borderLeft: `4px solid ${TYPE_COLORS[s.form_type]}`,
-              opacity: s.is_read ? 0.68 : 1,
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
-              <div>
-                <span
-                  style={{
-                    fontSize: 10.5,
-                    fontWeight: 700,
-                    color: TYPE_COLORS[s.form_type],
-                    textTransform: 'uppercase',
-                    letterSpacing: 0.3,
-                  }}
-                >
-                  {TYPE_LABELS[s.form_type]}
-                </span>
-                {!s.is_read && (
+        {visible.map((s) => {
+          const { email, phone } = detectContact(s.data);
+          const isHighlighted = highlightId === s.id;
+          return (
+            <div
+              key={s.id}
+              ref={(el) => { rowRefs.current[s.id] = el; }}
+              style={{
+                background: 'var(--card-bg)',
+                borderRadius: 8,
+                padding: '16px 20px',
+                borderLeft: `4px solid ${TYPE_COLORS[s.form_type]}`,
+                opacity: s.is_read && !isHighlighted ? 0.68 : 1,
+                boxShadow: isHighlighted ? '0 0 0 2px var(--saffron-600)' : 'none',
+                transition: 'box-shadow 0.3s ease, opacity 0.3s ease',
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
+                <div>
                   <span
                     style={{
-                      marginLeft: 8,
-                      fontSize: 9.5,
+                      fontSize: 10.5,
                       fontWeight: 700,
-                      color: 'white',
-                      background: 'var(--saffron-600)',
-                      padding: '1px 7px',
-                      borderRadius: 8,
+                      color: TYPE_COLORS[s.form_type],
+                      textTransform: 'uppercase',
+                      letterSpacing: 0.3,
                     }}
                   >
-                    NEW
+                    {TYPE_LABELS[s.form_type]}
                   </span>
-                )}
-                <div style={{ fontSize: 11, color: 'var(--label-grey)', marginTop: 3 }}>
-                  {new Date(s.created_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}
+                  {!s.is_read && (
+                    <span
+                      style={{
+                        marginLeft: 8,
+                        fontSize: 9.5,
+                        fontWeight: 700,
+                        color: 'white',
+                        background: 'var(--saffron-600)',
+                        padding: '1px 7px',
+                        borderRadius: 8,
+                      }}
+                    >
+                      NEW
+                    </span>
+                  )}
+                  <div style={{ fontSize: 11, color: 'var(--label-grey)', marginTop: 3 }}>
+                    {new Date(s.created_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  {email && (
+                    <a href={`mailto:${email}`} style={{ ...actionBtnStyle, ...replyBtnStyle }}>
+                      ✉ Email
+                    </a>
+                  )}
+                  {phone && (
+                    <a href={`tel:+${toWhatsAppNumber(phone)}`} style={{ ...actionBtnStyle, ...replyBtnStyle }}>
+                      ☎ Call
+                    </a>
+                  )}
+                  {phone && (
+                    <a
+                      href={`https://wa.me/${toWhatsAppNumber(phone)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ ...actionBtnStyle, ...replyBtnStyle }}
+                    >
+                      WhatsApp
+                    </a>
+                  )}
+                  <button onClick={() => toggleRead(s.id, s.is_read)} style={actionBtnStyle}>
+                    {s.is_read ? 'Mark unread' : 'Mark read'}
+                  </button>
+                  <button onClick={() => handleDelete(s.id)} style={{ ...actionBtnStyle, color: '#b91c1c' }}>
+                    Delete
+                  </button>
                 </div>
               </div>
-              <div style={{ display: 'flex', gap: 8 }}>
-                <button onClick={() => toggleRead(s.id, s.is_read)} style={actionBtnStyle}>
-                  {s.is_read ? 'Mark unread' : 'Mark read'}
-                </button>
-                <button onClick={() => handleDelete(s.id)} style={{ ...actionBtnStyle, color: '#b91c1c' }}>
-                  Delete
-                </button>
+
+              <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '4px 24px' }}>
+                {Object.entries(s.data)
+                  .filter(([, value]) => value)
+                  .map(([key, value]) => (
+                    <div key={key} style={{ fontSize: 12.5 }}>
+                      <span style={{ color: 'var(--ink-muted)' }}>{FIELD_LABELS[key] ?? key}:</span>{' '}
+                      <span style={{ color: 'var(--navy-700)' }}>{value}</span>
+                    </div>
+                  ))}
               </div>
             </div>
-
-            <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '4px 24px' }}>
-              {Object.entries(s.data)
-                .filter(([, value]) => value)
-                .map(([key, value]) => (
-                  <div key={key} style={{ fontSize: 12.5 }}>
-                    <span style={{ color: 'var(--ink-muted)' }}>{FIELD_LABELS[key] ?? key}:</span>{' '}
-                    <span style={{ color: 'var(--navy-700)' }}>{value}</span>
-                  </div>
-                ))}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -223,4 +307,12 @@ const actionBtnStyle: React.CSSProperties = {
   color: 'var(--ink)',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
+  textDecoration: 'none',
+  display: 'inline-block',
+};
+
+const replyBtnStyle: React.CSSProperties = {
+  border: '1px solid var(--navy-700)',
+  color: 'var(--navy-700)',
+  fontWeight: 700,
 };

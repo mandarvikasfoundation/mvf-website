@@ -58,11 +58,11 @@ export default function Footer() {
           <div style={{ whiteSpace: 'nowrap' }}>
             {lang === 'hi' ? (
               <>
-                डैम रोड, भागा, पो. &amp; पु.स्टे. बौंसी, जिला बांका, बिहार, <b>पिन</b> 813104
+                डैम रोड, भागा, पो. &amp; पु. स्टे. बौंसी, जिला बांका, बिहार, <b>पिन</b> 813104
               </>
             ) : (
               <>
-                Dam Road, Bhaga, P.O. &amp; P.S. Bounsi, District Banka, Bihar,{' '}
+                Dam Road, Bhaga, P.O. &amp; P.S.- Bounsi, District- Banka, Bihar,{' '}
                 <b>PIN</b> 813104
               </>
             )}

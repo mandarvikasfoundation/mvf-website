@@ -64,8 +64,9 @@ export default async function AdminDashboard() {
                 const data = s.data as Record<string, string>;
                 const name = data.name || data.fullName || data.parentName || 'Someone';
                 return (
-                  <div
+                  <Link
                     key={s.id}
+                    href={`/mvf-staff-6yrnq5g8oz/submissions?id=${s.id}&type=${s.form_type}`}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -93,7 +94,7 @@ export default async function AdminDashboard() {
                     {!s.is_read && (
                       <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--saffron-600)', flexShrink: 0 }} />
                     )}
-                  </div>
+                  </Link>
                 );
               })}
             </div>
