@@ -12,8 +12,9 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 style={{ fontSize: 22, fontWeight: 700, color: '#1b2430', marginBottom: 4 }}>Dashboard</h1>
-      <p style={{ fontSize: 13.5, color: '#6b7280', marginBottom: 28 }}>
+      <div className="eyebrow">Admin</div>
+      <h1 className="section-heading" style={{ fontSize: 30, margin: '4px 0 4px' }}>Dashboard</h1>
+      <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 28 }}>
         A quick overview of what's happening on the site.
       </p>
 
@@ -28,13 +29,13 @@ export default async function AdminDashboard() {
         <StatCard label="Gallery photos" value={photoCount ?? 0} href="/mvf-staff-6yrnq5g8oz/gallery" />
       </div>
 
-      <div style={{ background: 'white', borderRadius: 8, padding: 24 }}>
-        <div style={{ fontWeight: 700, fontSize: 14, color: '#1b2430', marginBottom: 10 }}>Quick links</div>
-        <ul style={{ fontSize: 13.5, lineHeight: 2.2, paddingLeft: 18, margin: 0, color: '#374151' }}>
-          <li><Link href="/mvf-staff-6yrnq5g8oz/submissions">Read new Contact / Volunteer / Partner / Admissions inquiries</Link></li>
-          <li><Link href="/mvf-staff-6yrnq5g8oz/news">Add or edit a News & Updates post</Link></li>
-          <li><Link href="/mvf-staff-6yrnq5g8oz/gallery">Upload or manage Gallery photos</Link></li>
-          <li><Link href="/mvf-staff-6yrnq5g8oz/settings">Update the Home page stats (students, women trained, etc.)</Link></li>
+      <div className="card" style={{ padding: 24 }}>
+        <div className="section-heading" style={{ fontSize: 16, marginBottom: 12 }}>Quick links</div>
+        <ul style={{ fontSize: 14, lineHeight: 2.2, paddingLeft: 18, margin: 0 }}>
+          <li><Link href="/mvf-staff-6yrnq5g8oz/submissions" style={{ color: 'var(--saffron-600)' }}>Read new Contact / Volunteer / Partner / Admissions inquiries</Link></li>
+          <li><Link href="/mvf-staff-6yrnq5g8oz/news" style={{ color: 'var(--saffron-600)' }}>Add or edit a News & Updates post</Link></li>
+          <li><Link href="/mvf-staff-6yrnq5g8oz/gallery" style={{ color: 'var(--saffron-600)' }}>Upload or manage Gallery photos</Link></li>
+          <li><Link href="/mvf-staff-6yrnq5g8oz/settings" style={{ color: 'var(--saffron-600)' }}>Update the Home page stats (students, women trained, etc.)</Link></li>
         </ul>
       </div>
     </div>
@@ -55,16 +56,15 @@ function StatCard({
   return (
     <Link
       href={href}
+      className="card"
       style={{
         display: 'block',
-        background: 'white',
-        borderRadius: 8,
         padding: '18px 20px',
-        border: highlight ? '1.5px solid #f0a85b' : '1.5px solid transparent',
+        border: highlight ? '1.5px solid var(--saffron-300)' : '1.5px solid transparent',
       }}
     >
-      <div style={{ fontSize: 26, fontWeight: 700, color: highlight ? '#c6631f' : '#1b2430' }}>{value}</div>
-      <div style={{ fontSize: 12.5, color: '#6b7280', marginTop: 2 }}>{label}</div>
+      <div style={{ fontSize: 28, fontWeight: 700, fontFamily: 'var(--font-mono)', color: highlight ? 'var(--saffron-600)' : 'var(--navy-700)' }}>{value}</div>
+      <div style={{ fontSize: 12.5, color: 'var(--ink-muted)', marginTop: 4 }}>{label}</div>
     </Link>
   );
 }

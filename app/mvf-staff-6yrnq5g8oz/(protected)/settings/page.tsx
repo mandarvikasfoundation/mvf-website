@@ -46,17 +46,17 @@ export default function SettingsAdminPage() {
   }
 
   if (!settings) {
-    return <div style={{ fontSize: 13, color: '#6b7280' }}>{error ?? 'Loading\u2026'}</div>;
+    return <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>{error ?? 'Loading\u2026'}</div>;
   }
 
   return (
     <div>
-      <h1 style={{ fontSize: 22, fontWeight: 700, color: '#1b2430', marginBottom: 4 }}>Homepage Stats</h1>
-      <p style={{ fontSize: 13.5, color: '#6b7280', marginBottom: 24 }}>
+      <h1 className="section-heading" style={{ fontSize: 28, margin: "4px 0 4px" }}>Homepage Stats</h1>
+      <p style={{ fontSize: 13.5, color: 'var(--ink-muted)', marginBottom: 24 }}>
         The three numbers shown near the top of the Home page.
       </p>
 
-      <div style={{ background: 'white', borderRadius: 8, padding: 24, maxWidth: 420, display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ background: 'var(--card-bg)', borderRadius: 8, padding: 24, maxWidth: 420, display: 'flex', flexDirection: 'column', gap: 16 }}>
         <Field label="Founded year">
           <input value={settings.founded_year} onChange={(e) => setSettings({ ...settings, founded_year: e.target.value })} style={inputStyle} />
         </Field>
@@ -73,7 +73,7 @@ export default function SettingsAdminPage() {
           <button onClick={handleSave} disabled={saving} style={primaryBtnStyle}>
             {saving ? 'Saving\u2026' : 'Save'}
           </button>
-          {saved && <span style={{ fontSize: 12.5, color: '#3b6d11' }}>Saved</span>}
+          {saved && <span style={{ fontSize: 12.5, color: 'var(--green-700)' }}>Saved</span>}
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@ export default function SettingsAdminPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 5 }}>{label}</label>
+      <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--ink)', marginBottom: 5 }}>{label}</label>
       {children}
     </div>
   );
@@ -93,7 +93,7 @@ const inputStyle: React.CSSProperties = {
   width: '100%',
   padding: '8px 10px',
   fontSize: 13.5,
-  border: '1px solid #d1d5db',
+  border: '1px solid var(--paper-line)',
   borderRadius: 5,
   boxSizing: 'border-box',
   fontFamily: 'inherit',
@@ -104,7 +104,7 @@ const primaryBtnStyle: React.CSSProperties = {
   fontSize: 13,
   fontWeight: 700,
   color: 'white',
-  background: '#1b2430',
+  background: 'var(--navy-700)',
   border: 'none',
   borderRadius: 5,
   cursor: 'pointer',

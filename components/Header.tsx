@@ -8,7 +8,7 @@ import { useLanguage } from '@/lib/LanguageContext';
 const NAV_LINKS = [
   { href: '/about', label: 'About', labelHi: 'हमारे बारे में' },
   { href: '/mandars-pride', label: "Mandar's Pride", labelHi: "Mandar's Pride", isBrand: true },
-  { href: '/our-work', label: 'Our Work', labelHi: 'हमारा कार्य' },
+  { href: '/our-work', label: 'Our Works', labelHi: 'हमारे कार्य' },
   { href: '/get-involved', label: 'Get Involved', labelHi: 'जुड़ें' },
   { href: '/news', label: 'News', labelHi: 'समाचार' },
   { href: '/gallery', label: 'Gallery', labelHi: 'गैलरी' },

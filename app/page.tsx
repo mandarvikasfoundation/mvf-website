@@ -122,7 +122,7 @@ export default function HomePage() {
             </div>
           </div>
           <div style={{ gridColumn: '2 / span 2' }}>
-            <p style={{ fontSize: 14, lineHeight: 1.8, textAlign: 'justify' }}>
+            <p style={{ fontSize: 15.5, lineHeight: 1.8, textAlign: 'justify' }}>
               {t(
                 "Since 2019, Mandar Vikas Foundation has worked in Bhaga, Bounsi, Banka district of Bihar, supporting children's education and women's financial independence. We believe talent is never scarce in our community; opportunity is.",
                 'सन 2019 से, मंदार विकास फाउंडेशन बिहार के बांका जिले के बौंसी स्थित भागा में बच्चों की शिक्षा और महिलाओं की आर्थिक आत्मनिर्भरता के लिए कार्यरत है। हमारा मानना है कि हमारे समुदाय में प्रतिभा की कभी कमी नहीं रही, कमी सिर्फ अवसर की रही है।'
@@ -162,7 +162,7 @@ export default function HomePage() {
             >
               Mandar&apos;s Pride
             </div>
-            <p style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--sky-200)' }}>
+            <p style={{ fontSize: 14.5, lineHeight: 1.7, color: 'var(--sky-200)' }}>
               {t(
                 "Mandar's Pride is a co-educational school for imparting quality and inclusive education for blossoming children, enabling them to add values to society including earning respectable livelihood, once they grow up.",
                 'Mandar\'s Pride एक सह-शिक्षा विद्यालय है, जो पल्लवित होते बच्चों को गुणवत्तापूर्ण एवं समावेशी शिक्षा प्रदान करता है, ताकि बड़े होकर वे समाज में योगदान दे सकें और सम्मानजनक आजीविका अर्जित कर सकें।'
@@ -190,7 +190,7 @@ export default function HomePage() {
           className="section-heading"
           style={{ fontSize: 36, textAlign: 'center', marginBottom: 2 }}
         >
-          {t('Our Other Work', 'हमारे अन्य कार्य')}
+          {t('Our Works', 'हमारे कार्य')}
         </h2>
         <div
           className="eyebrow"
@@ -418,7 +418,7 @@ function WorkCard({
         }}
       />
       <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--navy-700)' }}>{title}</div>
-      <div style={{ fontSize: 11, color: 'var(--ink-muted)', marginTop: 6, lineHeight: 1.55 }}>
+      <div style={{ fontSize: 12.5, color: 'var(--ink-muted)', marginTop: 6, lineHeight: 1.55 }}>
         {blurb}
       </div>
     </Link>

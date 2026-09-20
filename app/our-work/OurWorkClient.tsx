@@ -100,14 +100,14 @@ export default function OurWorkClient() {
   return (
     <>
       <div className="container" style={{ padding: '30px 0 6px' }}>
-        <div className="eyebrow">{t('Home / Our Other Work', 'होम / हमारे अन्य कार्य')}</div>
+        <div className="eyebrow">{t('Home / Our Works', 'होम / हमारे कार्य')}</div>
         <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
-          {t('Our Other Work', 'हमारे अन्य कार्य')}
+          {t('Our Works', 'हमारे कार्य')}
         </h1>
         <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2 }}>
           {t(
-            "Beyond Mandar's Pride, the Foundation runs community programs focused on children's education and women's financial independence.",
-            "Mandar's Pride के अलावा, फाउंडेशन बच्चों की शिक्षा एवं महिलाओं की आर्थिक आत्मनिर्भरता पर केंद्रित सामुदायिक कार्यक्रम भी चलाता है।"
+            "Beyond Mandar's Pride, the Foundation runs community programs focused on children's education and social & financial empowerment of women.",
+            "Mandar's Pride के अलावा, फाउंडेशन बच्चों की शिक्षा एवं महिलाओं के सामाजिक व आर्थिक सशक्तिकरण पर केंद्रित सामुदायिक कार्यक्रम भी चलाता है।"
           )}
         </p>
       </div>
@@ -182,7 +182,7 @@ export default function OurWorkClient() {
                     {t(program.quote, program.quoteHi)}
                   </div>
                   {program.paragraphs.map((p, pi) => (
-                    <p key={pi} style={{ fontSize: 13, lineHeight: 1.75, textAlign: 'justify', marginBottom: 10 }}>
+                    <p key={pi} style={{ fontSize: 14.5, lineHeight: 1.75, textAlign: 'justify', marginBottom: 10 }}>
                       {t(p.en, p.hi)}
                     </p>
                   ))}

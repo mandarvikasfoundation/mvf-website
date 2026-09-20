@@ -28,18 +28,25 @@ export default function AdminNav({ userEmail }: { userEmail: string }) {
   return (
     <nav
       style={{
-        width: 220,
+        width: 230,
         flexShrink: 0,
-        background: '#1b2430',
-        color: '#c8cdd6',
+        background: 'var(--navy-900)',
+        color: 'var(--sky-200)',
         display: 'flex',
         flexDirection: 'column',
-        padding: '24px 0',
+        padding: '26px 0',
       }}
     >
-      <div style={{ padding: '0 20px 20px', borderBottom: '1px solid #2c3644', marginBottom: 12 }}>
-        <div style={{ color: 'white', fontWeight: 700, fontSize: 15 }}>MVF Admin</div>
-        <div style={{ fontSize: 11, color: '#8a93a3', marginTop: 4, wordBreak: 'break-all' }}>{userEmail}</div>
+      <div style={{ padding: '0 22px 20px', borderBottom: '1px solid rgba(255,255,255,0.12)', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ width: 38, height: 38, borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
+          <img src="/images/mvf-logo.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+        <div>
+          <div className="brand-script" style={{ color: 'white', fontWeight: 700, fontSize: 18, lineHeight: 1 }}>
+            MVF Admin
+          </div>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--sky-300)', marginTop: 4, wordBreak: 'break-all' }}>{userEmail}</div>
+        </div>
       </div>
 
       {LINKS.map((link) => {
@@ -49,12 +56,13 @@ export default function AdminNav({ userEmail }: { userEmail: string }) {
             key={link.href}
             href={link.href}
             style={{
-              padding: '11px 20px',
-              fontSize: 13.5,
-              color: active ? 'white' : '#c8cdd6',
-              background: active ? '#2c3644' : 'transparent',
-              borderLeft: active ? '3px solid #f0a85b' : '3px solid transparent',
-              fontWeight: active ? 700 : 400,
+              padding: '12px 22px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: 12.5,
+              color: active ? 'white' : 'var(--sky-200)',
+              background: active ? 'rgba(255,255,255,0.08)' : 'transparent',
+              borderLeft: active ? '3px solid var(--saffron-300)' : '3px solid transparent',
+              fontWeight: 700,
             }}
           >
             {link.label}
@@ -62,27 +70,14 @@ export default function AdminNav({ userEmail }: { userEmail: string }) {
         );
       })}
 
-      <div style={{ marginTop: 'auto', padding: '16px 20px 0' }}>
+      <div style={{ marginTop: 'auto', padding: '16px 22px 0' }}>
         <Link
           href="/"
-          style={{ display: 'block', fontSize: 12, color: '#8a93a3', marginBottom: 14 }}
+          style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--sky-300)', marginBottom: 14 }}
         >
           &larr; View live site
         </Link>
-        <button
-          onClick={handleSignOut}
-          style={{
-            width: '100%',
-            padding: '9px 0',
-            fontSize: 13,
-            fontWeight: 700,
-            color: '#1b2430',
-            background: '#c8cdd6',
-            border: 'none',
-            borderRadius: 4,
-            cursor: 'pointer',
-          }}
-        >
+        <button onClick={handleSignOut} className="btn btn-primary" style={{ width: '100%', fontSize: 12.5 }}>
           Sign out
         </button>
       </div>

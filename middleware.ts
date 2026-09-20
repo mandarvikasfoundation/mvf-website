@@ -37,8 +37,9 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isAdminRoute = pathname.startsWith(`/${ADMIN_BASE}`);
   const isLoginPage = pathname === `/${ADMIN_BASE}/login`;
+  const isResetPasswordPage = pathname === `/${ADMIN_BASE}/reset-password`;
 
-  if (isAdminRoute && !isLoginPage && !user) {
+  if (isAdminRoute && !isLoginPage && !isResetPasswordPage && !user) {
     const loginUrl = new URL(`/${ADMIN_BASE}/login`, request.url);
     return NextResponse.redirect(loginUrl);
   }

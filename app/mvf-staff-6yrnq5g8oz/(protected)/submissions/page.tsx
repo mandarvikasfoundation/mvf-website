@@ -20,8 +20,8 @@ const TYPE_LABELS: Record<Submission['form_type'], string> = {
 
 const TYPE_COLORS: Record<Submission['form_type'], string> = {
   contact: '#1b3a5c',
-  volunteer: '#3b6d11',
-  partner: '#c6631f',
+  volunteer: 'var(--green-700)',
+  partner: 'var(--saffron-600)',
   admissions: '#9333ea',
 };
 
@@ -85,8 +85,8 @@ export default function SubmissionsPage() {
 
   return (
     <div>
-      <h1 style={{ fontSize: 22, fontWeight: 700, color: '#1b2430', marginBottom: 4 }}>Form Submissions</h1>
-      <p style={{ fontSize: 13.5, color: '#6b7280', marginBottom: 20 }}>
+      <h1 className="section-heading" style={{ fontSize: 28, margin: "4px 0 4px" }}>Form Submissions</h1>
+      <p style={{ fontSize: 13.5, color: 'var(--ink-muted)', marginBottom: 20 }}>
         Everyone who has reached out through Contact, Volunteer, Partner, or the Mandar's Pride admissions form.
       </p>
 
@@ -99,9 +99,9 @@ export default function SubmissionsPage() {
               fontSize: 12.5,
               padding: '6px 14px',
               borderRadius: 14,
-              border: filter === f ? '1px solid #1b2430' : '1px solid #d1d5db',
-              background: filter === f ? '#1b2430' : 'white',
-              color: filter === f ? 'white' : '#374151',
+              border: filter === f ? '1px solid var(--navy-700)' : '1px solid var(--paper-line)',
+              background: filter === f ? 'var(--navy-700)' : 'white',
+              color: filter === f ? 'white' : 'var(--ink)',
               cursor: 'pointer',
             }}
           >
@@ -113,11 +113,11 @@ export default function SubmissionsPage() {
       {error && <div style={{ fontSize: 13, color: '#b91c1c', marginBottom: 16 }}>{error}</div>}
 
       {submissions === null && !error && (
-        <div style={{ fontSize: 13, color: '#6b7280' }}>Loading\u2026</div>
+        <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>Loading\u2026</div>
       )}
 
       {submissions !== null && visible.length === 0 && (
-        <div style={{ fontSize: 13, color: '#6b7280' }}>No submissions here yet.</div>
+        <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>No submissions here yet.</div>
       )}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -125,7 +125,7 @@ export default function SubmissionsPage() {
           <div
             key={s.id}
             style={{
-              background: 'white',
+              background: 'var(--card-bg)',
               borderRadius: 8,
               padding: '16px 20px',
               borderLeft: `4px solid ${TYPE_COLORS[s.form_type]}`,
@@ -152,7 +152,7 @@ export default function SubmissionsPage() {
                       fontSize: 9.5,
                       fontWeight: 700,
                       color: 'white',
-                      background: '#c6631f',
+                      background: 'var(--saffron-600)',
                       padding: '1px 7px',
                       borderRadius: 8,
                     }}
@@ -160,7 +160,7 @@ export default function SubmissionsPage() {
                     NEW
                   </span>
                 )}
-                <div style={{ fontSize: 11, color: '#9ca3af', marginTop: 3 }}>
+                <div style={{ fontSize: 11, color: 'var(--label-grey)', marginTop: 3 }}>
                   {new Date(s.created_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}
                 </div>
               </div>
@@ -179,8 +179,8 @@ export default function SubmissionsPage() {
                 .filter(([, value]) => value)
                 .map(([key, value]) => (
                   <div key={key} style={{ fontSize: 12.5 }}>
-                    <span style={{ color: '#6b7280' }}>{FIELD_LABELS[key] ?? key}:</span>{' '}
-                    <span style={{ color: '#1b2430' }}>{value}</span>
+                    <span style={{ color: 'var(--ink-muted)' }}>{FIELD_LABELS[key] ?? key}:</span>{' '}
+                    <span style={{ color: 'var(--navy-700)' }}>{value}</span>
                   </div>
                 ))}
             </div>
@@ -194,10 +194,10 @@ export default function SubmissionsPage() {
 const actionBtnStyle: React.CSSProperties = {
   fontSize: 11.5,
   padding: '5px 11px',
-  border: '1px solid #d1d5db',
+  border: '1px solid var(--paper-line)',
   borderRadius: 5,
-  background: 'white',
-  color: '#374151',
+  background: 'var(--card-bg)',
+  color: 'var(--ink)',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
 };

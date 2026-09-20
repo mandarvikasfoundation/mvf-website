@@ -7,8 +7,10 @@ import { createClient } from '@/lib/supabase/client';
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [resetStatus, setResetStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -30,6 +32,20 @@ export default function AdminLoginPage() {
     router.refresh();
   }
 
+  async function handleForgotPassword() {
+    if (!email) {
+      setError('Enter your email above first, then click "Forgot password?".');
+      return;
+    }
+    setError(null);
+    setResetStatus('sending');
+    const supabase = createClient();
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/mvf-staff-6yrnq5g8oz/reset-password`,
+    });
+    setResetStatus(resetError ? 'error' : 'sent');
+  }
+
   return (
     <div
       style={{
@@ -37,84 +53,120 @@ export default function AdminLoginPage() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#f4f5f7',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
+        background: 'var(--paper)',
       }}
     >
       <form
         onSubmit={handleSubmit}
+        className="card"
         style={{
-          width: 340,
-          background: 'white',
-          borderRadius: 8,
-          padding: '32px 30px',
-          boxShadow: '0 2px 16px rgba(0,0,0,0.08)',
+          width: 360,
+          padding: '36px 34px',
+          textAlign: 'center',
         }}
       >
-        <div style={{ fontWeight: 700, fontSize: 18, color: '#1b2430', marginBottom: 2 }}>
-          MVF Admin
-        </div>
-        <div style={{ fontSize: 13, color: '#6b7280', marginBottom: 24 }}>
-          Sign in to manage the site.
-        </div>
-
-        <label style={{ display: 'block', fontSize: 12.5, fontWeight: 600, color: '#374151', marginBottom: 5 }}>
-          Email
-        </label>
-        <input
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+        <div
           style={{
-            width: '100%',
-            padding: '9px 11px',
-            fontSize: 14,
-            border: '1px solid #d1d5db',
-            borderRadius: 5,
-            marginBottom: 16,
-            boxSizing: 'border-box',
-          }}
-        />
-
-        <label style={{ display: 'block', fontSize: 12.5, fontWeight: 600, color: '#374151', marginBottom: 5 }}>
-          Password
-        </label>
-        <input
-          type="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{
-            width: '100%',
-            padding: '9px 11px',
-            fontSize: 14,
-            border: '1px solid #d1d5db',
-            borderRadius: 5,
-            marginBottom: 20,
-            boxSizing: 'border-box',
-          }}
-        />
-
-        {error && (
-          <div style={{ fontSize: 12.5, color: '#b91c1c', marginBottom: 16 }}>{error}</div>
-        )}
-
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            width: '100%',
-            padding: '10px 0',
-            fontSize: 14,
-            fontWeight: 700,
-            color: 'white',
-            background: loading ? '#93a4bd' : '#1b2430',
-            border: 'none',
-            borderRadius: 5,
-            cursor: loading ? 'default' : 'pointer',
+            width: 64,
+            height: 64,
+            borderRadius: '50%',
+            overflow: 'hidden',
+            margin: '0 auto 14px',
           }}
         >
+          <img src="/images/mvf-logo.png" alt="Mandar Vikas Foundation" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+        <div className="brand-script" style={{ fontSize: 22, color: 'var(--navy-700)', lineHeight: 1 }}>
+          Mandar Vikas Foundation
+        </div>
+        <div className="eyebrow" style={{ marginTop: 6, marginBottom: 26 }}>
+          Admin Sign In
+        </div>
+
+        <div style={{ textAlign: 'left', marginBottom: 16 }}>
+          <label htmlFor="admin-email" style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--label-grey)', marginBottom: 5, textTransform: 'uppercase', letterSpacing: 1 }}>
+            Email
+          </label>
+          <input
+            id="admin-email"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="field-input"
+            style={{ fontSize: 14 }}
+          />
+        </div>
+
+        <div style={{ textAlign: 'left', marginBottom: 8 }}>
+          <label htmlFor="admin-password" style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--label-grey)', marginBottom: 5, textTransform: 'uppercase', letterSpacing: 1 }}>
+            Password
+          </label>
+          <div style={{ position: 'relative' }}>
+            <input
+              id="admin-password"
+              type={showPassword ? 'text' : 'password'}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="field-input"
+              style={{ fontSize: 14, paddingRight: 46 }}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 10.5,
+                color: 'var(--saffron-600)',
+                padding: '4px 2px',
+              }}
+            >
+              {showPassword ? 'HIDE' : 'SHOW'}
+            </button>
+          </div>
+        </div>
+
+        <div style={{ textAlign: 'right', marginBottom: 20 }}>
+          <button
+            type="button"
+            onClick={handleForgotPassword}
+            disabled={resetStatus === 'sending'}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-mono)',
+              fontSize: 11,
+              color: 'var(--navy-700)',
+              padding: 0,
+            }}
+          >
+            Forgot password?
+          </button>
+        </div>
+
+        {resetStatus === 'sent' && (
+          <div style={{ fontSize: 12, color: 'var(--green-700)', marginBottom: 16 }}>
+            Password reset email sent &mdash; check your inbox.
+          </div>
+        )}
+        {resetStatus === 'error' && (
+          <div style={{ fontSize: 12, color: '#b91c1c', marginBottom: 16 }}>
+            Couldn't send the reset email. Double-check the address and try again.
+          </div>
+        )}
+        {error && <div style={{ fontSize: 12.5, color: '#b91c1c', marginBottom: 16 }}>{error}</div>}
+
+        <button type="submit" className="btn btn-primary" disabled={loading} style={{ width: '100%' }}>
           {loading ? 'Signing in\u2026' : 'Sign in'}
         </button>
       </form>

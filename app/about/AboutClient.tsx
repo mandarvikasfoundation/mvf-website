@@ -49,8 +49,19 @@ In the future, we plan to start several more development-oriented projects under
 
 Jai Hind! Jai Bharat!`;
 
+const TABS = ['Overview', 'Committee', "President's Desk", 'Legal & Transparency'] as const;
+type Tab = (typeof TABS)[number];
+
+const TAB_LABELS_HI: Record<Tab, string> = {
+  Overview: 'अवलोकन',
+  Committee: 'समिति',
+  "President's Desk": 'अध्यक्ष का संदेश',
+  'Legal & Transparency': 'कानूनी एवं पारदर्शिता',
+};
+
 export default function AboutClient() {
-  const [activeTab, setActiveTab] = useState<'committee' | 'body'>('committee');
+  const [activeTab, setActiveTab] = useState<Tab>('Overview');
+  const [committeeTab, setCommitteeTab] = useState<'committee' | 'body'>('committee');
   const [deskLang, setDeskLang] = useState<'hi' | 'en'>('hi');
   const t = useT();
 
@@ -70,6 +81,45 @@ export default function AboutClient() {
         </p>
       </div>
 
+      {/* TABS */}
+      <div className="container" style={{ paddingTop: 6, paddingBottom: 10 }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: 8,
+            overflowX: 'auto',
+            background: 'var(--card-bg)',
+            border: '1px solid var(--paper-line)',
+            borderRadius: 10,
+            padding: 8,
+          }}
+        >
+          {TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 13,
+                padding: '10px 18px',
+                whiteSpace: 'nowrap',
+                borderRadius: 7,
+                border: activeTab === tab ? '1px solid var(--saffron-600)' : '1px solid transparent',
+                background: activeTab === tab ? 'var(--saffron-600)' : 'transparent',
+                color: activeTab === tab ? '#fdf2e7' : 'var(--navy-700)',
+                fontWeight: 700,
+                cursor: 'pointer',
+                boxShadow: activeTab === tab ? '0 2px 6px rgba(198,99,31,0.35)' : 'none',
+              }}
+            >
+              {t(tab, TAB_LABELS_HI[tab])}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {activeTab === 'Overview' && (
+        <>
       {/* OUR ROOTS — dark themed (like Mission) but NOT mirrored, so the
           heading stays on the left. Gives clear visual separation before
           the light Vision section below. */}
@@ -86,7 +136,7 @@ export default function AboutClient() {
             </div>
           </div>
           <div style={{ flex: 1, minWidth: 280 }}>
-            <p style={{ fontSize: 13.5, lineHeight: 1.8, textAlign: 'justify', color: 'var(--sky-200)' }}>
+            <p style={{ fontSize: 15, lineHeight: 1.8, textAlign: 'justify', color: 'var(--sky-200)' }}>
               {t(
                 "Here at Mandar Vikas Foundation, we know that sometimes all it takes to change the world is a little support. Since our establishment in 2019, we have been determined to make an impact in our society. The core of our efforts is to bring our team's fresh ideas and passion to the range of activities we're involved in. Through all of our endeavors, we hope to display the conviction behind our beliefs.",
                 'मंदार विकास फाउंडेशन में, हम जानते हैं कि कभी-कभी दुनिया बदलने के लिए बस थोड़े से सहयोग की आवश्यकता होती है। 2019 में अपनी स्थापना के बाद से, हम अपने समाज में बदलाव लाने के लिए दृढ़ संकल्पित रहे हैं। हमारे प्रयासों का मूल यही है कि हम अपनी टीम के नए विचारों और जुनून को अपनी सभी गतिविधियों में शामिल करें। अपने हर प्रयास के माध्यम से, हम अपने विश्वासों के पीछे की प्रतिबद्धता को दर्शाना चाहते हैं।'
@@ -103,7 +153,7 @@ export default function AboutClient() {
             className="section-heading"
             style={{ fontSize: 44, textAlign: 'center', marginBottom: 22 }}
           >
-            {t('Our Vision', 'हमारी दृष्टि')}
+            {t('Our Vision', 'हमारा विज़न')}
           </h2>
           <div
             style={{
@@ -152,7 +202,7 @@ export default function AboutClient() {
             </div>
           </div>
           <div style={{ flex: 1, minWidth: 280 }}>
-            <ul style={{ fontSize: 13, lineHeight: 1.85, color: 'var(--sky-200)', paddingLeft: 18, margin: 0 }}>
+            <ul style={{ fontSize: 14.5, lineHeight: 1.85, color: 'var(--sky-200)', paddingLeft: 18, margin: 0 }}>
               <li style={{ marginBottom: 12 }}>
                 {t(
                   'Promoting the financial and social empowerment of women through adaptable, cross-cutting programmes, building awareness of their rights and facilitating institutional support for their growth.',
@@ -175,20 +225,23 @@ export default function AboutClient() {
           </div>
         </div>
       </section>
+        </>
+      )}
 
-      {/* MANAGING COMMITTEE / GENERAL BODY TABS */}
+      {activeTab === 'Committee' && (
+      /* MANAGING COMMITTEE / GENERAL BODY TABS */
       <section className="container" style={{ padding: '48px 0' }}>
         <div style={{ display: 'flex', gap: 4, justifyContent: 'center' }}>
-          <TabButton active={activeTab === 'committee'} onClick={() => setActiveTab('committee')}>
+          <TabButton active={committeeTab === 'committee'} onClick={() => setCommitteeTab('committee')}>
             {t('Managing Committee', 'प्रबंध समिति')}
           </TabButton>
-          <TabButton active={activeTab === 'body'} onClick={() => setActiveTab('body')}>
+          <TabButton active={committeeTab === 'body'} onClick={() => setCommitteeTab('body')}>
             {t('General Body', 'सामान्य निकाय')}
           </TabButton>
         </div>
 
         <div style={{ marginTop: 24 }}>
-          {activeTab === 'committee' ? (
+          {committeeTab === 'committee' ? (
             // 7 members: 4 columns on desktop (balanced 4-then-3), 2 on mobile
             <div className="committee-grid">
               {MANAGING_COMMITTEE.map((m) => (
@@ -210,8 +263,10 @@ export default function AboutClient() {
           )}
         </div>
       </section>
+      )}
 
-      {/* PRESIDENT'S DESK */}
+      {activeTab === "President's Desk" && (
+      /* PRESIDENT'S DESK */
       <section
         className="ridge-band"
         style={{ background: 'var(--navy-900)', padding: '58px 0' }}
@@ -244,8 +299,10 @@ export default function AboutClient() {
           </div>
         </div>
       </section>
+      )}
 
-      {/* LEGAL & TRANSPARENCY */}
+      {activeTab === 'Legal & Transparency' && (
+      /* LEGAL & TRANSPARENCY */
       <section className="container" style={{ padding: '48px 0 60px' }}>
         <h2 className="section-heading" style={{ fontSize: 22, marginBottom: 16 }}>
           {t('Legal & Transparency', 'कानूनी एवं पारदर्शिता')}
@@ -278,6 +335,7 @@ export default function AboutClient() {
           {t('.', ' के माध्यम से हमसे जुड़ें।')}
         </p>
       </section>
+      )}
     </>
   );
 }
@@ -288,7 +346,7 @@ function VisionCard({ n, text }: { n: string; text: string }) {
       <div style={{ fontFamily: 'var(--font-mono)', fontSize: 20, color: 'var(--saffron-600)', marginBottom: 8 }}>
         {n}
       </div>
-      <div style={{ fontSize: 12, lineHeight: 1.7, textAlign: 'justify' }}>{text}</div>
+      <div style={{ fontSize: 13.5, lineHeight: 1.7, textAlign: 'justify' }}>{text}</div>
     </div>
   );
 }

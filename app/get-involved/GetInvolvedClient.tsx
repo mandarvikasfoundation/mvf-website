@@ -47,7 +47,7 @@ export default function GetInvolvedClient() {
             <h2 className="section-heading" style={{ fontSize: 34, margin: '0 0 10px' }}>
               {t('Donate', 'दान करें')}
             </h2>
-            <p style={{ fontSize: 14, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 28px' }}>
+            <p style={{ fontSize: 15.5, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 28px' }}>
               {t(
                 "School fees help fund Mandar's Pride, but they don't cover everything. Since the school is only one part of what we do, your donation helps us keep every program running.",
                 "स्कूल की फीस Mandar's Pride को चलाने में मदद करती है, लेकिन इससे सब कुछ पूरा नहीं होता। चूंकि स्कूल हमारे कार्य का केवल एक हिस्सा है, आपका दान हमें हर कार्यक्रम को चलाए रखने में मदद करता है।"
@@ -59,6 +59,7 @@ export default function GetInvolvedClient() {
                 display: 'flex',
                 gap: 32,
                 alignItems: 'center',
+                justifyContent: 'center',
                 flexWrap: 'wrap',
                 textAlign: 'left',
               }}
@@ -77,7 +78,7 @@ export default function GetInvolvedClient() {
                   }}
                 />
               </div>
-              <div style={{ flex: 1, minWidth: 280, borderLeft: '1px solid var(--paper-line)', paddingLeft: 28 }}>
+              <div style={{ flex: '0 1 360px', borderLeft: '1px solid var(--paper-line)', paddingLeft: 28 }}>
                 <CopyRow label={t('UPI ID', 'UPI आईडी')} value="8826785091@sbi" copiedLabel={t('copied!', 'कॉपी हो गया!')} />
                 <div style={{ marginTop: 6, paddingTop: 6, borderTop: '0.5px dashed var(--paper-line)' }} />
                 <PlainRow label={t('Account Holder', 'खाताधारक')} value="Mandar Vikas Foundation" />
@@ -99,7 +100,7 @@ export default function GetInvolvedClient() {
             <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 10 }}>
               {t('Volunteer', 'स्वयंसेवा')}
             </h2>
-            <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.7, textAlign: 'justify' }}>
+            <p style={{ fontSize: 15.5, color: 'var(--ink-muted)', lineHeight: 1.7, textAlign: 'justify' }}>
               {t(
                 "Whether it's teaching at Mandar's Pride, helping with day-to-day tasks around the school, supporting an event, or lending a specific skill, there's likely a way to help.",
                 "चाहे वह Mandar's Pride में पढ़ाना हो, स्कूल के रोजमर्रा के कामों में मदद करना हो, किसी आयोजन में सहयोग देना हो, या अपना कोई खास हुनर देना हो, मदद करने का कोई न कोई तरीका जरूर मिलेगा।"
@@ -126,7 +127,7 @@ export default function GetInvolvedClient() {
             <div style={{ fontSize: 20, color: 'var(--saffron-300)', marginBottom: 10 }}>
               {t('Individuals, businesses, and organizations, we welcome you.', 'व्यक्ति, व्यवसाय एवं संस्थाएं, हम आपका स्वागत करते हैं।')}
             </div>
-            <p style={{ fontSize: 15, color: 'var(--sky-200)', lineHeight: 1.7, textAlign: 'right' }}>
+            <p style={{ fontSize: 16, color: 'var(--sky-200)', lineHeight: 1.7, textAlign: 'right' }}>
               {t(
                 'We welcome support from individuals, local businesses, other organizations, and institutions, whether through funding, in-kind support, materials, or collaboration on a specific initiative.',
                 'हम व्यक्तियों, स्थानीय व्यवसायों, अन्य संस्थाओं एवं संगठनों से सहयोग का स्वागत करते हैं, चाहे वह वित्तीय सहयोग हो, वस्तु रूप में सहयोग हो, सामग्री हो, या किसी विशेष पहल पर साझेदारी हो।'
@@ -343,7 +344,7 @@ function FormRow2({ children }: { children: React.ReactNode }) {
 
 function PlainRow({ label, value }: { label: string; value: string }) {
   return (
-    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, lineHeight: 1.9 }}>
+    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 13.5, lineHeight: 1.9 }}>
       {label}: <b>{value}</b>
     </div>
   );
@@ -363,7 +364,7 @@ function CopyRow({ label, value, copiedLabel }: { label: string; value: string; 
   }
 
   return (
-    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, lineHeight: 1.9 }}>
+    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 13.5, lineHeight: 1.9 }}>
       {label}: <b>{value}</b>{' '}
       <button
         onClick={handleCopy}

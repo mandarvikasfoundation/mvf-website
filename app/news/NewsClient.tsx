@@ -163,7 +163,7 @@ export default function NewsClient() {
               <h2 className="section-heading" style={{ fontSize: 22, marginTop: 6 }}>
                 {t(featured.title_en, featured.title_hi)}
               </h2>
-              <p style={{ fontSize: 13, lineHeight: 1.7, marginTop: 10, color: 'var(--ink-muted)' }}>
+              <p style={{ fontSize: 14.5, lineHeight: 1.7, marginTop: 10, color: 'var(--ink-muted)' }}>
                 {t(featured.teaser_en, featured.teaser_hi)}
               </p>
             </div>
@@ -186,7 +186,7 @@ export default function NewsClient() {
                 <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--navy-700)', marginTop: 3 }}>
                   {t(post.title_en, post.title_hi)}
                 </div>
-                <div style={{ fontSize: 10.5, color: 'var(--ink-muted)', marginTop: 3, lineHeight: 1.5 }}>
+                <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 3, lineHeight: 1.5 }}>
                   {t(post.teaser_en, post.teaser_hi)}
                 </div>
               </div>

@@ -49,8 +49,8 @@ export default function ContactClient() {
           <h2 className="section-heading" style={{ fontSize: 30, margin: '0 0 14px', whiteSpace: 'nowrap' }}>
             {t('Get In Touch', 'संपर्क में रहें')}
           </h2>
-          <div style={{ fontSize: 13, lineHeight: 1.9 }}>
-            <b>{t('Mandar Vikas Foundation', 'मंदार विकास फाउंडेशन')}</b>
+          <div style={{ fontSize: 14.5, lineHeight: 1.9 }}>
+            <b style={{ fontSize: 16 }}>{t('Mandar Vikas Foundation', 'मंदार विकास फाउंडेशन')}</b>
             <br />
             {t('Dam Road, Bhaga, P.O. & P.S. Bounsi', 'डैम रोड, भागा, पो. एवं पु.स्टे. बौंसी')}
             <br />

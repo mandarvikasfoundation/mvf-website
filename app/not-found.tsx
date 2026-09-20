@@ -23,7 +23,7 @@ export default function NotFound() {
       <h1 className="section-heading" style={{ fontSize: 34, margin: '0 0 14px' }}>
         We couldn&apos;t find that page
       </h1>
-      <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.7, marginBottom: 30 }}>
+      <p style={{ fontSize: 15.5, color: 'var(--ink-muted)', lineHeight: 1.7, marginBottom: 30 }}>
         The page you&apos;re looking for may have been moved or no longer
         exists. Let&apos;s get you back on track.
       </p>

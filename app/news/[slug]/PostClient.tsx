@@ -27,6 +27,7 @@ type Post = {
   body_en: string;
   body_hi: string;
   thumb_url: string | null;
+  image_urls: string[];
   tags: string[];
 };
 
@@ -92,11 +93,32 @@ export default function PostClient({ post }: { post: Post }) {
         />
       )}
 
-      <div style={{ fontSize: 15, lineHeight: 1.85, marginTop: 26 }}>
+      <div style={{ fontSize: 16, lineHeight: 1.85, marginTop: 26 }}>
         {paragraphs.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
       </div>
+
+      {post.image_urls.length > 0 && (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+            gap: 10,
+            marginTop: 20,
+          }}
+        >
+          {post.image_urls.map((url) => (
+            <img
+              key={url}
+              src={url}
+              alt=""
+              loading="lazy"
+              style={{ width: '100%', height: 150, objectFit: 'cover', borderRadius: 6 }}
+            />
+          ))}
+        </div>
+      )}
     </article>
   );
 }
