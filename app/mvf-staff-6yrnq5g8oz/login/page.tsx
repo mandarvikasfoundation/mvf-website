@@ -156,7 +156,7 @@ export default function AdminLoginPage() {
 
         {resetStatus === 'sent' && (
           <div style={{ fontSize: 12, color: 'var(--green-700)', marginBottom: 16 }}>
-            Password reset email sent &mdash; check your inbox.
+            Password reset email sent. Check your inbox.
           </div>
         )}
         {resetStatus === 'error' && (

@@ -83,31 +83,54 @@ export default function SubmissionsPage() {
 
   const visible = submissions?.filter((s) => filter === 'all' || s.form_type === filter) ?? [];
 
+  const unreadCountFor = (f: 'all' | Submission['form_type']) =>
+    submissions?.filter((s) => !s.is_read && (f === 'all' || s.form_type === f)).length ?? 0;
+
   return (
     <div>
+      <div className="eyebrow">Admin</div>
       <h1 className="section-heading" style={{ fontSize: 28, margin: "4px 0 4px" }}>Form Submissions</h1>
       <p style={{ fontSize: 13.5, color: 'var(--ink-muted)', marginBottom: 20 }}>
         Everyone who has reached out through Contact, Volunteer, Partner, or the Mandar's Pride admissions form.
       </p>
 
       <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
-        {(['all', 'contact', 'volunteer', 'partner', 'admissions'] as const).map((f) => (
-          <button
-            key={f}
-            onClick={() => setFilter(f)}
-            style={{
-              fontSize: 12.5,
-              padding: '6px 14px',
-              borderRadius: 14,
-              border: filter === f ? '1px solid var(--navy-700)' : '1px solid var(--paper-line)',
-              background: filter === f ? 'var(--navy-700)' : 'white',
-              color: filter === f ? 'white' : 'var(--ink)',
-              cursor: 'pointer',
-            }}
-          >
-            {f === 'all' ? 'All' : TYPE_LABELS[f]}
-          </button>
-        ))}
+        {(['all', 'contact', 'volunteer', 'partner', 'admissions'] as const).map((f) => {
+          const unread = unreadCountFor(f);
+          return (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className="admin-filter-btn"
+              style={{
+                fontSize: 12.5,
+                padding: '6px 14px',
+                borderRadius: 14,
+                border: filter === f ? '1px solid var(--navy-700)' : '1px solid var(--paper-line)',
+                background: filter === f ? 'var(--navy-700)' : 'var(--card-bg)',
+                color: filter === f ? 'white' : 'var(--ink)',
+                cursor: 'pointer',
+              }}
+            >
+              {f === 'all' ? 'All' : TYPE_LABELS[f]}
+              {unread > 0 && (
+                <span
+                  style={{
+                    marginLeft: 6,
+                    fontSize: 10,
+                    fontWeight: 700,
+                    color: filter === f ? 'var(--navy-900)' : 'white',
+                    background: filter === f ? 'var(--saffron-300)' : 'var(--saffron-600)',
+                    borderRadius: 8,
+                    padding: '1px 6px',
+                  }}
+                >
+                  {unread}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
 
       {error && <div style={{ fontSize: 13, color: '#b91c1c', marginBottom: 16 }}>{error}</div>}

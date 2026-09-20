@@ -184,7 +184,7 @@ export default function GalleryAdminPage() {
                     padding: '5px 10px',
                     borderRadius: 12,
                     border: editing.tags.includes(tag) ? '1px solid var(--navy-700)' : '1px solid var(--paper-line)',
-                    background: editing.tags.includes(tag) ? 'var(--navy-700)' : 'white',
+                    background: editing.tags.includes(tag) ? 'var(--navy-700)' : 'var(--card-bg)',
                     color: editing.tags.includes(tag) ? 'white' : 'var(--ink)',
                     cursor: 'pointer',
                   }}

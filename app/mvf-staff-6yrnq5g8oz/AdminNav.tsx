@@ -28,7 +28,7 @@ export default function AdminNav({ userEmail }: { userEmail: string }) {
   return (
     <nav
       style={{
-        width: 230,
+        width: 246,
         flexShrink: 0,
         background: 'var(--navy-900)',
         color: 'var(--sky-200)',
@@ -41,11 +41,24 @@ export default function AdminNav({ userEmail }: { userEmail: string }) {
         <div style={{ width: 38, height: 38, borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
           <img src="/images/mvf-logo.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
-        <div>
+        <div style={{ flex: 1, minWidth: 0 }}>
           <div className="brand-script" style={{ color: 'white', fontWeight: 700, fontSize: 18, lineHeight: 1 }}>
             MVF Admin
           </div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--sky-300)', marginTop: 4, wordBreak: 'break-all' }}>{userEmail}</div>
+          <div
+            title={userEmail}
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 10,
+              color: 'var(--sky-300)',
+              marginTop: 4,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {userEmail}
+          </div>
         </div>
       </div>
 
@@ -55,6 +68,7 @@ export default function AdminNav({ userEmail }: { userEmail: string }) {
           <Link
             key={link.href}
             href={link.href}
+            className="admin-nav-link"
             style={{
               padding: '12px 22px',
               fontFamily: 'var(--font-mono)',

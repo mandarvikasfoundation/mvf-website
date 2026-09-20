@@ -203,6 +203,23 @@ img {
   }
 }
 
+/* Admin panel: hover states (can't be done with inline styles) */
+.admin-nav-link:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.admin-card-link {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.admin-card-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(15, 42, 74, 0.12);
+}
+
+.admin-filter-btn:hover {
+  border-color: var(--navy-700) !important;
+}
+
 /* Managing Committee / General Body grids: fixed 4 columns on desktop
    for a balanced layout, but that crams long names into ~80px columns
    on a phone — collapse to 2 columns below 640px. */

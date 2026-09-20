@@ -47,7 +47,7 @@ export default function GetInvolvedClient() {
             <h2 className="section-heading" style={{ fontSize: 34, margin: '0 0 10px' }}>
               {t('Donate', 'दान करें')}
             </h2>
-            <p style={{ fontSize: 15.5, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 28px' }}>
+            <p style={{ fontSize: 15.5, lineHeight: 1.7, maxWidth: 640, margin: '0 auto 28px' }}>
               {t(
                 "School fees help fund Mandar's Pride, but they don't cover everything. Since the school is only one part of what we do, your donation helps us keep every program running.",
                 "स्कूल की फीस Mandar's Pride को चलाने में मदद करती है, लेकिन इससे सब कुछ पूरा नहीं होता। चूंकि स्कूल हमारे कार्य का केवल एक हिस्सा है, आपका दान हमें हर कार्यक्रम को चलाए रखने में मदद करता है।"

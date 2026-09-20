@@ -182,7 +182,7 @@ export default function NewsAdminPage() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-            <Field label="Teaser (English) \u2014 shown in the list">
+            <Field label="Teaser (English), shown in the list">
               <textarea rows={2} value={editing.teaser_en} onChange={(e) => setEditing({ ...editing, teaser_en: e.target.value })} style={inputStyle} />
             </Field>
             <Field label="Teaser (Hindi)">
@@ -191,7 +191,7 @@ export default function NewsAdminPage() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-            <Field label="Full story (English) \u2014 blank line = new paragraph">
+            <Field label="Full story (English): blank line = new paragraph">
               <textarea rows={6} value={editing.body_en} onChange={(e) => setEditing({ ...editing, body_en: e.target.value })} style={inputStyle} />
             </Field>
             <Field label="Full story (Hindi)">
@@ -199,7 +199,7 @@ export default function NewsAdminPage() {
             </Field>
           </div>
 
-          <Field label="Thumbnail image \u2014 used in the News list and featured card">
+          <Field label="Thumbnail image, used in the News list and featured card">
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               {editing.thumb_url && (
                 <img src={editing.thumb_url} alt="" style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 4 }} />
@@ -214,7 +214,7 @@ export default function NewsAdminPage() {
             </div>
           </Field>
 
-          <Field label="Additional images \u2014 shown within the full post, below the thumbnail">
+          <Field label="Additional images, shown within the full post below the thumbnail">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 10 }}>
               {editing.image_urls.map((url) => (
                 <div key={url} style={{ position: 'relative' }}>
@@ -265,7 +265,7 @@ export default function NewsAdminPage() {
                     padding: '5px 12px',
                     borderRadius: 12,
                     border: editing.tags.includes(tag) ? '1px solid var(--navy-700)' : '1px solid var(--paper-line)',
-                    background: editing.tags.includes(tag) ? 'var(--navy-700)' : 'white',
+                    background: editing.tags.includes(tag) ? 'var(--navy-700)' : 'var(--card-bg)',
                     color: editing.tags.includes(tag) ? 'white' : 'var(--ink)',
                     cursor: 'pointer',
                   }}

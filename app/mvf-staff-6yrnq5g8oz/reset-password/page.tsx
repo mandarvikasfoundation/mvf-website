@@ -31,7 +31,7 @@ export default function ResetPasswordPage() {
     setStatus('idle');
 
     if (updateError) {
-      setError('Couldn\u2019t update your password. The reset link may have expired \u2014 request a new one from the sign-in page.');
+      setError('Couldn\u2019t update your password. The reset link may have expired, request a new one from the sign-in page.');
       return;
     }
 
