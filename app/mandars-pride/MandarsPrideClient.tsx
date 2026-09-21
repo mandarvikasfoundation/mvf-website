@@ -152,8 +152,8 @@ export default function MandarsPrideClient() {
             <div style={{ flex: 1, minWidth: 260 }}>
               <p style={{ fontSize: 14.5, lineHeight: 1.8, textAlign: 'justify' }}>
                 {t(
-                  "Mandar Vikas Foundation, a non-profit social organisation established in 2019, introduced Mandar's Pride as its educational initiative, a co-educational school for imparting quality, inclusive education to help children blossom, add value to society, and grow toward a respectable livelihood.",
-                  "मंदार विकास फाउंडेशन, 2019 में स्थापित एक गैर-लाभकारी सामाजिक संस्था, ने Mandar's Pride को अपनी शैक्षणिक पहल के रूप में शुरू किया, जो एक सह-शिक्षा विद्यालय है, जो बच्चों को पल्लवित होने, समाज में योगदान देने एवं सम्मानजनक आजीविका की ओर बढ़ने में मदद करने के लिए गुणवत्तापूर्ण, समावेशी शिक्षा प्रदान करता है।"
+                  "Mandar Vikas Foundation, a non-profit social organisation established in 2019, introduced Mandar's Pride as its educational initiative, a co-educational school for imparting quality and inclusive education to help children blossom, add value to society, and grow toward a respectable livelihood.",
+                  "मंदार विकास फाउंडेशन, 2019 में स्थापित एक गैर-लाभकारी सामाजिक संस्था, ने Mandar's Pride को अपनी शैक्षणिक पहल के रूप में शुरू किया, जो एक सह-शिक्षा विद्यालय है, जो बच्चों को पल्लवित होने, समाज में योगदान देने एवं सम्मानजनक आजीविका की ओर बढ़ने में मदद करने के लिए गुणवत्तापूर्ण एवं समावेशी शिक्षा प्रदान करता है।"
                 )}
               </p>
               <div
