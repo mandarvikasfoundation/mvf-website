@@ -6,7 +6,7 @@ import SiteChrome from '@/components/SiteChrome';
 export const metadata: Metadata = {
   // Note: the old MVF website is still live on this domain right now;
   // this one takes over once it's finished and deployed.
-  metadataBase: new URL('https://mandaarvikasfoundation.com'),
+  metadataBase: new URL('https://mandarvikasfoundation.com'),
   title: {
     default: 'Mandar Vikas Foundation | Step Towards Change',
     template: '%s | MVF',
