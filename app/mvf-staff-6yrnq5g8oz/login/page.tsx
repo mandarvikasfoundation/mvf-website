@@ -54,13 +54,15 @@ export default function AdminLoginPage() {
         alignItems: 'center',
         justifyContent: 'center',
         background: 'var(--paper)',
+        padding: 20,
       }}
     >
       <form
         onSubmit={handleSubmit}
         className="card"
         style={{
-          width: 360,
+          width: '100%',
+          maxWidth: 360,
           padding: '36px 34px',
           textAlign: 'center',
         }}

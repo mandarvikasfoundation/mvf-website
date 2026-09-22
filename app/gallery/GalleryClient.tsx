@@ -67,7 +67,7 @@ export default function GalleryClient() {
       <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
         {t('Gallery', 'गैलरी')}
       </h1>
-      <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2, whiteSpace: 'nowrap' }}>
+      <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2 }}>
         {t(
           'A look at life at Mandar Vikas Foundation, our campus, our programs, and our community.',
           'मंदार विकास फाउंडेशन में जीवन, हमारे परिसर, हमारे कार्यक्रमों एवं हमारे समुदाय की एक झलक।'

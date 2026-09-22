@@ -79,6 +79,10 @@ img {
   .container {
     padding: 0 20px;
   }
+  .hero-cta a {
+    font-size: 12px !important;
+    padding: 9px 16px !important;
+  }
 }
 
 /* Visually hides an element but keeps it available to screen readers —
@@ -203,7 +207,133 @@ img {
   }
 }
 
+/* Admin panel layout: fixed sidebar on desktop, collapsible top bar on
+   mobile (was completely fixed-width before, unusable on a phone). */
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 246px;
+  flex-shrink: 0;
+  background: var(--navy-900);
+  color: var(--sky-200);
+  display: flex;
+  flex-direction: column;
+  padding: 26px 0;
+}
+
+.admin-sidebar-header {
+  padding: 0 22px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-mobile-toggle {
+  display: none;
+}
+
+.admin-nav-links {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.admin-email-mobile {
+  display: none;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 32px 40px;
+  max-width: 1000px;
+  background: var(--paper);
+}
+
+@media (max-width: 820px) {
+  .admin-shell {
+    flex-direction: column;
+  }
+  .admin-sidebar {
+    width: 100%;
+    padding: 6px 0;
+  }
+  .admin-sidebar-header {
+    padding: 10px 16px;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  .admin-mobile-toggle {
+    display: flex;
+    flex-direction: column;
+  }
+  .admin-nav-links {
+    display: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .admin-nav-links.open {
+    display: flex;
+  }
+  .admin-email-desktop {
+    display: none;
+  }
+  .admin-email-mobile {
+    display: block;
+  }
+  .admin-main {
+    padding: 20px 16px;
+  }
+}
+
 /* Admin panel: hover states (can't be done with inline styles) */
+/* Mandar's Pride Overview: Vision/Mission grid. Fixed 0.8fr/1.2fr columns
+   never auto-stack (unlike auto-fit/minmax grids elsewhere), which left
+   two very cramped narrow columns of multi-sentence text on a phone —
+   stack to one column below 700px. */
+.vision-mission-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+}
+@media (max-width: 700px) {
+  .vision-mission-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Two-column form field rows (Contact, Volunteer, Partner, Admissions):
+   1fr 1fr on desktop/tablet, but on narrow phones each input gets so
+   little room that longer placeholders (e.g. "Area of interest / skills")
+   visually clip inside the box — stack to a single column below 480px. */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 480px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tab trays (About, Mandar's Pride): centering a flex row that overflows
+   causes most browsers to set the initial scroll position to the MIDDLE
+   of the content rather than the start, hiding the first tab off-screen
+   to the left with no visual hint to scroll back. So: left-aligned by
+   default (always safe, and any overflow is scrollable from a natural
+   starting point), only centered once the viewport is wide enough that
+   these tab counts (up to 6) comfortably fit without overflowing. */
+.tab-tray {
+  justify-content: flex-start;
+}
+@media (min-width: 768px) {
+  .tab-tray {
+    justify-content: center;
+  }
+}
+
 .admin-nav-link:hover {
   background: rgba(255, 255, 255, 0.06) !important;
 }

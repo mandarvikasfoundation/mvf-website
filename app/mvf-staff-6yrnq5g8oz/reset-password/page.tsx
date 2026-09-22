@@ -50,9 +50,10 @@ export default function ResetPasswordPage() {
         alignItems: 'center',
         justifyContent: 'center',
         background: 'var(--paper)',
+        padding: 20,
       }}
     >
-      <form onSubmit={handleSubmit} className="card" style={{ width: 360, padding: '36px 34px', textAlign: 'center' }}>
+      <form onSubmit={handleSubmit} className="card" style={{ width: '100%', maxWidth: 360, padding: '36px 34px', textAlign: 'center' }}>
         <div className="brand-script" style={{ fontSize: 22, color: 'var(--navy-700)', lineHeight: 1 }}>
           Mandar Vikas Foundation
         </div>

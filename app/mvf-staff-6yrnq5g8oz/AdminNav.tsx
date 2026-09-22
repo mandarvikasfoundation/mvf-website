@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
@@ -17,6 +18,7 @@ const LINKS = [
 export default function AdminNav({ userEmail }: { userEmail: string }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   async function handleSignOut() {
     const supabase = createClient();
@@ -26,18 +28,8 @@ export default function AdminNav({ userEmail }: { userEmail: string }) {
   }
 
   return (
-    <nav
-      style={{
-        width: 246,
-        flexShrink: 0,
-        background: 'var(--navy-900)',
-        color: 'var(--sky-200)',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '26px 0',
-      }}
-    >
-      <div style={{ padding: '0 22px 20px', borderBottom: '1px solid rgba(255,255,255,0.12)', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
+    <nav className="admin-sidebar">
+      <div className="admin-sidebar-header">
         <div style={{ width: 38, height: 38, borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
           <img src="/images/mvf-logo.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
@@ -47,6 +39,7 @@ export default function AdminNav({ userEmail }: { userEmail: string }) {
           </div>
           <div
             title={userEmail}
+            className="admin-email-desktop"
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: 10,
@@ -60,40 +53,75 @@ export default function AdminNav({ userEmail }: { userEmail: string }) {
             {userEmail}
           </div>
         </div>
+        <button
+          onClick={() => setMenuOpen((v) => !v)}
+          className="admin-mobile-toggle"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 6,
+            gap: 4,
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ width: 22, height: 2, background: 'white', display: 'block', marginBottom: 4 }} />
+          <span style={{ width: 22, height: 2, background: 'white', display: 'block', marginBottom: 4 }} />
+          <span style={{ width: 22, height: 2, background: 'white', display: 'block' }} />
+        </button>
       </div>
 
-      {LINKS.map((link) => {
-        const active = link.exact ? pathname === link.href : pathname?.startsWith(link.href);
-        return (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="admin-nav-link"
-            style={{
-              padding: '12px 22px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 12.5,
-              color: active ? 'white' : 'var(--sky-200)',
-              background: active ? 'rgba(255,255,255,0.08)' : 'transparent',
-              borderLeft: active ? '3px solid var(--saffron-300)' : '3px solid transparent',
-              fontWeight: 700,
-            }}
-          >
-            {link.label}
-          </Link>
-        );
-      })}
+      <div className={`admin-nav-links${menuOpen ? ' open' : ''}`}>
+        {LINKS.map((link) => {
+          const active = link.exact ? pathname === link.href : pathname?.startsWith(link.href);
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="admin-nav-link"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                padding: '12px 22px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 12.5,
+                color: active ? 'white' : 'var(--sky-200)',
+                background: active ? 'rgba(255,255,255,0.08)' : 'transparent',
+                borderLeft: active ? '3px solid var(--saffron-300)' : '3px solid transparent',
+                fontWeight: 700,
+              }}
+            >
+              {link.label}
+            </Link>
+          );
+        })}
 
-      <div style={{ marginTop: 'auto', padding: '16px 22px 0' }}>
-        <Link
-          href="/"
-          style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--sky-300)', marginBottom: 14 }}
+        <div
+          className="admin-email-mobile"
+          style={{
+            padding: '10px 22px 0',
+            fontFamily: 'var(--font-mono)',
+            fontSize: 10.5,
+            color: 'var(--sky-300)',
+            wordBreak: 'break-all',
+          }}
         >
-          &larr; View live site
-        </Link>
-        <button onClick={handleSignOut} className="btn btn-primary" style={{ width: '100%', fontSize: 12.5 }}>
-          Sign out
-        </button>
+          {userEmail}
+        </div>
+
+        <div style={{ marginTop: 'auto', padding: '16px 22px 4px' }}>
+          <Link
+            href="/"
+            onClick={() => setMenuOpen(false)}
+            style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--sky-300)', marginBottom: 14 }}
+          >
+            &larr; View live site
+          </Link>
+          <button onClick={handleSignOut} className="btn btn-primary" style={{ width: '100%', fontSize: 12.5 }}>
+            Sign out
+          </button>
+        </div>
       </div>
     </nav>
   );

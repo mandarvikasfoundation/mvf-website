@@ -82,10 +82,10 @@ export default function AboutClient() {
       {/* TABS */}
       <div className="container" style={{ paddingTop: 6, paddingBottom: 10 }}>
         <div
+          className="tab-tray"
           style={{
             display: 'flex',
             gap: 8,
-            justifyContent: 'center',
             overflowX: 'auto',
             background: 'var(--card-bg)',
             border: '1px solid var(--paper-line)',
@@ -230,7 +230,7 @@ export default function AboutClient() {
       {activeTab === 'Committee' && (
       /* MANAGING COMMITTEE / GENERAL BODY TABS */
       <section className="container" style={{ padding: '48px 0' }}>
-        <div style={{ display: 'flex', gap: 4, justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: 4, justifyContent: 'center', flexWrap: 'wrap' }}>
           <TabButton active={committeeTab === 'committee'} onClick={() => setCommitteeTab('committee')}>
             {t('Managing Committee', 'प्रबंध समिति')}
           </TabButton>

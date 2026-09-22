@@ -55,7 +55,7 @@ export default function Footer() {
           <div style={{ color: 'var(--ink)', fontWeight: 700, fontSize: 17 }}>
             {lang === 'hi' ? 'मंदार विकास फाउंडेशन' : 'Mandar Vikas Foundation'}
           </div>
-          <div style={{ whiteSpace: 'nowrap' }}>
+          <div>
             {lang === 'hi' ? (
               <>
                 डैम रोड, भागा, पो. &amp; पु. स्टे. बौंसी, जिला बांका, बिहार, <b>पिन</b> 813104

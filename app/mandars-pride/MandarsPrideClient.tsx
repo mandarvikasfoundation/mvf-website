@@ -107,10 +107,10 @@ export default function MandarsPrideClient() {
       {/* TABS */}
       <div className="container" style={{ paddingTop: 20 }}>
         <div
+          className="tab-tray"
           style={{
             display: 'flex',
             gap: 8,
-            justifyContent: 'center',
             overflowX: 'auto',
             background: 'var(--card-bg)',
             border: '1px solid var(--paper-line)',
@@ -152,8 +152,8 @@ export default function MandarsPrideClient() {
             <div style={{ flex: 1, minWidth: 260 }}>
               <p style={{ fontSize: 14.5, lineHeight: 1.8, textAlign: 'justify' }}>
                 {t(
-                  "Mandar Vikas Foundation, a non-profit social organisation established in 2019, introduced Mandar's Pride as its educational initiative, a co-educational school for imparting quality, inclusive education to help children blossom, add value to society, and grow toward a respectable livelihood.",
-                  "मंदार विकास फाउंडेशन, 2019 में स्थापित एक गैर-लाभकारी सामाजिक संस्था, ने Mandar's Pride को अपनी शैक्षणिक पहल के रूप में शुरू किया, जो एक सह-शिक्षा विद्यालय है, जो बच्चों को पल्लवित होने, समाज में योगदान देने एवं सम्मानजनक आजीविका की ओर बढ़ने में मदद करने के लिए गुणवत्तापूर्ण, समावेशी शिक्षा प्रदान करता है।"
+                  "Mandar Vikas Foundation, a non-profit social organisation established in 2019, introduced Mandar's Pride as its educational initiative, a co-educational school for imparting quality and inclusive education to help children blossom, add value to society, and grow toward a respectable livelihood.",
+                  "मंदार विकास फाउंडेशन, 2019 में स्थापित एक गैर-लाभकारी सामाजिक संस्था, ने Mandar's Pride को अपनी शैक्षणिक पहल के रूप में शुरू किया, जो एक सह-शिक्षा विद्यालय है, जो बच्चों को पल्लवित होने, समाज में योगदान देने एवं सम्मानजनक आजीविका की ओर बढ़ने में मदद करने के लिए गुणवत्तापूर्ण एवं समावेशी शिक्षा प्रदान करता है।"
                 )}
               </p>
               <div
@@ -173,7 +173,7 @@ export default function MandarsPrideClient() {
             </div>
           </div>
 
-          <div className="container" style={{ paddingBottom: 40, display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: 20 }}>
+          <div className="container vision-mission-grid" style={{ paddingBottom: 40, gap: 20 }}>
             <div className="card" style={{ padding: 20 }}>
               <div className="section-heading" style={{ fontSize: 21, marginBottom: 10 }}>{t('Vision', 'विज़न')}</div>
               <ul style={{ fontSize: 14.5, lineHeight: 1.8, paddingLeft: 16, margin: 0, textAlign: 'justify' }}>
@@ -586,7 +586,7 @@ function AdmissionsForm({ t }: { t: TFunc }) {
 
   return (
     <form onSubmit={handleSubmit} style={{ flex: '1 1 320px' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }}>
+      <div className="form-grid-2" style={{ gap: 14, marginBottom: 14 }}>
         <div>
           <label htmlFor="admissions-parent-name" className="sr-only">Parent&apos;s name</label>
           <input

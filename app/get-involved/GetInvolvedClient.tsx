@@ -20,7 +20,7 @@ export default function GetInvolvedClient() {
             "मंदार विकास फाउंडेशन के कार्य का हर हिस्सा, Mandar's Pride से लेकर हमारे सामुदायिक कार्यक्रमों तक, उन लोगों के सहयोग पर चलता है जो इसमें विश्वास रखते हैं। आप जो भी दे सकें, मदद करने का एक तरीका जरूर है।"
           )}
         </p>
-        <div style={{ display: 'flex', gap: 12, marginTop: 20, justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: 12, marginTop: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
           <a href="#donate" className="btn" style={{ background: 'var(--saffron-600)', color: '#FDF2E7', borderRadius: 16, boxShadow: '0 3px 8px rgba(198,99,31,0.35)' }}>
             {t('Donate', 'दान करें')}
           </a>
@@ -336,7 +336,7 @@ function PartnerForm({ t }: { t: TFunc }) {
 
 function FormRow2({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 16 }}>
+    <div className="form-grid-2" style={{ gap: 18, marginBottom: 16 }}>
       {children}
     </div>
   );

@@ -37,7 +37,7 @@ export default function ContactClient() {
       <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
         {t('Contact Us', 'संपर्क करें')}
       </h1>
-      <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2, whiteSpace: 'nowrap' }}>
+      <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 2 }}>
         {t(
           "We'd love to hear from you, whether you have a question, want to get involved, or anything else!",
           'हमें आपसे सुनकर खुशी होगी, चाहे आपका कोई प्रश्न हो, आप जुड़ना चाहते हों, या कुछ और!'
@@ -46,7 +46,7 @@ export default function ContactClient() {
 
       <div style={{ display: 'flex', gap: 32, marginTop: 30, flexWrap: 'wrap' }}>
         <div style={{ flex: '0 0 42%', minWidth: 280 }}>
-          <h2 className="section-heading" style={{ fontSize: 30, margin: '0 0 14px', whiteSpace: 'nowrap' }}>
+          <h2 className="section-heading" style={{ fontSize: 30, margin: '0 0 14px' }}>
             {t('Get In Touch', 'संपर्क में रहें')}
           </h2>
           <div style={{ fontSize: 14.5, lineHeight: 1.9 }}>
@@ -113,7 +113,7 @@ export default function ContactClient() {
                   <option>{t('Other', 'अन्य')}</option>
                 </select>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 20 }}>
+              <div className="form-grid-2" style={{ gap: 18, marginBottom: 20 }}>
                 <div>
                   <label htmlFor="contact-name" className="sr-only">Name</label>
                   <input id="contact-name" name="name" className="field-input" placeholder={t('Name', 'नाम')} value={name} onChange={(e) => setName(e.target.value)} required />

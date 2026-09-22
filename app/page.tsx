@@ -46,10 +46,11 @@ export default function HomePage() {
           fetchPriority="high"
         />
         <div
+          className="hero-cta"
           style={{
             position: 'absolute',
-            left: 70,
-            top: 100,
+            left: '5%',
+            top: '12%',
             display: 'flex',
             flexDirection: 'column',
             gap: 12,
@@ -168,7 +169,7 @@ export default function HomePage() {
                 'Mandar\'s Pride एक सह-शिक्षा विद्यालय है, जो पल्लवित होते बच्चों को गुणवत्तापूर्ण एवं समावेशी शिक्षा प्रदान करता है, ताकि बड़े होकर वे समाज में योगदान दे सकें और सम्मानजनक आजीविका अर्जित कर सकें।'
               )}
             </p>
-            <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
+            <div style={{ display: 'flex', gap: 10, marginTop: 14, flexWrap: 'wrap' }}>
               <Link
                 href="/mandars-pride"
                 className="btn"
@@ -261,7 +262,6 @@ export default function HomePage() {
                   fontSize: 13,
                   color: 'var(--sky-200)',
                   marginTop: 6,
-                  whiteSpace: 'nowrap',
                 }}
               >
                 {t(
