@@ -9,7 +9,7 @@ export default function GetInvolvedClient() {
 
   return (
     <>
-      <div className="container" style={{ padding: '30px 0 6px', textAlign: 'left' }}>
+      <div className="container" style={{ paddingTop: 30, paddingBottom: 6, textAlign: 'left' }}>
         <div className="eyebrow">{t('Home / Get Involved', 'होम / जुड़ें')}</div>
         <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
           {t('Get Involved', 'जुड़ें')}
@@ -34,7 +34,7 @@ export default function GetInvolvedClient() {
       </div>
 
       {/* DONATE */}
-      <section id="donate" style={{ padding: '32px 0 30px', scrollMarginTop: 90 }}>
+      <section id="donate" style={{ paddingTop: 32, paddingBottom: 30, scrollMarginTop: 90 }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <div
             className="card"
@@ -93,10 +93,10 @@ export default function GetInvolvedClient() {
       </section>
 
       {/* VOLUNTEER — text left, form right (mirrored by Partner below) */}
-      <section id="volunteer" style={{ padding: '10px 0 44px', scrollMarginTop: 90 }}>
+      <section id="volunteer" style={{ paddingTop: 10, paddingBottom: 44, scrollMarginTop: 90 }}>
         <div className="container" style={{ display: 'flex', gap: 30, alignItems: 'center', flexWrap: 'wrap', position: 'relative' }}>
           <div style={{ position: 'absolute', left: 26, top: 0, bottom: 0, width: 1, background: 'var(--margin-red)', opacity: 0.3 }} />
-          <div style={{ flex: '0 0 300px', paddingLeft: 26 }}>
+          <div className="get-involved-text-block" style={{ flex: '0 0 300px', paddingLeft: 26 }}>
             <h2 className="section-heading" style={{ fontSize: 34, marginBottom: 10 }}>
               {t('Volunteer', 'स्वयंसेवा')}
             </h2>
@@ -115,19 +115,19 @@ export default function GetInvolvedClient() {
       <section
         id="partner"
         className="ridge-band"
-        style={{ background: 'var(--navy-900)', padding: '54px 0', scrollMarginTop: 90 }}
+        style={{ background: 'var(--navy-900)', paddingTop: 54, paddingBottom: 54, scrollMarginTop: 90 }}
       >
         <div className="container" style={{ display: 'flex', gap: 30, alignItems: 'center', flexWrap: 'wrap-reverse', position: 'relative' }}>
           <div style={{ position: 'absolute', right: 26, top: 0, bottom: 0, width: 1, background: 'var(--saffron-300)', opacity: 0.3 }} />
           <PartnerForm t={t} />
-          <div style={{ flex: '0 0 340px', paddingRight: 26, textAlign: 'right' }}>
+          <div className="get-involved-text-block" style={{ flex: '0 0 340px', paddingRight: 26, textAlign: 'right' }}>
             <h2 className="section-heading" style={{ fontSize: 32, color: 'white', marginBottom: 8 }}>
               {t('Partner With Us', 'हमारे साथ साझेदारी करें')}
             </h2>
             <div style={{ fontSize: 20, color: 'var(--saffron-300)', marginBottom: 10 }}>
               {t('Individuals, businesses, and organizations, we welcome you.', 'व्यक्ति, व्यवसाय एवं संस्थाएं, हम आपका स्वागत करते हैं।')}
             </div>
-            <p style={{ fontSize: 16, color: 'var(--sky-200)', lineHeight: 1.7, textAlign: 'right' }}>
+            <p className="get-involved-text-para" style={{ fontSize: 16, color: 'var(--sky-200)', lineHeight: 1.7, textAlign: 'right' }}>
               {t(
                 'We welcome support from individuals, local businesses, other organizations, and institutions, whether through funding, in-kind support, materials, or collaboration on a specific initiative.',
                 'हम व्यक्तियों, स्थानीय व्यवसायों, अन्य संस्थाओं एवं संगठनों से सहयोग का स्वागत करते हैं, चाहे वह वित्तीय सहयोग हो, वस्तु रूप में सहयोग हो, सामग्री हो, या किसी विशेष पहल पर साझेदारी हो।'

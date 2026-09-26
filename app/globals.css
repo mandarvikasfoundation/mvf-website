@@ -83,6 +83,52 @@ img {
     font-size: 12px !important;
     padding: 9px 16px !important;
   }
+  .hero-cta {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    margin-top: 14px;
+    padding: 0 20px;
+  }
+  .this-is-mvf-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .this-is-mvf-text {
+    grid-column: 1 !important;
+  }
+  .spotlight-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .spotlight-buttons {
+    justify-content: center;
+  }
+  .footer-address-break {
+    display: block;
+  }
+  .section-heading-block {
+    text-align: center;
+    width: 100%;
+  }
+  .overview-intro {
+    justify-content: center;
+    text-align: center;
+  }
+  .admissions-badge {
+    font-size: 13px !important;
+  }
+  .card-heading-center {
+    text-align: center;
+  }
+  .gallery-grid {
+    column-count: 1 !important;
+  }
+  .get-involved-text-block {
+    text-align: center !important;
+  }
+  .get-involved-text-block p {
+    text-align: center !important;
+  }
 }
 
 /* Visually hides an element but keeps it available to screen readers —
@@ -103,6 +149,13 @@ img {
 .brand-script {
   font-family: var(--font-script);
   font-weight: 700;
+}
+
+/* Footer address: an explicit break point used only on mobile (see the
+   mobile media query) so the address wraps at a clean spot instead of
+   an awkward mid-sentence point that leaves a short, empty-looking line. */
+.footer-address-break {
+  display: none;
 }
 
 .eyebrow {
@@ -286,6 +339,9 @@ img {
   }
   .admin-main {
     padding: 20px 16px;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 

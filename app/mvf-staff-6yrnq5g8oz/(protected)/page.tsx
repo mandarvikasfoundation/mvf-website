@@ -47,7 +47,7 @@ export default async function AdminDashboard() {
         <StatCard icon="🖼" label="Gallery photos" value={photoCount ?? 0} href="/mvf-staff-6yrnq5g8oz/gallery" />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 20, alignItems: 'start' }}>
+      <div className="dashboard-grid" style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 20, alignItems: 'start' }}>
         <div className="card" style={{ padding: 22 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <div className="section-heading" style={{ fontSize: 16 }}>Recent Activity</div>

@@ -99,7 +99,7 @@ export default function OurWorkClient() {
 
   return (
     <>
-      <div className="container" style={{ padding: '30px 0 6px' }}>
+      <div className="container" style={{ paddingTop: 30, paddingBottom: 6 }}>
         <div className="eyebrow">{t('Home / Our Works', 'होम / हमारे कार्य')}</div>
         <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
           {t('Our Works', 'हमारे कार्य')}
@@ -112,7 +112,7 @@ export default function OurWorkClient() {
         </p>
       </div>
 
-      <div className="container" style={{ padding: '20px 0 50px', position: 'relative' }}>
+      <div className="container" style={{ paddingTop: 20, paddingBottom: 50, position: 'relative' }}>
         <div
           style={{
             position: 'absolute',

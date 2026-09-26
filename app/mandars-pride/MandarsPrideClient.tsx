@@ -147,9 +147,9 @@ export default function MandarsPrideClient() {
       {/* OVERVIEW */}
       {activeTab === 'Overview' && (
         <>
-          <div className="container" style={{ padding: '30px 0', display: 'flex', gap: 30, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+          <div className="container overview-intro" style={{ paddingTop: 30, paddingBottom: 30, display: 'flex', gap: 30, alignItems: 'flex-start', flexWrap: 'wrap' }}>
             <PhotoStack photos={STACK_PHOTOS} photoWidth={220} crop={false} />
-            <div style={{ flex: 1, minWidth: 260 }}>
+            <div className="overview-intro-text" style={{ flex: 1, minWidth: 260 }}>
               <p style={{ fontSize: 14.5, lineHeight: 1.8, textAlign: 'justify' }}>
                 {t(
                   "Mandar Vikas Foundation, a non-profit social organisation established in 2019, introduced Mandar's Pride as its educational initiative, a co-educational school for imparting quality and inclusive education to help children blossom, add value to society, and grow toward a respectable livelihood.",
@@ -157,6 +157,7 @@ export default function MandarsPrideClient() {
                 )}
               </p>
               <div
+                className="admissions-badge"
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: 11,
@@ -175,7 +176,7 @@ export default function MandarsPrideClient() {
 
           <div className="container vision-mission-grid" style={{ paddingBottom: 40, gap: 20 }}>
             <div className="card" style={{ padding: 20 }}>
-              <div className="section-heading" style={{ fontSize: 21, marginBottom: 10 }}>{t('Vision', 'विज़न')}</div>
+              <div className="section-heading card-heading-center" style={{ fontSize: 21, marginBottom: 10 }}>{t('Vision', 'विज़न')}</div>
               <ul style={{ fontSize: 14.5, lineHeight: 1.8, paddingLeft: 16, margin: 0, textAlign: 'justify' }}>
                 <li>
                   {t(
@@ -192,7 +193,7 @@ export default function MandarsPrideClient() {
               </ul>
             </div>
             <div className="card" style={{ padding: 20 }}>
-              <div className="section-heading" style={{ fontSize: 21, marginBottom: 10 }}>{t('Mission', 'मिशन')}</div>
+              <div className="section-heading card-heading-center" style={{ fontSize: 21, marginBottom: 10 }}>{t('Mission', 'मिशन')}</div>
               <ul style={{ fontSize: 14.5, lineHeight: 1.8, paddingLeft: 16, margin: 0, textAlign: 'justify' }}>
                 <li>
                   {t(
@@ -220,7 +221,7 @@ export default function MandarsPrideClient() {
 
       {/* ADMISSIONS */}
       {activeTab === 'Admissions' && (
-        <div className="container" style={{ padding: '30px 0 50px' }}>
+        <div className="container" style={{ paddingTop: 30, paddingBottom: 50 }}>
           <div className="section-heading" style={{ fontSize: 26, marginBottom: 6 }}>{t('Admissions', 'प्रवेश')}</div>
           <div
             style={{
@@ -293,7 +294,7 @@ export default function MandarsPrideClient() {
 
       {/* ACADEMICS */}
       {activeTab === 'Academics' && (
-        <div className="container" style={{ padding: '30px 0 50px' }}>
+        <div className="container" style={{ paddingTop: 30, paddingBottom: 50 }}>
           <div className="section-heading" style={{ fontSize: 26, marginBottom: 16 }}>{t('Academics', 'शिक्षा')}</div>
 
           <p style={{ fontSize: 14, lineHeight: 1.85, textAlign: 'justify' }}>
@@ -343,7 +344,7 @@ export default function MandarsPrideClient() {
 
       {/* FACILITIES & SAFETY */}
       {activeTab === 'Facilities & Safety' && (
-        <div className="container" style={{ padding: '30px 0 50px' }}>
+        <div className="container" style={{ paddingTop: 30, paddingBottom: 50 }}>
           <div className="section-heading" style={{ fontSize: 26, marginBottom: 18 }}>{t('Facilities & Safety', 'सुविधाएं एवं सुरक्षा')}</div>
 
           <div className="card" style={{ padding: '22px 24px' }}>
@@ -423,7 +424,7 @@ export default function MandarsPrideClient() {
 
       {/* GALLERY */}
       {activeTab === 'Gallery' && (
-        <div className="container" style={{ padding: '30px 0 50px' }}>
+        <div className="container" style={{ paddingTop: 30, paddingBottom: 50 }}>
           <div className="section-heading" style={{ fontSize: 26, marginBottom: 6 }}>{t('Gallery', 'गैलरी')}</div>
           <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: 20 }}>{t("Photos from life at Mandar's Pride.", "Mandar's Pride में जीवन की तस्वीरें।")}</p>
           {galleryPhotos === null ? (
@@ -435,7 +436,7 @@ export default function MandarsPrideClient() {
               {t('No photos yet.', 'अभी कोई फोटो नहीं है।')}
             </div>
           ) : (
-            <div style={{ columnCount: 3, columnGap: 12 }}>
+            <div className="gallery-grid" style={{ columnCount: 3, columnGap: 12 }}>
               {galleryPhotos.map((photo) => {
                 const caption = t(photo.caption_en ?? '', photo.caption_hi ?? photo.caption_en ?? '');
                 return (
@@ -472,7 +473,7 @@ export default function MandarsPrideClient() {
 
       {/* FAQ */}
       {activeTab === 'FAQ' && (
-        <div className="container" style={{ padding: '30px 0 50px' }}>
+        <div className="container" style={{ paddingTop: 30, paddingBottom: 50 }}>
           <div className="section-heading" style={{ fontSize: 26, marginBottom: 18 }}>{t('Frequently Asked Questions', 'सामान्य प्रश्न')}</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
             {FAQS.map((f, i) => {
@@ -576,7 +577,7 @@ function AdmissionsForm({ t }: { t: TFunc }) {
 
   if (status === 'sent') {
     return (
-      <div style={{ flex: '1 1 320px', textAlign: 'center', padding: '20px 0' }}>
+      <div style={{ flex: '1 1 320px', textAlign: 'center', paddingTop: 20, paddingBottom: 20 }}>
         <div style={{ fontSize: 14, color: 'var(--green-700)' }}>
           {t("Thank you! We'll be in touch soon.", 'धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।')}
         </div>

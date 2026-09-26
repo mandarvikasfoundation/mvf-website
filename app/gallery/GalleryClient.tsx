@@ -62,7 +62,7 @@ export default function GalleryClient() {
     : photos.filter((p) => p.tags.some((tg) => selected.includes(tg)));
 
   return (
-    <div className="container" style={{ padding: '30px 0 50px' }}>
+    <div className="container" style={{ paddingTop: 30, paddingBottom: 50 }}>
       <div className="eyebrow">{t('Home / Gallery', 'होम / गैलरी')}</div>
       <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
         {t('Gallery', 'गैलरी')}
@@ -107,7 +107,7 @@ export default function GalleryClient() {
           {t('No photos under this tag yet.', 'इस टैग में अभी कोई फोटो नहीं है।')}
         </div>
       ) : (
-        <div style={{ columnCount: 3, columnGap: 12 }}>
+        <div className="gallery-grid" style={{ columnCount: 3, columnGap: 12 }}>
           {visiblePhotos.map((photo) => {
             const caption = t(photo.caption_en ?? '', photo.caption_hi ?? photo.caption_en ?? '');
             return (

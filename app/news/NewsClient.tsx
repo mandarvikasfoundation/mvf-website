@@ -79,7 +79,7 @@ export default function NewsClient() {
 
   return (
     <>
-      <div className="container" style={{ padding: '30px 0 20px' }}>
+      <div className="container" style={{ paddingTop: 30, paddingBottom: 20 }}>
         <div className="eyebrow">{t('Home / News & Updates', 'होम / समाचार एवं अपडेट')}</div>
         <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
           {t('News & Updates', 'समाचार एवं अपडेट')}

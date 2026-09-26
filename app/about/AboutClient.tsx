@@ -66,7 +66,7 @@ export default function AboutClient() {
   return (
     <>
       {/* HEADER / INTRO */}
-      <div className="container" style={{ padding: '30px 0 6px' }}>
+      <div className="container" style={{ paddingTop: 30, paddingBottom: 6 }}>
         <div className="eyebrow">{t('Home / About Us', 'होम / हमारे बारे में')}</div>
         <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
           {t('About Mandar Vikas Foundation', 'मंदार विकास फाउंडेशन के बारे में')}
@@ -124,10 +124,10 @@ export default function AboutClient() {
           the light Vision section below. */}
       <section
         className="ridge-band"
-        style={{ background: 'var(--navy-900)', padding: '58px 0' }}
+        style={{ background: 'var(--navy-900)', paddingTop: 58, paddingBottom: 58 }}
       >
         <div className="container" style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap' }}>
-          <div style={{ flex: '0 0 260px' }}>
+          <div className="section-heading-block" style={{ flex: '0 0 260px' }}>
             <div className="section-heading" style={{ fontSize: 44, lineHeight: 1.02, color: 'white' }}>
               {t('Our', 'हमारी')}
               <br />
@@ -146,7 +146,7 @@ export default function AboutClient() {
       </section>
 
       {/* OUR VISION */}
-      <section style={{ padding: '48px 0 68px' }}>
+      <section style={{ paddingTop: 48, paddingBottom: 68 }}>
         <div className="container">
           <h2
             className="section-heading"
@@ -188,12 +188,12 @@ export default function AboutClient() {
 
       {/* OUR MISSION — dark section, NOT mirrored: same left-heading /
           right-body orientation as Our Roots, per user's request. */}
-      <section className="ridge-band-reverse" style={{ background: 'var(--navy-900)', padding: '58px 0' }}>
+      <section className="ridge-band-reverse" style={{ background: 'var(--navy-900)', paddingTop: 58, paddingBottom: 58 }}>
         <div
           className="container"
           style={{ display: 'flex', gap: 26, alignItems: 'center', flexWrap: 'wrap' }}
         >
-          <div style={{ flex: '0 0 260px' }}>
+          <div className="section-heading-block" style={{ flex: '0 0 260px' }}>
             <div className="section-heading" style={{ fontSize: 44, lineHeight: 1.02, color: 'white' }}>
               {t('Our', 'हमारा')}
               <br />
@@ -229,7 +229,7 @@ export default function AboutClient() {
 
       {activeTab === 'Committee' && (
       /* MANAGING COMMITTEE / GENERAL BODY TABS */
-      <section className="container" style={{ padding: '48px 0' }}>
+      <section className="container" style={{ paddingTop: 48, paddingBottom: 48 }}>
         <div style={{ display: 'flex', gap: 4, justifyContent: 'center', flexWrap: 'wrap' }}>
           <TabButton active={committeeTab === 'committee'} onClick={() => setCommitteeTab('committee')}>
             {t('Managing Committee', 'प्रबंध समिति')}
@@ -268,7 +268,7 @@ export default function AboutClient() {
       /* PRESIDENT'S DESK */
       <section
         className="ridge-band"
-        style={{ background: 'var(--navy-900)', padding: '58px 0' }}
+        style={{ background: 'var(--navy-900)', paddingTop: 58, paddingBottom: 58 }}
       >
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>

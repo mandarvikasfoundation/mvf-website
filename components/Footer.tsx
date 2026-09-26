@@ -58,12 +58,13 @@ export default function Footer() {
           <div>
             {lang === 'hi' ? (
               <>
-                डैम रोड, भागा, पो. &amp; पु. स्टे. बौंसी, जिला बांका, बिहार, <b>पिन</b> 813104
+                डैम रोड, भागा, पो. &amp; पु. स्टे. बौंसी,<br className="footer-address-break" />{' '}
+                जिला बांका, बिहार, <b>पिन</b> 813104
               </>
             ) : (
               <>
-                Dam Road, Bhaga, P.O. &amp; P.S.- Bounsi, District- Banka, Bihar,{' '}
-                <b>PIN</b> 813104
+                Dam Road, Bhaga, P.O. &amp; P.S.- Bounsi,<br className="footer-address-break" />{' '}
+                District- Banka, Bihar, <b>PIN</b> 813104
               </>
             )}
           </div>

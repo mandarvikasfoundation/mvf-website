@@ -32,7 +32,7 @@ export default function ContactClient() {
   }
 
   return (
-    <div className="container" style={{ padding: '30px 0 50px' }}>
+    <div className="container" style={{ paddingTop: 30, paddingBottom: 50 }}>
       <div className="eyebrow">{t('Home / Contact', 'होम / संपर्क')}</div>
       <h1 className="section-heading" style={{ fontSize: 42, margin: '8px 0 0' }}>
         {t('Contact Us', 'संपर्क करें')}
@@ -84,7 +84,7 @@ export default function ContactClient() {
           </div>
 
           {status === 'sent' ? (
-            <div style={{ textAlign: 'center', padding: '40px 0', fontSize: 14, color: 'var(--green-700)' }}>
+            <div style={{ textAlign: 'center', paddingTop: 40, paddingBottom: 40, fontSize: 14, color: 'var(--green-700)' }}>
               {t(
                 "Thank you! Your message has been sent. We'll get back to you within 3 working days.",
                 'धन्यवाद! आपका संदेश भेज दिया गया है। हम 3 कार्यदिवसों के भीतर आपसे संपर्क करेंगे।'

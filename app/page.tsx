@@ -107,6 +107,7 @@ export default function HomePage() {
           of the third (rightmost) stat card. */}
       <section className="container" style={{ paddingBottom: 40 }}>
         <div
+          className="this-is-mvf-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -122,7 +123,7 @@ export default function HomePage() {
               MVF
             </div>
           </div>
-          <div style={{ gridColumn: '2 / span 2' }}>
+          <div className="this-is-mvf-text" style={{ gridColumn: '2 / span 2' }}>
             <p style={{ fontSize: 15.5, lineHeight: 1.8, textAlign: 'justify' }}>
               {t(
                 "Since 2019, Mandar Vikas Foundation has worked in Bhaga, Bounsi, Banka district of Bihar, supporting children's education and women's financial independence. We believe talent is never scarce in our community; opportunity is.",
@@ -149,11 +150,11 @@ export default function HomePage() {
         style={{ background: 'var(--navy-900)', padding: '52px 0' }}
       >
         <div
-          className="container"
+          className="container spotlight-container"
           style={{ display: 'flex', gap: 30, alignItems: 'center', flexWrap: 'wrap' }}
         >
           <PhotoStack photos={STACK_PHOTOS} />
-          <div style={{ flex: 1, minWidth: 260 }}>
+          <div className="spotlight-text" style={{ flex: 1, minWidth: 260 }}>
             <div className="eyebrow" style={{ color: 'var(--saffron-300)' }}>
               {t('Our Flagship Initiative', 'हमारी प्रमुख पहल')}
             </div>
@@ -169,7 +170,7 @@ export default function HomePage() {
                 'Mandar\'s Pride एक सह-शिक्षा विद्यालय है, जो पल्लवित होते बच्चों को गुणवत्तापूर्ण एवं समावेशी शिक्षा प्रदान करता है, ताकि बड़े होकर वे समाज में योगदान दे सकें और सम्मानजनक आजीविका अर्जित कर सकें।'
               )}
             </p>
-            <div style={{ display: 'flex', gap: 10, marginTop: 14, flexWrap: 'wrap' }}>
+            <div className="spotlight-buttons" style={{ display: 'flex', gap: 10, marginTop: 14, flexWrap: 'wrap' }}>
               <Link
                 href="/mandars-pride"
                 className="btn"
